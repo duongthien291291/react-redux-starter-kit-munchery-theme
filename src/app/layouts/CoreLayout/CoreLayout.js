@@ -3,780 +3,789 @@ import Header from '../../components/Header'
 import './CoreLayout.scss'
 import '../../styles/core.scss'
 
-export const CoreLayout = ({children}) => (
-  <div>
-    <div className="dialog-mask modal clickable"></div>
-    <div id="signin-form" className="dialog zoom-in signin-form"
-         style={{position: 'fixed', top: '0px', left: '348.5px'}}>
-      <a href="#" className="close close-x"></a>
-      <h3>
-        Log In To Your Account
-      </h3>
+class CoreLayout extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { open: false };
+  }
 
-      <div className="divider">
-        <div className="label">OR</div>
-      </div>
 
-      <div className="column-container clearfix">
+  render() {
+    return (
+      <div>
+        <div className="dialog-mask modal clickable"></div>
+        <div id="signin-form" className="dialog zoom-in signin-form"
+             style={{position: 'fixed', top: '0px', left: '348.5px'}}>
+          <a href="#" className="close close-x"></a>
+          <h3>
+            Log In To Your Account
+          </h3>
 
-        <div className="column float-left social-signin">
-          <div className="auth_provider field">
-            <a href="/users/preauth/facebook.json?return=https%3A%2F%2Fmunchery.com%2F%3Fforce%3Dtrue"
-               id="facebook_login_button" className="popup facebook-popup facebook large button" data-width="650"
-               data-height="700">
-              <span>Facebook Log In</span>
-            </a>
+          <div className="divider">
+            <div className="label">OR</div>
           </div>
 
-          <div className="auth_provider field">
-            <a href="/users/preauth/twitter.json?return=https%3A%2F%2Fmunchery.com%2F%3Fforce%3Dtrue"
-               id="twitter_login_button" className="popup twitter-popup twitter large button" data-width="600"
-               data-height="400">
-              <span>Twitter Log In</span>
-            </a>
-          </div>
-        </div>
+          <div className="column-container clearfix">
 
-
-        <div className="column float-right email-signin">
-          <form className="new_user" id="new_user" action="/users/login/" acceptCharset="UTF-8" data-remote="true"
-                method="post">
-            <input name="utf8" type="hidden" value="✓"/>
-            <div className="field">
-              <input placeholder="Your Email" type="email" value="" name="user[email]" id="user_email"/>
-              <div id="error-user_email" className="error"></div>
-            </div>
-
-            <div className="field">
-              <input placeholder="Password" type="password" name="user[password]" id="user_password"/>
-              <div id="error-user_password" className="error"></div>
-            </div>
-
-            <div>
-
-              <input type="submit" name="commit" value="Log In" id="login_button" className="orange button"
-                     data-disable-with="Logging In..."/>
-
-              <div style={{marginTop: '10px'}}>
-                <a className="secondary" href="/users/password/new/">Forgot your password?</a>
+            <div className="column float-left social-signin">
+              <div className="auth_provider field">
+                <a href="/users/preauth/facebook.json?return=https%3A%2F%2Fmunchery.com%2F%3Fforce%3Dtrue"
+                   id="facebook_login_button" className="popup facebook-popup facebook large button" data-width="650"
+                   data-height="700">
+                  <span>Facebook Log In</span>
+                </a>
               </div>
 
-              <input value="true" type="hidden" name="user[remember_me]" id="user_remember_me"/>
+              <div className="auth_provider field">
+                <a href="/users/preauth/twitter.json?return=https%3A%2F%2Fmunchery.com%2F%3Fforce%3Dtrue"
+                   id="twitter_login_button" className="popup twitter-popup twitter large button" data-width="600"
+                   data-height="400">
+                  <span>Twitter Log In</span>
+                </a>
+              </div>
             </div>
-          </form>
-        </div>
-      </div>
-
-      <div className="signup">
-        <span className="gray">Don't have an account?</span>
-        <a href="/users/signup/">Sign up for free</a>
-      </div>
-    </div>
-    <div className="dialog-mask modal clickable"></div>
-    <div id="activate-account-success" className="dialog zoom-in signin-form"
-         style={{position: 'fixed', top: '0px', left: '348.5px'}}><a href="#" className="close close-x"></a>
-      <div className="activate-account">
-        <h3>Check Your Email</h3>
-
-        <p>
-          We just sent you an email. Follow the instructions to activate your account.
-        </p>
-      </div>
-    </div>
-    <div className="dialog-mask modal clickable"></div>
-    <div id="activate-account-dialog" className="dialog zoom-in signin-form"
-         style={{position: 'fixed', top: '0px', left: '348.5px'}}><a href="#" className="close close-x"></a>
-      <div className="activate-account">
-        <form className="activate-account-form" id="new_user" action="/users/password.json" acceptCharset="UTF-8"
-              data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"/>
-
-          <h3>Activate Your Account</h3>
-
-          <p>
-            It looks like you have an existing Munchery account with the following email address that needs to be
-            activated.
-          </p>
-
-          <input type="email" value="" name="user[email]" id="user_email"/>
-          <input type="submit" name="commit" value="Send Activation Email" className="large orange button"
-                 data-disable-with="Sending Email..."/>
-          <a className="switch-to-login desktop-link" data-return-url="/checkout/" href="/users/login/">Log into a
-            different account</a>
-          <a className="mobile-link" data-return-url="/checkout/" href="/users/login/">Log into a different account</a>
-        </form>
-      </div>
-    </div>
-    <div className="dialog-mask modal clickable"></div>
 
 
-    <nav className="phone-nav">
-      <section>
-
-        <ul className="secondary">
-          <li><a href="/users/login/">Log In</a></li>
-        </ul>
-
-
-        <h3>Order On The Go</h3>
-        <ul>
-          <li className="download">
-            <a className="ios"
-               href="http://mnch.me/a/110101738656125502?channel=interstitial&amp;data=eyJyZWZlcnJlcl92YWxpZCI6ZmFsc2UsInJlZmVycmVyX2Vycm9yIjoiU29ycnksIHRoYXQgaW52aXRlIGNvZGUgY2Fubm90IGJlIHVzZWQuIiwicmVmZXJyZXJfY29kZSI6bnVsbCwicmVmZXJyZXJfbmFtZSI6IllvdXIgRnJpZW5kIiwicmVmZXJyZXJfY3JlZGl0IjoiJDIwIiwiaW52aXRlcl9jcmVkaXQiOjIwLCJyZWZlcnJlZV9jcmVkaXQiOiIkMjAiLCJpbnZpdGVlX2NyZWRpdCI6MjAsInJlZmVycmVyX3Rva2VuIjoiYW5vbi1iYWZiYWJhYjZlMmUwMjdhYmIwN2U3ZGFkYTlkNjJkMCIsInQiOm51bGwsImEiOm51bGwsImQiOm51bGx9">Download
-              for <strong>iPhone</strong></a>
-          </li>
-          <li className="download">
-            <a className="android"
-               href="http://mnch.me/a/110101738656125502?channel=interstitial&amp;data=eyJyZWZlcnJlcl92YWxpZCI6ZmFsc2UsInJlZmVycmVyX2Vycm9yIjoiU29ycnksIHRoYXQgaW52aXRlIGNvZGUgY2Fubm90IGJlIHVzZWQuIiwicmVmZXJyZXJfY29kZSI6bnVsbCwicmVmZXJyZXJfbmFtZSI6IllvdXIgRnJpZW5kIiwicmVmZXJyZXJfY3JlZGl0IjoiJDIwIiwiaW52aXRlcl9jcmVkaXQiOjIwLCJyZWZlcnJlZV9jcmVkaXQiOiIkMjAiLCJpbnZpdGVlX2NyZWRpdCI6MjAsInJlZmVycmVyX3Rva2VuIjoiYW5vbi1iYWZiYWJhYjZlMmUwMjdhYmIwN2U3ZGFkYTlkNjJkMCIsInQiOm51bGwsImEiOm51bGwsImQiOm51bGx9">Download
-              for <strong>Android</strong></a>
-          </li>
-        </ul>
-      </section>
-    </nav>
-
-
-    <div className="header-container">
-      <nav className="desktop-nav ">
-        <div className="fluid-container full-width">
-          <div className="row">
-            <a href="/" className="logo-container"></a>
-
-            <ul className="rag-right nav-links">
-
-
-              <li><a href="" id="login_button" className="show-signin-form" data-return-url="">Log In</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      <div className="hamburger-nav-container">
-        <nav className="hamburger-nav"></nav>
-        <a href="/" className="clickable-area"></a>
-      </div>
-    </div>
-
-
-    <table className="fatal-error">
-      <tbody>
-      <tr>
-        <td className="message">
-
-        </td>
-        <td className="close-box"></td>
-      </tr>
-      </tbody>
-    </table>
-
-    <div className="freezable-body">
-      <a className="screen-reader" href="#content">Skip Navigation</a>
-
-      <div className="post-header">
-
-        <div className="f-strata hero">
-          <div className="slideshow chef"></div>
-          <div className="slideshow farm"></div>
-          <div className="slideshow packaged"></div>
-          <div className="slideshow plated"></div>
-          <div className="slideshow produce"></div>
-
-          <div className="fluid-container">
-            <div className="row center-xy">
-              <div className="phone-col-12 tablet-col-12 desktop-col-12 container">
-                <h1>Fresh, healthy, and delicious, delivered <span>to your door.</span></h1>
-                <p>Chef-crafted <span>| Cooked from scratch</span> <span>| All-natural</span></p>
-                <div className="signup-login-form">
-                  <form className="email-squeeze-form" action="/menus/subscribe.json" acceptCharset="UTF-8"
-                        data-remote="true" method="post">
-                    <input name="utf8" type="hidden" value="✓"/>
-                    <input type="hidden" name="bypass_email_requirement" id="bypass_email_requirement" value="1"/>
-
-                    <input type="hidden" name="_skip_confirmation_instructions" id="_skip_confirmation_instructions"
-                           value="1"/>
-                    <input type="email" name="email" id="email" placeholder="Email" className="user-input email"
-                           maxLength="254"/>
-                    <input type="text" name="zipcode" id="zipcode" maxLength="5" placeholder="ZIP Code"
-                           className="user-input zip-code" inputMode="numeric" pattern="[\d\s\.()-]*"
-                           autoCorrect="off"
-                           autoCapitalize="none" noValidate="noValidate"/>
-                    <input type="hidden" name="gate" id="gate" value="Static Email Gate"/>
-                    <button name="button" type="submit" className="large orange button">See The Menu</button>
-
-                    <div className="errors">
-                      <div className="error-message email-error hidden">
-                        Please enter a valid email address.
-                      </div>
-
-                      <div className="error-message zipcode-error hidden">
-                        Please enter a 5-digit ZIP code.
-                      </div>
-
-                      <div className="error-message unknown-error hidden">
-                        Error: please <a href="/support/">contact support</a>
-                      </div>
-                    </div>
-                  </form>
-                  <div className="or-separator">OR</div>
-
-                  <a
-                    href="/users/preauth/facebook.json?return=https%3A%2F%2Fmunchery.com%2Fmenus%2F&amp;signup=%2Fsignup-page%2Fconfirm"
-                    id="facebook_login_button" className="popup facebook-popup facebook large button" data-width="650"
-                    data-height="700">
-                    <span>Continue with Facebook</span>
-                  </a>
-
-                  <div className="terms">By clicking “See the Menu” or “Continue with Facebook” <br/>you agree to our
-                    <a className="secondary" target="_blank" href="/about/privacy-and-terms-of-service/">
-                      Terms &amp; Conditions</a>.
-                  </div>
+            <div className="column float-right email-signin">
+              <form className="new_user" id="new_user" action="/users/login/" acceptCharset="UTF-8" data-remote="true"
+                    method="post">
+                <input name="utf8" type="hidden" value="✓"/>
+                <div className="field">
+                  <input placeholder="Your Email" type="email" value="" name="user[email]" id="user_email"/>
+                  <div id="error-user_email" className="error"></div>
                 </div>
 
-              </div>
-            </div>
-          </div>
-        </div>
+                <div className="field">
+                  <input placeholder="Password" type="password" name="user[password]" id="user_password"/>
+                  <div id="error-user_password" className="error"></div>
+                </div>
 
-        <div className="f-strata hiw" style={{display: 'none'}}>
-          <h2>How it works, <br/>from the farm to your fork</h2>
-
-          <div className="route">
-            <div className="stop ingredients">
-              <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 332 92"
-                   className="hiw-ingredients icon">
-                <path className="st0"
-                      d="M200.8 43.1h10.6v2.5h-10.6zm36.3 22.2h-14.9c.3 1 .4 2 .4 3.1 0 2.3-.7 4.5-1.9 6.2h40.1c-1.2-1.8-1.9-3.9-1.9-6.2 0-1.1.2-2.1.4-3.1h-22.2zm-20.6-22.2h10.6v2.5h-10.6zm27 .3h16c1.9 0 3.3-1.9 2.6-3.7l-1.4-4.1c-1-2.4-3.4-4-6.1-4h-11.2c-1.1 0-2 .9-2 2v7.7c.1 1.2 1 2.1 2.1 2.1zM296 79.7H35.8c-4.6 0-8.4 3.1-9.5 7.3h279.3c-1.2-4.2-5-7.3-9.6-7.3z"></path>
-                <path className="st1"
-                      d="M141.3 68.2l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8V59l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-2.7l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-1.8c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.8l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.7l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.7l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v6.4h5v-6.3zm17.2 0l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8V59l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-2.8l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-2.8l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-2.9c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5V34l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.8l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.8l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.8l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v6.4h5v-6.2zm17.2 0l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8V59l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-2.7l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-1.8c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.8l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.7l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.7l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v6.4h5v-6.3z"></path>
-                <path className="st2"
-                      d="M107.3 12.3l-1.7-.5 1.8.8zM67 46.7v-.4c0-.1 0-.2.1-.2 0-.1 0-.2.1-.2 0-.1.1-.2.1-.2 0-.1.1-.1.1-.2s.1-.1.1-.2.1-.1.2-.2l.2-.2c.1-.1.1-.1.2-.1.1-.1.2-.1.2-.1l.1-.1h.1c.1 0 .2-.1.3-.1.1 0 .1-.1.2-.1h30.8c.1 0 .1 0 .2.1.1 0 .2.1.3.1.1 0 .1.1.1.1.1 0 .2.1.2.1.1 0 .1.1.2.2l.2.2.2.2c0 .1.1.1.1.2s.1.1.1.2.1.1.1.2 0 .2.1.2c0 .1 0 .2.1.2v28.5h13.2l3.7-35.9-4.1-1.1c-.8-.2-1.4-.8-1.7-1.5l-7.4-19-20.7-9.5L64 17.2l-7.4 19c-.3.7-.9 1.3-1.7 1.5l-4 1.1 3.7 35.9H67v-28zm37.9 13.7c0-1.6 1.3-2.8 2.8-2.8h1.4c1.6 0 2.8 1.3 2.8 2.8v3.5c0 1.6-1.3 2.8-2.8 2.8h-1.4c-1.6 0-2.8-1.3-2.8-2.8v-3.5zM77.8 18.2c0-1.1.7-2.1 1.9-2.7l3.1-1.5c1.2-.6 2.7-.6 3.9 0l3.1 1.5c1.2.6 1.9 1.6 1.9 2.7v6.6c0 1.7-1.7 3.2-3.8 3.2h-6.2c-2.1 0-3.8-1.4-3.8-3.2v-6.6zM64.1 63.9c0 1.6-1.3 2.8-2.8 2.8h-1.4c-1.6 0-2.8-1.3-2.8-2.8v-3.5c0-1.6 1.3-2.8 2.8-2.8h1.4c1.6 0 2.8 1.3 2.8 2.8v3.5z"></path>
-                <path className="st3"
-                      d="M96.6 57.8l-8 16.9h8zM82 66.3l-.2-17.1h-8.3zm4.8-17.1l.2 17.1 8.2-17.1zM72 57.3v17.4h8.6zm-10.7.3h-1.4c-1.6 0-2.8 1.3-2.8 2.8v3.5c0 1.6 1.3 2.8 2.8 2.8h1.4c1.6 0 2.8-1.3 2.8-2.8v-3.5c0-1.6-1.2-2.8-2.8-2.8zm46.4 9.1h1.4c1.6 0 2.8-1.3 2.8-2.8v-3.5c0-1.6-1.3-2.8-2.8-2.8h-1.4c-1.6 0-2.8 1.3-2.8 2.8v3.5c0 1.6 1.2 2.8 2.8 2.8zM81.6 27.9h6.2c2.1 0 3.8-1.4 3.8-3.2v-6.6c0-1.1-.7-2.1-1.9-2.7l-3.1-1.5c-1.2-.6-2.7-.6-3.9 0l-3.1 1.5c-1.2.6-1.9 1.6-1.9 2.7v6.6c.1 1.8 1.8 3.2 3.9 3.2z"></path>
-                <path className="st1" d="M61 13.1l3.2-1.5v-3h-4.4v5.6c.3-.5.7-.9 1.2-1.1z"></path>
-                <path className="st4"
-                      d="M200.8 43.1h10.6v2.5h5v-2.5H227v2.5h5v-2.5h1.1c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5H232v-1.9c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.9h-10.6v-1.9c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.9h-10.6v-1.9c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.9h-1.1c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h1.1v2.5h5v-2.5z"></path>
-                <path className="st2"
-                      d="M211.4 57.2c5.1 0 9.4 3.4 10.7 8.1h37.2c1.3-4.7 5.6-8.1 10.7-8.1s9.4 3.4 10.7 8.1h3.4c2.5 0 4.4-2.3 3.9-4.8l-3-15.2c-.4-2-2.2-3.5-4.3-3.5H267l-1.4-6.1c-1.1-4.9-5.5-8.3-10.5-8.3h-15c-1.8 0-3.3 1.5-3.3 3.3v14.9h-43.2c-1.6 0-3 1.3-3 3v13.8c0 1.6 1.3 3 3 3h6.9c1.5-4.7 5.8-8.2 10.9-8.2zm30.1-23.6c0-1.1.9-2 2-2h11.2c2.6 0 5 1.6 6.1 4l1.4 4.1c.6 1.8-.7 3.7-2.6 3.7h-16c-1.1 0-2-.9-2-2v-7.8z"></path>
-                <circle className="st5" cx="211.4" cy="68.4" r="6.2"></circle>
-                <circle className="st5" cx="270.1" cy="68.4" r="6.2"></circle>
-                <path className="st4"
-                      d="M329.3 87h-18.6c-1.2-7-7.3-12.3-14.6-12.3h-16.7c1.2-1.8 1.9-3.9 1.9-6.2 0-1.1-.2-2.1-.4-3.1-1.3-4.7-5.6-8.1-10.7-8.1s-9.4 3.4-10.7 8.1c-.3 1-.4 2-.4 3.1 0 2.3.7 4.5 1.9 6.2h-40.1c1.2-1.8 1.9-3.9 1.9-6.2 0-1.1-.2-2.1-.4-3.1-1.3-4.7-5.6-8.1-10.7-8.1s-9.4 3.4-10.7 8.1c-.3 1-.4 2-.4 3.1 0 2.3.7 4.5 1.9 6.2h-82.2l3.5-34.6 3.4.9c.2.1.4.1.7.1 1.1 0 2.1-.7 2.4-1.8.4-1.3-.4-2.7-1.8-3.1l-6-1.6c-.2-.1-.4-.2-.7-.2l-4.6-1.2-7.3-18.7c-.2-.6-.7-1.1-1.3-1.4l-.9-.4-1.9-.8-19.9-9h-.1c-.1 0-.2-.1-.3-.1-.1 0-.1 0-.2-.1h-.8c-.1 0-.1 0-.2.1-.1 0-.2.1-.3.1h-.1L69.2 9.3V6.1c0-1.4-1.1-2.5-2.5-2.5h-9.4c-1.4 0-2.5 1.1-2.5 2.5v20.2c0 .2 0 .4.1.5l-2.5 6.4-11.2 3c-1.3.4-2.1 1.7-1.8 3.1.3 1.1 1.3 1.8 2.4 1.8.2 0 .4 0 .7-.1l3.6-1 3.5 34.6H35.8c-7.3 0-13.4 5.4-14.6 12.3H2.7C1.3 86.9.2 88 .2 89.4S1.4 92 2.7 92h326.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.4-2.5zm-59.2-24.8c3.4 0 6.2 2.8 6.2 6.2s-2.8 6.2-6.2 6.2-6.2-2.8-6.2-6.2 2.8-6.2 6.2-6.2zm-58.7 0c3.4 0 6.2 2.8 6.2 6.2s-2.8 6.2-6.2 6.2-6.2-2.8-6.2-6.2 2.8-6.2 6.2-6.2zM59.8 8.6h4.4v3L61 13.1c-.5.2-.9.6-1.2 1.1V8.6zm-8.9 30.1l4-1.1c.8-.2 1.4-.8 1.7-1.5l7.4-19 20.7-9.3 20.7 9.3 7.4 19c.3.7.9 1.3 1.7 1.5l4.1 1.1-3.7 35.9h-13.2V46.1c0-.1 0-.2-.1-.2 0-.1 0-.2-.1-.2 0-.1-.1-.2-.1-.2 0-.1-.1-.1-.1-.2s-.1-.1-.1-.2l-.2-.2-.2-.2-.2-.2c-.1-.1-.2-.1-.2-.1l-.1-.1c-.1 0-.2-.1-.3-.1-.1 0-.1 0-.2-.1H68.9c-.1 0-.1 0-.2.1-.1 0-.2.1-.3.1h-.1l-.1.1c-.1 0-.2.1-.2.1-.1 0-.1.1-.2.1l-.2.2-.2.2c0 .1-.1.1-.1.2s-.1.1-.1.2-.1.1-.1.2-.1.2-.1.2c0 .1 0 .2-.1.2v28.4H54.6l-3.7-35.7zm30.9 10.5l.2 17.1-8.5-17.1h8.3zM72 57.3l8.6 17.3H72V57.3zm14.8-8.1h8.3L87 66.3l-.2-17.1zm9.8 8.6v16.9h-8l8-16.9zM26.3 87c1.1-4.2 4.9-7.3 9.5-7.3H296c4.6 0 8.4 3.1 9.5 7.3H26.3z"></path>
-              </svg>
-
-              <p className="caption">Fresh, local, <br/>all-natural ingredients</p>
-            </div>
-            <div className="stop chefs">
-              <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 332 92" className="hiw-chefs icon">
-
-                <path className="st0"
-                      d="M295 82.2h-12.7c-.5.1-1.1.1-1.6.1h-75.9c-.5 0-1.1 0-1.6-.1H34.8c-4.2 0-7.9 2-9.2 4.8h278.7c-1.4-2.8-5-4.8-9.3-4.8z"></path>
-                <path className="st1"
-                      d="M291.7 28.7c1-.9 2.6-.9 3.5.1.8.9 2.3 1 3.2.1.9-.8 1-2.3.1-3.2-.5-.5-1.2-.8-1.9-.7-.8.1-1.5-.2-2.1-.8s-.8-1.4-.6-2.1c.1-.7-.1-1.4-.6-1.9-.8-.9-2.3-1-3.2-.1-.8.8-1 2-.3 3s.6 2.4-.3 3.3l-5.8 5.4 2.2 2.3 5.8-5.4z"></path>
-                <path className="st2"
-                      d="M234.4 57.9c.2.6.1 1.3-.2 1.9-.3.6-.7 1.2-1.1 1.7h40.7c.4-.9.8-1.8 1.1-2.8 1.6-5.9 4.7-11.1 8.9-15l.7-.7c.4-.4.7-1 .7-1.6s-.2-1.2-.6-1.6l-6.8-7.3c-.4-.4-1-.7-1.6-.7-.6 0-1.2.2-1.6.6l-.9.9c-2.7 2.5-5.8 4.4-9.4 5.8-1.2.5-2.6-.1-3.2-1.2 0-.1-3.1-6.1-9.1-11.1-5-4.2-10.6-6.2-16.5-6.2-3.2 0-6.5.6-9.9 1.8-11.1 3.9-17.3 11.2-20.6 17.9l28.1 16.2c.7.3 1.1.8 1.3 1.4z"></path>
-                <path className="st3"
-                      d="M213.3 54.8l-3.8 6.7h5.6zm7 6.7h6.1c.7-.6 1.4-1.3 2-2.1l-10.2-5.9 2.1 8zM209 52.4l-11.4 3.1c1 2.3 2.4 4.4 4.3 6.1h1.8l5.3-9.2zm-1.3-4.9l-10.2-5.9c-1.2 2.8-1.5 5.9-1.2 9l11.4-3.1z"></path>
-                <path className="st1"
-                      d="M198.7 73.2c1 2.5 3.4 4.1 6.1 4.1h75.9c2.7 0 5.1-1.6 6.1-4.1l2.8-6.7H196l2.7 6.7zM69.1 63.8V49.3c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v14.5h12.6V49.3c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v14.5h10V42.6c0-1.2.9-2.2 2.1-2.5 6.3-1.2 10.9-6.7 10.9-13.1 0-7.3-6-13.3-13.3-13.3-2.9 0-5.7.9-8.1 2.7-.6.5-1.4.6-2.2.4-.8-.2-1.4-.8-1.7-1.5-1.4-3.8-5-6.3-9.1-6.3-4 0-7.6 2.5-9.1 6.3-.3.7-.9 1.3-1.7 1.5-.8.2-1.6.1-2.2-.4-2.3-1.8-5.1-2.7-8.1-2.7-7.3 0-13.3 6-13.3 13.3 0 6.4 4.6 11.9 10.9 13.1 1.2.2 2.1 1.3 2.1 2.5v21.2h10.2zm-13.7 5V77h49.9v-8.2H56.5z"></path>
-                <path className="st3"
-                      d="M141.6 77.2h28.7c1.3 0 2.4-1.1 2.4-2.4V56.4c0-9.2-7.5-16.8-16.8-16.8s-16.8 7.5-16.8 16.8v18.4c.1 1.3 1.2 2.4 2.5 2.4zM156 43.3c7.5 0 13.7 6.1 13.7 13.7s-6.1 13.7-13.7 13.7-13.7-6.1-13.7-13.7 6.2-13.7 13.7-13.7z"></path>
-                <path className="st1"
-                      d="M156 65.6c4.8 0 8.7-3.9 8.7-8.7s-3.9-8.7-8.7-8.7-8.7 3.9-8.7 8.7 3.9 8.7 8.7 8.7zm-3-9.6c.3-.8.8-1.4 1.5-1.8v-2.5c0-.8.6-1.4 1.4-1.4.8 0 1.4.6 1.4 1.4v2.5c1.3.7 2 2.2 1.5 3.7-.5 1.6-2.3 2.5-3.9 2-1.5-.5-2.4-2.3-1.9-3.9z"></path>
-                <path className="st4"
-                      d="M156 70.6c7.5 0 13.7-6.1 13.7-13.7s-6.1-13.7-13.7-13.7-13.7 6.1-13.7 13.7 6.2 13.7 13.7 13.7zm0-22.3c4.8 0 8.7 3.9 8.7 8.7s-3.9 8.7-8.7 8.7-8.7-3.9-8.7-8.7 3.9-8.7 8.7-8.7z"></path>
-                <path className="st4"
-                      d="M155 59.9c1.6.5 3.4-.4 3.9-2 .5-1.5-.2-3-1.5-3.7v-2.5c0-.8-.6-1.4-1.4-1.4-.8 0-1.4.6-1.4 1.4v2.5c-.7.4-1.2 1-1.5 1.8-.6 1.6.3 3.4 1.9 3.9z"></path>
-                <path className="st5" d="M178.9 23.2h-45.8c1 2.2 3.1 3.7 5.6 3.7h34.5c2.5 0 4.7-1.5 5.7-3.7z"></path>
-                <path className="st4"
-                      d="M329.3 87h-19.7c-1.4-5.6-7.4-9.8-14.5-9.8h-4.7c.4-.6.8-1.3 1.1-2.1l4.2-10.2c.3-.8.2-1.7-.2-2.3-.5-.7-1.2-1.1-2.1-1.1h-14.1c.2-.5.3-1 .5-1.5 1.4-5 3.9-9.4 7.5-12.6l.7-.7c1.4-1.3 2.2-3.1 2.3-5 .1-1.4-.3-2.7-1-3.9l4.4-4c2.6 1.3 5.9 1 8.2-1.1 2.9-2.7 3.1-7.3.4-10.3-.9-1-2.1-1.7-3.4-2.1-.3-1.3-.9-2.5-1.8-3.5-2.7-2.9-7.3-3.1-10.3-.4-2.1 1.9-2.8 4.9-2 7.5l-4.6 4.2c-1.1-.8-2.4-1.2-3.8-1.3-1.9-.1-3.8.6-5.2 1.9l-.9.9c-1.7 1.6-3.7 2.9-5.8 4-3.9-6.3-17.4-24-40.4-15.9-11.9 4.1-19.2 12.1-23.3 20.1l-3.1-1.8c-.6-.3-1.3-.4-1.9-.2-.6.2-1.2.6-1.5 1.2-3.1 5.3-3.9 11.5-2.3 17.5.7 2.6 1.9 5 3.4 7.2h-3.1c-.8 0-1.6.4-2.1 1.1-.5.7-.6 1.6-.2 2.3l4.2 10.2c.3.7.7 1.4 1.1 2.1h-17.8c.3-.8.4-1.6.4-2.4V56.4c0-11.2-8.4-20.4-19.3-21.6v-2.9h14.7c6.2 0 11.2-5 11.2-11.2 0-1.4-1.1-2.5-2.5-2.5h-51.8c-1.4 0-2.5 1.1-2.5 2.5 0 6.2 5 11.2 11.2 11.2h14.7v2.9c-10.8 1.2-19.3 10.5-19.3 21.6v18.4c0 .8.1 1.7.4 2.4h-24.3v-11c0-1.4-1.1-2.5-2.5-2.5h-1.1V44.5c7.6-2.3 13-9.4 13-17.5 0-10.1-8.2-18.3-18.3-18.3-3 0-6 .7-8.6 2.2-2.7-4.2-7.3-6.8-12.4-6.8S70.7 6.7 68 10.9c-2.6-1.4-5.6-2.2-8.6-2.2-10.1 0-18.3 8.2-18.3 18.3 0 8.1 5.3 15.2 13 17.5v19.2H53c-1.4 0-2.5 1.1-2.5 2.5v11H34.8c-7.2 0-13.1 4.2-14.5 9.8H2.7C1.3 87 .2 88.1.2 89.5S1.4 92 2.7 92h326.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.4-2.5zM138.8 26.9c-2.5 0-4.7-1.5-5.6-3.7H179c-1 2.2-3.1 3.7-5.6 3.7h-34.6zm150.8 39.6l-2.8 6.7c-1 2.5-3.4 4.1-6.1 4.1h-75.9c-2.7 0-5.1-1.6-6.1-4.1l-2.8-6.7h93.7zm-63.1-5h-6.1l-2.2-8 10.2 5.9c-.6.8-1.3 1.5-1.9 2.1zm-13.2-6.7l1.8 6.7h-5.7l3.9-6.7zm76.3-28.5c.9-.9 1.1-2.3.3-3.3-.7-.9-.5-2.2.3-3 .9-.8 2.3-.8 3.2.1.5.5.7 1.2.6 1.9-.1.8.1 1.6.6 2.1s1.3.9 2.1.8c.7-.1 1.4.2 1.9.7.8.9.8 2.4-.1 3.2-.9.8-2.4.8-3.2-.1-.9-1-2.5-1.1-3.5-.1l-5.8 5.3-2.2-2.3 5.8-5.3zm-63.9-3.9c3.4-1.2 6.7-1.8 9.9-1.8 6 0 11.5 2.1 16.5 6.2 6 4.9 9 11 9.1 11.1.6 1.2 1.9 1.7 3.2 1.2 3.5-1.4 6.7-3.3 9.4-5.8l.9-.9c.4-.4 1-.6 1.6-.6.6 0 1.1.3 1.6.7l6.8 7.3c.4.4.6 1 .6 1.6s-.3 1.1-.7 1.6l-.7.7c-4.2 3.9-7.3 9.1-8.9 15-.3 1-.6 1.9-1.1 2.8H233c.4-.6.8-1.1 1.1-1.7.3-.6.4-1.3.2-1.9-.2-.6-.6-1.2-1.2-1.5L205 40.2c3.4-6.6 9.6-13.9 20.7-17.8zm-28.2 19.2l10.2 5.9-11.4 3.1c-.4-3 0-6.1 1.2-9zm.1 13.8l11.4-3.1-5.3 9.2h-1.8c-1.8-1.7-3.3-3.7-4.3-6.1zm-58.4 1c0-9.2 7.5-16.8 16.8-16.8s16.8 7.5 16.8 16.8v18.4c0 1.3-1.1 2.4-2.4 2.4h-28.7c-1.3 0-2.4-1.1-2.4-2.4V56.4zM71.6 68.8h33.7V77H55.4v-8.2h16.2zM57 40.1c-6.3-1.2-10.9-6.7-10.9-13.1 0-7.3 6-13.3 13.3-13.3 2.9 0 5.7.9 8.1 2.7.6.5 1.5.6 2.2.4.8-.2 1.4-.8 1.7-1.5 1.4-3.8 5-6.3 9.1-6.3 4 0 7.6 2.5 9.1 6.3.3.7.9 1.3 1.7 1.5.8.2 1.6.1 2.2-.4 2.3-1.8 5.1-2.7 8.1-2.7 7.3 0 13.3 6 13.3 13.3 0 6.4-4.6 11.9-10.9 13.1-1.2.2-2.1 1.3-2.1 2.5v21.2h-10V49.3c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v14.5H74.1V49.3c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v14.5H59V42.6c0-1.3-.8-2.3-2-2.5zM25.6 87c1.4-2.8 5-4.8 9.2-4.8h168.3c.5.1 1.1.1 1.6.1h75.9c.5 0 1.1 0 1.6-.1H295c4.2 0 7.9 2 9.2 4.8H25.6z"></path>
-              </svg>
-
-              <p className="caption">Ever-changing menu <br/>of chef-crafted dishes</p>
-            </div>
-            <div className="stop order">
-              <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 332 92" className="hiw-order icon">
-
-                <path className="st0"
-                      d="M329.3 87h-19.4c-.5-6.9-6.3-12.4-13.3-12.4h-2.8V17.1c0-6.9-5.6-12.6-12.6-12.6H198c-6.9 0-12.6 5.6-12.6 12.6v57.5h-2.8c-7 0-12.8 5.5-13.3 12.4H58l14-5.2c3.5-1.3 5.3-5.2 4-8.7L58.2 24.4c-1.3-3.5-5.2-5.3-8.7-4L24 29.7c-3.5 1.3-5.3 5.2-4 8.7L37.9 87H2.7C1.3 87 .2 88.1.2 89.5S1.4 92 2.7 92h326.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.4-2.5zM24.7 36.7c-.3-.9.1-2 1.1-2.3L51.2 25c.2-.1.4-.1.6-.1.7 0 1.4.5 1.7 1.2l17.9 48.7c.3.9-.1 2-1.1 2.3l-25.4 9.4c-.5.2-.9.1-1.4-.1-.4-.2-.8-.6-.9-1L24.7 36.7zm165.8-19.6c0-4.2 3.4-7.6 7.6-7.6h83.1c4.2 0 7.6 3.4 7.6 7.6v57.5h-98.3V17.1zm-7.8 62.5h113.9c4.2 0 7.7 3.1 8.3 7.1H174.4c.6-4 4.1-7.1 8.3-7.1z"></path>
-                <path className="st1"
-                      d="M288.8 17.1c0-4.2-3.4-7.6-7.6-7.6H198c-4.2 0-7.6 3.4-7.6 7.6v57.5h98.3V17.1zM281 63.8c0 2.5-2 4.5-4.5 4.5h-74.2c-2.5 0-4.5-2-4.5-4.5V21.4c0-2.5 2-4.5 4.5-4.5h74.2c2.5 0 4.5 2 4.5 4.5v42.4zm15.5 15.8H182.7c-4.2 0-7.7 3.1-8.3 7.1h130.4c-.6-4-4.1-7.1-8.3-7.1z"></path>
-                <path className="st2"
-                      d="M276.5 16.9h-74.2c-2.5 0-4.5 2-4.5 4.5v42.4c0 2.5 2 4.5 4.5 4.5h74.2c2.5 0 4.5-2 4.5-4.5V21.4c0-2.5-2-4.5-4.5-4.5zm-20.6 42.6c0 .8-.7 1.5-1.5 1.5h-29.6c-.8 0-1.5-.7-1.5-1.5v-4c0-.8.7-1.5 1.5-1.5h29.6c.8 0 1.5.7 1.5 1.5v4zm16.3-29.6c0 8.6-6.5 15.8-14.9 16.7-.2.1-.5.1-.7.1h-34.4c-.2 0-.5 0-.7-.1-8.4-.9-14.9-8.1-14.9-16.7v-1.6c0-1.4 1.1-2.5 2.5-2.5h60.6c1.4 0 2.5 1.1 2.5 2.5v1.6z"></path>
-                <path className="st0"
-                      d="M166.2 34.8h.7c1.4-.1 2.4-1.3 2.3-2.7-.1-1.4-1.3-2.4-2.7-2.3h-.5c-1.4.1-2.4 1.3-2.3 2.7.1 1.3 1.2 2.3 2.5 2.3zm10.5-.8h.7c1.4-.1 2.4-1.3 2.3-2.7s-1.3-2.4-2.7-2.3h-.5c-1.4.1-2.4 1.3-2.3 2.7.1 1.3 1.2 2.3 2.5 2.3zm-21 1.6h.7c1.4-.1 2.4-1.3 2.3-2.7s-1.3-2.4-2.7-2.3h-.5c-1.4.1-2.4 1.3-2.3 2.7.1 1.3 1.2 2.3 2.5 2.3zm-84 .1c-1.4.1-2.4 1.4-2.2 2.7.1 1.3 1.2 2.3 2.5 2.3h.7c1.4-.1 2.4-1.4 2.2-2.7-.1-1.4-1.4-2.4-2.7-2.2l-.5-.1zm21.1 3h.7c1.4-.1 2.4-1.4 2.2-2.7-.1-1.4-1.3-2.4-2.7-2.2h-.5c-1.4.1-2.4 1.4-2.2 2.7.2 1.2 1.3 2.2 2.5 2.2zm-10.4 1h.7c1.4-.1 2.4-1.4 2.2-2.7-.1-1.4-1.4-2.4-2.7-2.2h-.5c-1.4.1-2.4 1.4-2.2 2.7.1 1.2 1.2 2.2 2.5 2.2z"></path>
-                <path className="st3"
-                      d="M117.6 41.1c.3 0 .5-.3.4-.6v-.1l-.5-7.7-.1-.1s-.1 0-.1.1l-.4 7.9c.2.3.5.5.7.5z"></path>
-                <path className="st3"
-                      d="M100.7 36c.6 2.1-2.3 5.7-1.2 7.5 1.1 1.9 5.6 1.2 7.1 2.7 1.5 1.5.8 6 2.7 7.1 1.9 1.1 5.4-1.7 7.5-1.2 2.1.5 3.7 4.8 5.9 4.8s3.9-4.2 5.9-4.8c2.1-.6 5.7 2.3 7.5 1.2 1.9-1.1 1.2-5.6 2.7-7.1 1.5-1.5 6-.8 7.1-2.7 1.1-1.9-1.7-5.4-1.2-7.5.5-2.1 4.8-3.7 4.8-5.9s-4.2-3.9-4.8-5.9c-.6-2.1 2.3-5.7 1.2-7.5-1.1-1.9-5.6-1.2-7.1-2.7-1.5-1.5-.8-6-2.7-7.1-1.9-1.1-5.4 1.7-7.5 1.2-2.1-.5-3.7-4.8-5.9-4.8s-3.9 4.2-5.9 4.8c-2.1.6-5.7-2.3-7.5-1.2-1.9 1.1-1.2 5.6-2.7 7.1-1.5 1.5-6 .8-7.1 2.7-1.1 1.9 1.7 5.4 1.2 7.5-.5 2.1-4.8 3.7-4.8 5.9s4.2 3.9 4.8 5.9zm25.6-11.5v-2.2c0-.9-.1-1.7.1-2.6.3-1.2 1.6-2.2 2.8-2.2.2 0 .7.1.9.1l.1.1v7.2l.1 4c0 .5.1 2.6.1 3.8l.5 6.1.1 1.8v.4c-.2.8-.9 1.4-1.7 1.4-.7 0-1.4-.4-1.6-1.1-.1-.3-.1-.5-.1-.8v-.6l.6-4.5c.1-.4.1-.8.1-1.2.1-1-.5-1.7-.5-1.7-.6-.3-1.1-.8-1.4-1.5-.3-.6-.2-1.4-.2-2.1v-4.2c.1.1.1-.1.1-.2zm-11.6-6.2c0-.1.1-.2.2-.2h.9c.1 0 .2.1.2.2l.1 6.1c.1.2.2.3.4.3.1 0 .3-.1.4-.3l.1-6.1c0-.1.1-.2.2-.2h.9c.1 0 .2.1.2.2l.1 5.8v.1c0 .1 0 .3.1.4h.2c.1 0 .3-.1.4-.3l.1-6.1c0-.1.1-.2.2-.2h.9c.1 0 .2.1.2.2v.7c0 1.7.1 3.4.1 5v.2c-.1 1.2-.9 2.2-2 2.6 0 0 .1 1.2.1 1.4 0 .5.1 1 .1 1.5.2 1.8.3 3.7.5 5.5 0 .4.1.8.1 1.2 0 .5.1.9.1 1.4.1.8.1 1.6.2 2.4 0 .6 0 1.3-.5 1.7-.4.4-.9.7-1.5.7s-1.2-.3-1.6-.8c-.4-.6-.4-1.3-.3-2 0-.7.1-1.4.1-2.2.1-.6.1-1.3.2-1.9.1-.9.2-1.9.3-2.8.1-1 .2-2.1.3-3.1.1-.9.2-1.9.2-2.8-.8-.2-1.5-.8-1.9-1.6-.1-.3-.2-.6-.2-.9-.2-.2-.1-6.1-.1-6.1z"></path>
-                <path className="st3"
-                      d="M129.4 41c.2 0 .4-.2.4-.4v-.1l-.2-4.7-.5 4.8c-.1.2 0 .4.3.4zm-1.8-14.6v4.1c.1.4.4.7.7.7.4 0 .7-.3.7-.7l-.2-6.9v-4.3h-.1c-1.3.4-1.1 1.8-1.1 2.8.1 1.4 0 2.9 0 4.3z"></path>
-                <path className="st2"
-                      d="M126.3 29.1c0 .7-.1 1.4.2 2.1.3.7.8 1.2 1.4 1.5 0 0 .6.7.5 1.7 0 .4-.1.8-.1 1.2l-.6 4.5v.6c0 .3 0 .5.1.8.3.7.9 1.1 1.6 1.1.8 0 1.5-.6 1.7-1.4v-.4L131 39l-.5-6.1c-.1-1.2-.1-3.3-.1-3.8l-.1-4v-7.2s0-.1-.1-.1c-.2-.1-.7-.1-.9-.1-1.3 0-2.5.9-2.8 2.2-.2.8-.1 1.7-.1 2.6v4.2c-.1.6-.1 1.5-.1 2.4zm3.1 6.7s.1-.1 0 0l.3 4.7v.1c0 .2-.2.4-.4.4s-.4-.2-.4-.4l.5-4.8zm-.6-16.5c.1 0 .1 0 .1.1v4.2l.2 6.9c0 .4-.3.7-.7.7-.4 0-.7-.3-.7-.7v-8.4c-.1-1.1-.2-2.5 1.1-2.8zm-14.2 5c0 .3.1.6.2.9.4.8 1 1.4 1.9 1.6-.1.9-.1 1.9-.2 2.8-.1 1-.2 2.1-.3 3.1-.1.9-.2 1.9-.3 2.8-.1.6-.1 1.3-.2 1.9-.1.7-.1 1.4-.1 2.2 0 .7-.1 1.4.3 2 .4.5 1 .8 1.6.8.6 0 1.1-.3 1.5-.7.5-.5.5-1.1.5-1.7 0-.8-.1-1.6-.2-2.4 0-.5-.1-.9-.1-1.4 0-.4-.1-.8-.1-1.2-.2-1.8-.4-3.7-.5-5.5 0-.5-.1-1-.1-1.5 0-.1-.1-1.3-.1-1.4 1.1-.3 1.9-1.4 2-2.6v-.2c0-1.7 0-3.4-.1-5v-.7c0-.1-.1-.2-.2-.2h-.9c-.1 0-.2.1-.2.2l-.1 6.1c-.1.2-.2.3-.4.3h-.2c-.1-.1-.2-.3-.1-.4V24l-.1-5.8c0-.1-.1-.2-.2-.2h-.9c-.1 0-.2.1-.2.2l-.1 6.1c-.1.2-.2.3-.4.3-.1 0-.3-.1-.4-.3l-.1-6.1c0-.1-.1-.2-.2-.2h-.9c-.1 0-.2.1-.2.2.2.1.1 6 .1 6.1 0-.1 0 0 0 0zm2.9 8.4c0-.1 0-.1 0 0h.1l.5 7.7v.1c0 .3-.2.6-.4.6-.3 0-.5-.3-.5-.6l.3-7.8zM259 41.1c4.4-1.5 7.7-5.5 8.1-10.3H259v10.3zm-39.3-10.3h-8.1c.4 4.8 3.7 8.9 8.1 10.3V30.8z"></path>
-                <path className="st0"
-                      d="M269.7 25.8h-60.6c-1.4 0-2.5 1.1-2.5 2.5v1.6c0 8.6 6.5 15.8 14.9 16.7.2.1.5.1.7.1h34.4c.2 0 .5 0 .7-.1 8.4-.9 14.9-8.1 14.9-16.7v-1.6c0-1.4-1.2-2.5-2.5-2.5zm-58.1 5h8.1v10.3c-4.4-1.5-7.7-5.5-8.1-10.3zM254 41.7h-29.3V31.1H254v10.6zm5-.6V30.8h8.1c-.3 4.8-3.6 8.8-8.1 10.3z"></path>
-                <path className="st3"
-                      d="M224.7 31.1H254v10.6h-29.3zM254.4 54h-29.6c-.8 0-1.5.7-1.5 1.5v4c0 .8.7 1.5 1.5 1.5h29.6c.8 0 1.5-.7 1.5-1.5v-4c0-.8-.7-1.5-1.5-1.5z"></path>
-                <path className="st1"
-                      d="M43.5 86.4c.4.2.9.2 1.4.1l25.4-9.4c.9-.3 1.4-1.4 1.1-2.3L53.5 26.1c-.3-.7-1-1.2-1.7-1.2-.2 0-.4 0-.6.1l-25.4 9.4c-.9.3-1.4 1.4-1.1 2.3l17.9 48.7c.2.5.5.8.9 1zm13.2-7.1c-1.5.5-3.1-.2-3.7-1.7s.2-3.1 1.7-3.7c1.5-.5 3.1.2 3.7 1.7.6 1.5-.2 3.2-1.7 3.7zm-16.5-5.7L28.2 41c-.5-1.3.2-2.8 1.5-3.3l20.6-7.6c1.3-.5 2.8.2 3.3 1.5l12 32.6c.5 1.3-.2 2.8-1.5 3.3l-20.6 7.6c-1.4.5-2.8-.2-3.3-1.5z"></path>
-                <path className="st2"
-                      d="M64.1 67.5c1.3-.5 2-1.9 1.5-3.3l-12-32.6c-.5-1.3-1.9-2-3.3-1.5l-20.6 7.6c-1.3.5-2 1.9-1.5 3.3l12 32.6c.5 1.3 1.9 2 3.3 1.5l20.6-7.6zM39.6 57l-4-8.5h-.4c-1 0-2-.6-2.3-1.6-.5-1.3.2-2.7 1.5-3.2l8.2-3 6.5-2.4 1.7-.6c1.3-.5 2.7.2 3.2 1.5.4 1.1 0 2.4-1 3l2.4 9.1c.3 1.2-.3 2.5-1.6 3l-11.1 4.1c-.3.1-.6.2-.9.2-.9-.2-1.8-.7-2.2-1.6zm2.2 9.7l-1-2.8c-.3-.8.1-1.8 1-2.1l15.1-5.5c.8-.3 1.8.1 2.1 1l1 2.8c.3.8-.1 1.8-1 2.1l-15.1 5.5c-.9.2-1.8-.2-2.1-1z"></path>
-                <ellipse transform="rotate(-20.199 55.728 76.624)" className="st4" cx="55.7" cy="76.6" rx="2.9"
-                         ry="2.9"></ellipse>
-                <path className="st3"
-                      d="M58.9 62.1c.8-.3 1.3-1.2 1-2.1l-1-2.8c-.3-.8-1.2-1.3-2.1-1l-15.1 5.5c-.8.3-1.3 1.2-1 2.1l1 2.8c.3.8 1.2 1.3 2.1 1l15.1-5.5z"></path>
-                <path className="st2"
-                      d="M49.9 50.3l-1.7-6.4-1.5.5 1 2.7c.3.9-.1 1.8-1 2.1l-1.8.8c-.9.3-1.8-.1-2.1-1l-1-2.7-1.5.5 2.8 6 6.8-2.5z"></path>
-                <path className="st0"
-                      d="M42.7 58.3l11.1-4.1c1.2-.4 1.9-1.7 1.6-3L53 42.1c1-.6 1.4-1.8 1-3-.5-1.3-1.9-2-3.2-1.5l-1.8.7-6.5 2.4-8.2 3c-1.3.5-2 1.9-1.5 3.2.4 1 1.3 1.6 2.3 1.6h.4l4 8.5c.4.9 1.3 1.4 2.3 1.4.3 0 .6 0 .9-.1zm-.9-12l5-1.8 1.5-.5 1.7 6.4-6.8 2.5-2.8-6 1.4-.6z"></path>
-                <path className="st3"
-                      d="M44.9 50l1.9-.7c.9-.3 1.3-1.3 1-2.1l-1-2.7-5 1.8 1 2.7c.3.9 1.2 1.3 2.1 1z"></path>
-                <path className="st5"
-                      d="M50.9 15.8c2.1-.7 4.3-.6 6.3.3 2 1 3.5 2.6 4.2 4.7.4 1 1.3 1.7 2.4 1.7.3 0 .6 0 .8-.1 1.3-.5 2-1.9 1.5-3.2-1.2-3.3-3.6-6-6.8-7.6-3.2-1.5-6.8-1.7-10.2-.5-1.3.5-2 1.9-1.5 3.2s2 1.9 3.3 1.5z"></path>
-                <path className="st5"
-                      d="M50.9 7.7c7.2-2.5 15.1 1.2 17.6 8.4.4 1 1.3 1.7 2.4 1.7.3 0 .6 0 .8-.1 1.3-.5 2-1.9 1.5-3.2C69.8 4.7 59-.5 49.2 3c-1.3.5-2 1.9-1.5 3.2s1.9 2 3.2 1.5z"></path>
-              </svg>
-
-              <p className="caption">Order for tonight, <br/>or schedule ahead for the week</p>
-            </div>
-            <div className="stop delivery">
-              <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 332 92" className="hiw-delivery icon">
-
-                <path className="st0"
-                      d="M224.7 30.9h-13.3c-2.6 0-5 1.6-6.1 4l-1.8 7.8h21.1V30.9zm-17.5 36.8c0 2.6-.9 5.1-2.5 7H246c-1.5-1.9-2.5-4.3-2.5-7v-.6H229c-1.4 0-2.5-1.1-2.5-2.5h-19.8c.4 1 .5 2 .5 3.1zm87.8 12H34.8c-4.6 0-8.4 3.1-9.5 7.3h279.3c-1.2-4.2-5-7.3-9.6-7.3z"></path>
-                <path className="st1"
-                      d="M329.3 87h-19.6c-1.2-7-7.3-12.3-14.6-12.3h-31.6c1.5-1.9 2.5-4.3 2.5-7v-.6h9.5c1.4 0 2.5-1.1 2.5-2.5V21.1c0-4.7-3.8-8.5-8.5-8.5h-34.3c-4.7 0-8.5 3.8-8.5 8.5v43.5c0 1.4 1.1 2.5 2.5 2.5h14.5v.6c0 2.6.9 5.1 2.5 7H205c1.5-1.9 2.5-4.3 2.5-7 0-1.1-.2-2.1-.4-3.1-1.3-4.7-5.6-8.1-10.7-8.1s-9.4 3.4-10.7 8.1c-.3 1-.4 2-.4 3.1 0 2.6.9 5.1 2.5 7h-153c-7.3 0-13.4 5.4-14.6 12.3H2.7C1.3 87 .2 88.1.2 89.5S1.4 92 2.7 92h326.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.4-2.5zm-80.8-19.3c0-3.4 2.8-6.2 6.2-6.2s6.2 2.8 6.2 6.2-2.8 6.2-6.2 6.2-6.2-2.8-6.2-6.2zm-3.5-5.6h-13.5v-41c0-1.9 1.6-3.5 3.5-3.5h34.3c1.9 0 3.5 1.6 3.5 3.5v41h-8.5c-1.9-3.3-5.5-5.6-9.7-5.6s-7.6 2.3-9.6 5.6zm-49-.6c3.4 0 6.2 2.8 6.2 6.2s-2.8 6.2-6.2 6.2-6.2-2.8-6.2-6.2 2.8-6.2 6.2-6.2zM25.3 87c1.1-4.2 4.9-7.3 9.5-7.3H295c4.6 0 8.4 3.1 9.5 7.3H25.3z"></path>
-                <path className="st2"
-                      d="M196 56.5c5.1 0 9.4 3.4 10.7 8.1h19.8v-38h-18.4c-3.5 0-6.5 2.4-7.2 5.8l-2 8.7h-13.7c-2.1 0-3.9 1.5-4.3 3.5L178.2 58c-.7 3.4 1.9 6.5 5.3 6.5h1.6c1.5-4.6 5.8-8 10.9-8zm9.3-21.6c1-2.4 3.4-4 6.1-4h13.3v11.8h-21.1l1.7-7.8z"></path>
-                <circle className="st3" cx="196" cy="67.7" r="6.2"></circle>
-                <path className="st4"
-                      d="M254.7 56.5c4.1 0 7.7 2.3 9.7 5.6h8.5v-41c0-1.9-1.6-3.5-3.5-3.5h-34.3c-1.9 0-3.5 1.6-3.5 3.5v41H245c2-3.3 5.6-5.6 9.7-5.6zm.4-22.1v-1.8c0-.7-.1-1.4.1-2.2.3-1 1.3-1.8 2.4-1.8.2 0 .6 0 .8.1 0 0 .1 0 .1.1v9.4c0 .4.1 2.2.1 3.2l.5 5.1.1 1.5v.4c-.1.7-.7 1.2-1.4 1.2-.6 0-1.1-.4-1.4-.9-.1-.2-.1-.4-.1-.6v-.5l.5-3.8c0-.3.1-.7.1-1 .1-.8-.4-1.4-.4-1.4-.5-.2-.9-.7-1.2-1.2-.3-.5-.2-1.1-.2-1.7v-4.1zm-8.7 14.4c-.4-.5-.3-1.1-.3-1.7 0-.6.1-1.2.1-1.8.1-.5.1-1.1.2-1.6.1-.8.2-1.6.2-2.4.1-.9.2-1.7.2-2.6.1-.8.1-1.6.2-2.4-.7-.2-1.3-.7-1.6-1.4-.1-.2-.2-.5-.2-.8v-5c0-.1.1-.2.1-.2h.8c.1 0 .1.1.1.2l.1 5.1c.1.2.2.2.3.2.1 0 .2 0 .3-.2l.1-5.1c0-.1.1-.2.1-.2h.8c.1 0 .1.1.1.2l.1 4.9v.1c0 .1 0 .3.1.3h.1c.1 0 .2 0 .3-.2l.1-5.1c0-.1.1-.2.1-.2h.8c.1 0 .1.1.1.2V34c-.1 1-.7 1.9-1.7 2.2 0 0 .1 1 .1 1.1 0 .4.1.9.1 1.3.1 1.5.3 3.1.4 4.6 0 .3.1.7.1 1 0 .4.1.8.1 1.2.1.7.1 1.3.1 2 0 .5 0 1.1-.4 1.5-.3.3-.8.6-1.2.6-.1 0-.6-.3-.9-.7z"></path>
-                <path className="st4"
-                      d="M248.2 47.8v-.1l-.4-6.5v-.1.1l-.3 6.6c0 .3.2.5.4.5.1 0 .3-.2.3-.5zm9.5.4c.2 0 .3-.1.3-.3v-.1l-.2-4-.4 4.1c-.1.2.1.3.3.3zM256.2 36v3.4c.1.4.3.6.6.6s.6-.3.6-.6l-.2-5.8V30h-.1c-1.1.3-1 1.5-.9 2.4V36z"></path>
-                <circle className="st3" cx="254.7" cy="67.7" r="6.2"></circle>
-                <path className="st2"
-                      d="M255.1 38.3c0 .6-.1 1.2.2 1.7.2.5.7 1 1.2 1.2 0 0 .5.6.4 1.4 0 .3-.1.7-.1 1l-.5 3.8v.5c0 .2 0 .4.1.6.2.6.8.9 1.4.9.7 0 1.3-.5 1.4-1.2v-.4l-.1-1.5-.5-5.1c0-1-.1-2.8-.1-3.2v-9.4s0-.1-.1-.1c-.2-.1-.6-.1-.8-.1-1.1 0-2.1.8-2.4 1.8-.2.7-.1 1.4-.1 2.2v5.9zm2.6 5.6c0-.1 0-.1 0 0l.2 4v.1c0 .2-.1.3-.3.3-.2 0-.3-.1-.3-.3l.4-4.1zm-.5-13.9s.1 0 0 0l.1 3.6.2 5.8c0 .3-.3.6-.6.6s-.5-.2-.6-.6v-7c-.1-.9-.2-2.1.9-2.4zM249 48.9c.4-.4.4-.9.4-1.5 0-.7-.1-1.3-.1-2 0-.4-.1-.8-.1-1.2 0-.3-.1-.7-.1-1-.2-1.5-.3-3.1-.4-4.6 0-.4-.1-.9-.1-1.3 0-.1-.1-1.1-.1-1.1 1-.3 1.6-1.2 1.7-2.2v-4.9c0-.1-.1-.2-.1-.2h-.8c-.1 0-.1.1-.1.2l-.1 5.1c-.1.2-.2.2-.3.2h-.1c-.1-.1-.1-.2-.1-.3V34l-.1-4.9c0-.1-.1-.2-.1-.2h-.8c-.1 0-.1.1-.1.2l-.1 5.1c-.1.2-.2.2-.3.2-.1 0-.2 0-.3-.2l-.1-5.1c0-.1-.1-.2-.1-.2h-.8c-.1 0-.1.1-.1.2 0 0-.1 5 0 5 0 .3.1.5.2.8.3.7.9 1.2 1.6 1.4-.1.8-.1 1.6-.2 2.4-.1.9-.2 1.7-.2 2.6-.1.8-.2 1.6-.2 2.4-.1.5-.1 1.1-.2 1.6-.1.6-.1 1.2-.1 1.8 0 .6-.1 1.2.3 1.7.3.4.8.7 1.3.7 0 0 .4-.2.8-.6zm-1.6-1l.3-6.6v-.1.1l.4 6.5v.1c0 .3-.2.5-.4.5-.1-.1-.3-.3-.3-.5z"></path>
-                <path className="st5"
-                      d="M284.3 47.3h5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-5c-1.4 0-2.5 1.1-2.5 2.5s1.2 2.5 2.5 2.5zm0 9.1h12.9c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-12.9c-1.4 0-2.5 1.1-2.5 2.5s1.2 2.5 2.5 2.5zm0 9.3h20.9c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-20.9c-1.4 0-2.5 1.1-2.5 2.5s1.2 2.5 2.5 2.5z"></path>
-                <path className="st3"
-                      d="M110.8 11.4l4.4 4c-1.3-1.5-2.7-2.9-4.4-4zm5.2 28.2c2.3-3.3 3.7-7.2 3.7-11.6 0-.4 0-.8-.1-1.3H116v12.9zM79.8 26.8c0 .4-.1.8-.1 1.3 0 4.3 1.4 8.3 3.7 11.6V26.8h-3.6z"></path>
-                <path className="st4"
-                      d="M88.5 26.8v17.7c1.5 1.1 3.2 1.9 5 2.5V35.7c0-1.1.9-2 2-2h8.5c1.1 0 2 .9 2 2V47c1.8-.6 3.5-1.4 5-2.5V26.8H88.5z"></path>
-                <path className="st5" d="M91 6.4h-5.5c-.7 0-1.3.6-1.3 1.3v7.5l8.1-7.6c-.1-.7-.6-1.2-1.3-1.2z"></path>
-                <path className="st4" d="M99.4 7.8l-14.9 14h30.3z"></path>
-                <path className="st1"
-                      d="M78.2 26.8h5.2v12.8c1.4 1.9 3.1 3.6 5 4.9V26.8H111v17.7c1.9-1.3 3.6-3 5-4.9V26.8h5.2c1 0 2-.6 2.3-1.6s.1-2.1-.7-2.8l-7.8-7.1-4.4-4-9.8-8.9c-1-.9-2.4-.9-3.4 0L92 7.5l-8.1 7.6-7.7 7.2c-.7.7-1 1.8-.6 2.7.6 1.2 1.6 1.8 2.6 1.8zm21.2-19l15.4 14H84.5l14.9-14z"></path>
-                <path className="st5"
-                      d="M104 33.7h-8.5c-1.1 0-2 .9-2 2V47c2 .6 4 1 6.2 1s4.3-.4 6.2-1V35.7c.1-1.1-.8-2-1.9-2z"></path>
-                <path className="st3"
-                      d="M70.4 59.6c.8-2.2 1.3-4.6 1.3-7.1 0-5.8-2.5-11.1-6.5-14.7v19.7c1.8.6 3.6 1.3 5.2 2.1zm-30.9-2.1V36.7c-4.7 3.7-7.8 9.4-7.8 15.8 0 2.7.5 5.3 1.5 7.6 2-1 4.1-1.9 6.3-2.6z"></path>
-                <path className="st4"
-                      d="M65.2 67.2c1.1-1 2.1-2.1 2.9-3.3-.9-.4-1.9-.8-2.9-1.2v4.5zm-29.5-2.8c1.1 1.5 2.4 2.8 3.8 3.9v-5.6c-1.3.5-2.6 1.1-3.8 1.7z"></path>
-                <path className="st1"
-                      d="M33.3 60.1c.6 1.5 1.5 3 2.4 4.3 1.2-.6 2.5-1.2 3.8-1.7v5.6c1.5 1.2 3.2 2.1 5 2.8V34h15.7v36.6c1.8-.9 3.5-2 5-3.4v-4.5c1 .4 2 .8 2.9 1.2.9-1.3 1.7-2.8 2.3-4.4-1.6-.8-3.4-1.5-5.2-2.1V31.5c0-1.4-1.1-2.5-2.5-2.5h-1.6c0-1.4-1.1-2.5-2.5-2.5H46.1c-1.4 0-2.5 1.1-2.5 2.5H42c-1.4 0-2.5 1.1-2.5 2.5v26.1c-2.2.6-4.3 1.5-6.2 2.5z"></path>
-                <path className="st4"
-                      d="M58.6 34H44.5v37.2c2.2.9 4.7 1.4 7.2 1.4 3 0 5.9-.7 8.5-1.9V34h-1.6zm-7.5 35.5h-3.6v-3.6h3.6v3.6zm0-6.9h-3.6V59h3.6v3.6zm0-6.9h-3.6v-3.6h3.6v3.6zm0-6.9h-3.6v-3.6h3.6v3.6zm0-6.8h-3.6v-3.6h3.6V42zm6.1 27.5h-3.6v-3.6h3.6v3.6zm0-6.9h-3.6V59h3.6v3.6zm0-6.9h-3.6v-3.6h3.6v3.6zm0-6.9h-3.6v-3.6h3.6v3.6zm0-6.8h-3.6v-3.6h3.6V42z"></path>
-                <path className="st5"
-                      d="M47.6 38.4h3.6V42h-3.6zm6 0h3.6V42h-3.6zm-6 6.9h3.6v3.6h-3.6zm6 0h3.6v3.6h-3.6zm-6 6.9h3.6v3.6h-3.6zm6 0h3.6v3.6h-3.6zm-6 6.9h3.6v3.6h-3.6zm6 0h3.6v3.6h-3.6zm-6 6.8h3.6v3.6h-3.6zm6 0h3.6v3.6h-3.6z"></path>
-                <path className="st1"
-                      d="M132 43.6l.5.2c.3.1.6.2 1 .2 1 0 1.9-.6 2.3-1.5.5-1.3-.1-2.7-1.4-3.3l-.5-.2c-1.3-.5-2.7.1-3.3 1.4-.5 1.2.1 2.6 1.4 3.2zm9.7 4l.5.2c.3.1.6.2 1 .2 1 0 1.9-.6 2.3-1.5.5-1.3-.1-2.7-1.4-3.3l-.5-.2c-1.3-.5-2.7.1-3.3 1.4-.5 1.2.1 2.6 1.4 3.2zm-19-7.9c.3.1.6.2 1 .2 1 0 1.9-.6 2.3-1.5.5-1.3-.1-2.7-1.4-3.3l-.5-.2c-1.3-.5-2.7.1-3.3 1.4-.5 1.3.1 2.7 1.4 3.3l.5.1zm28.7 11.9l.5.2c.3.1.6.2 1 .2 1 0 1.9-.6 2.3-1.5.5-1.3-.1-2.7-1.4-3.3l-.5-.2c-1.3-.5-2.7.1-3.3 1.4-.5 1.2.1 2.6 1.4 3.2zm21.9.4h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm-10.5 0h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm-86 8.7h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm21-5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5zm31.5 5h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm-10-5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5zm-11 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5zm-21 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5zm73.5 5h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm-21 0h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm31.5 0h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm-21 0h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5z"></path>
-              </svg>
-
-              <p className="caption">Expertly chilled <br/>and delivered fresh</p>
-            </div>
-            <div className="stop enjoy">
-              <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 332 92" className="hiw-enjoy icon">
-
-                <path className="st0"
-                      d="M92.9 15.6c0-5.3-4.3-9.7-9.7-9.7h-2.8c-5.3 0-9.7 4.3-9.7 9.7v5.1h22.1v-5.1zm90.9 59.1h4.2c3.3 0 5.9-2.6 5.9-5.9v-4.7h-16v4.7c0 3.2 2.6 5.9 5.9 5.9zm10-29.3c0-3.8-3.1-6.9-6.9-6.9h-2.1c-3.8 0-6.9 3.1-6.9 6.9v4.4h16v-4.4zM295 79.7H34.8c-4.6 0-8.4 3.1-9.5 7.3h279.3c-1.2-4.2-5-7.3-9.6-7.3z"></path>
-                <path className="st1"
-                      d="M329.3 87h-19.6c-1.2-7-7.3-12.3-14.6-12.3h-28.6c7.7-3.4 13.5-8.5 13.5-15.2 0-1.4-1.1-2.5-2.5-2.5h-.9c2.6-5.6 2.4-11.5 2.4-11.8 0-1.3-1.1-2.3-2.3-2.4-.4 0-7.7-.4-14 3.1-1.3.7-2.5 1.6-3.7 2.7-1 1-1.9 2.1-2.6 3.2 1.3.9 2.4 2.3 2.8 3.9.1.4.2.7.2 1.1.7-1.6 1.7-3.3 3-4.6 3.4-3.3 8.4-4.1 11.4-4.4-.2 2.4-1 6.1-3 9.1H217c-2.6-3.2-3.4-7.6-3.6-10.2 3 .3 8 1.2 11.3 4.5 1.5 1.5 2.5 3.4 3.2 5.3.3-2.1 1.5-3.9 3.3-4.9-.8-1.4-1.8-2.7-3-4-1-1-2.2-1.9-3.4-2.6-6.3-3.8-13.8-3.5-14.2-3.4-1.3.1-2.3 1.1-2.4 2.4 0 .4-.3 7 2.8 12.9h-2c-1.4 0-2.5 1.1-2.5 2.5 0 6 4.7 11.3 13.6 15.2h-23c1.1-1.7 1.7-3.7 1.7-5.9V45.4c0-4-2-7.6-5.1-9.8v-6.2c0-1.4-1.1-2.5-2.5-2.5h-10.7c-1.4 0-2.5 1.1-2.5 2.5v6.2c-3.1 2.2-5.1 5.7-5.1 9.8v23.4c0 2.2.6 4.2 1.7 5.9h-18.5c2.6-2.8 4.2-6.5 4.2-10.6v-1.5c0-1.4-1.1-2.5-2.5-2.5h-2.1c2.8-2.8 4.6-6.7 4.6-11v-1.5c0-1.4-1.1-2.5-2.5-2.5h-46V23.3c0-1.4-1.1-2.5-2.5-2.5H97.9v-5.1C97.9 7.6 91.3 1 83.2 1h-2.8c-8.1 0-14.7 6.6-14.7 14.7v5.1H54.5c-1.4 0-2.5 1.1-2.5 2.5v51.4H34.8c-7.3 0-13.4 5.4-14.6 12.3H2.7C1.3 87 .2 88.1.2 89.5S1.4 92 2.7 92h326.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.4-2.5zM212 62h62.4c-1.6 3.9-6.8 6.7-10.1 8.1-6.2 2.7-14.3 4.4-21.1 4.4-11.5 0-28-5.1-31.2-12.5zm-29-30.1h5.7v1.6H183v-1.6zm-5.1 32.2V45.4c0-3.8 3.1-6.9 6.9-6.9h2.1c3.8 0 6.9 3.1 6.9 6.9v23.4c0 3.3-2.6 5.9-5.9 5.9h-4.2c-3.3 0-5.9-2.6-5.9-5.9v-4.7zm-29.7-14h7c-.4 4.1-3.2 7.6-7 8.9v-8.9zm0 15h7c-.4 4.1-3.2 7.6-7 8.9v-8.9zm-31.4-14.8h26.4v9.3h-26.4v-9.3zm0 15h26.4v9.3h-26.4v-9.3zm-12-.2h7V74c-3.8-1.3-6.6-4.8-7-8.9zm7-15V59c-3.8-1.4-6.6-4.8-7-8.9h7zm-41-34.5c0-5.3 4.3-9.7 9.7-9.7h2.8c5.3 0 9.7 4.3 9.7 9.7v5.1H70.8v-5.1zM57 25.8h49.7v19.3h-4.4c-1.4 0-2.5 1.1-2.5 2.5v1.5c0 4.3 1.8 8.2 4.6 11h-2.1c-1.4 0-2.5 1.1-2.5 2.5v1.5c0 3.7 1.3 7.1 3.5 9.8H57V25.8zM25.3 87c1.1-4.2 4.9-7.3 9.5-7.3H295c4.6 0 8.4 3.1 9.5 7.3H25.3z"></path>
-                <path className="st2" d="M89.8 56.9s-.1.1 0 0l-.6 6.1c0 .2.2.5.5.5s.5-.2.5-.5v-.1l-.4-6z"></path>
-                <path className="st2"
-                      d="M99.8 64.1v-1.5c0-1.4 1.1-2.5 2.5-2.5h2.1c-2.8-2.8-4.6-6.7-4.6-11v-1.5c0-1.4 1.1-2.5 2.5-2.5h4.4V25.8H57v48.1h46.2c-2.1-2.7-3.4-6.1-3.4-9.8zM78.4 42.5c-.1 1.5-1.1 2.8-2.5 3.2-.1 0 .1 1.6.1 1.7.1.6.1 1.3.2 1.9l.6 6.9c0 .5.1 1 .1 1.5.1.6.1 1.1.2 1.7.1 1 .2 2 .2 3 0 .8 0 1.6-.6 2.2-.5.5-1.1.8-1.8.8-.8 0-1.5-.4-2-1.1-.6-.7-.4-1.7-.4-2.5.1-.9.1-1.8.2-2.7.1-.8.2-1.6.2-2.4.1-1.2.2-2.4.3-3.5.1-1.3.2-2.6.4-3.9.1-1.2.2-2.4.3-3.5-1-.3-1.9-1-2.3-2-.2-.3-.3-.7-.3-1.1v-.1l.1-7.4c0-.2.1-.3.2-.3h1.2c.1 0 .2.1.2.3l.1 7.7c.1.3.3.3.5.3s.3-.1.5-.3l.1-7.7c0-.2.1-.3.2-.3h1.2c.1 0 .2.1.2.3l.1 7.3v.1c0 .2 0 .4.2.5.1 0 .1.1.2.1.2 0 .3-.1.5-.3l.1-7.7c0-.2.1-.3.2-.3h1.2c.1 0 .2.1.2.3v.8c0 2.1.1 4.2.1 6.3-.2 0-.2.1-.2.2zm13.4 20.7c0 .2 0 .3-.1.5-.2 1-1.1 1.7-2.1 1.7-.9 0-1.7-.5-2-1.4-.1-.3-.2-.6-.2-.9v-.7l.8-5.6c.1-.5.1-1 .2-1.5.1-1.2-.6-2.1-.6-2.1-.7-.4-1.4-1-1.7-1.8-.4-.8-.3-1.7-.3-2.6v-8.6c0-1.1-.1-2.2.1-3.2.4-1.6 1.9-2.7 3.5-2.7.3 0 .9.1 1.2.1.1 0 .1.1.1.1v8.9l.1 5c0 .7.1 3.3.2 4.8l.7 7.6.1 2.2v.2z"></path>
-                <path className="st2"
-                      d="M74.9 53.1c-.1-.1-.1-.1-.1 0l-.4 9.9c0 .4.3.7.6.7s.6-.4.6-.8v-.2l-.7-9.6zM89 41.7v-5.3h-.1c-1.6.5-1.4 2.2-1.4 3.5v10.4c.1.5.5.9.9.9.5 0 .9-.4.9-.9l-.3-8.6z"></path>
-                <path className="st3"
-                      d="M91 53.2c-.1-1.5-.2-4.1-.2-4.8l-.1-5v-8.9c0-.1 0-.1-.1-.1-.3-.1-.9-.1-1.2-.1-1.6 0-3.1 1.1-3.5 2.7-.3 1.1-.1 2.1-.1 3.2v8.6c0 .9-.1 1.8.3 2.6s1 1.5 1.7 1.8c0 0 .8.9.6 2.1-.1.5-.1 1-.2 1.5l-.8 5.6v.7c0 .3.1.6.2.9.3.8 1.1 1.4 2 1.4 1 0 1.9-.7 2.1-1.7v-.5l-.1-2.2-.6-7.8zm-2.6-2c-.4 0-.8-.3-.9-.9V39.9c0-1.3-.2-3.1 1.4-3.5h.1v5.3l.2 8.6c.1.5-.3.9-.8.9zM90.1 63c0 .3-.2.5-.5.5s-.5-.2-.5-.5l.6-6s0-.1.1-.1l.1.1.2 5.9v.1zM78.3 35.1c0-.2-.1-.3-.2-.3h-1.2c-.1 0-.2.1-.2.3l-.1 7.7c-.1.3-.3.3-.5.3-.1 0-.1 0-.2-.1-.2-.1-.2-.3-.2-.5v-.1l-.1-7.3c0-.2-.1-.3-.2-.3h-1.2c-.1 0-.2.1-.2.3l-.1 7.7c-.1.3-.3.3-.5.3s-.3-.1-.5-.3l-.1-7.7c0-.2-.1-.3-.2-.3h-1.2c-.1 0-.2.1-.2.3l-.1 7.4v.1c0 .4.1.8.3 1.1.4 1 1.3 1.7 2.3 2-.1 1.2-.2 2.4-.3 3.5-.1 1.3-.2 2.6-.4 3.9-.1 1.2-.2 2.4-.3 3.5-.1.8-.2 1.6-.2 2.4-.1.9-.1 1.8-.2 2.7-.1.9-.2 1.8.4 2.5.5.6 1.2 1 2 1.1.7 0 1.3-.3 1.8-.8.6-.6.6-1.4.6-2.2 0-1-.1-2-.2-3-.1-.6-.1-1.1-.2-1.7 0-.5-.1-1-.1-1.5l-.6-6.9c-.1-.6-.1-1.3-.2-1.9 0-.1-.2-1.7-.1-1.7 1.4-.4 2.4-1.8 2.5-3.2v-.3c0-2.1 0-4.2-.1-6.3.2-.1.2-.4.2-.7zM75 63.7c-.3 0-.6-.3-.6-.7l.4-9.9s0-.1.1-.1l.1.1.6 9.6v.2c-.1.4-.3.8-.6.8zm80.2 1.4h-7V74c3.8-1.3 6.6-4.8 7-8.9zm-43.4 0h-7c.4 4.1 3.2 7.6 7 8.9v-8.9z"></path>
-                <path className="st2" d="M116.8 65.3h26.4v9.3h-26.4z"></path>
-                <path className="st3"
-                      d="M111.8 59v-8.9h-7c.4 4.1 3.2 7.5 7 8.9zm43.4-8.9h-7V59c3.8-1.3 6.6-4.8 7-8.9z"></path>
-                <path className="st2" d="M116.8 50.3h26.4v9.3h-26.4z"></path>
-                <path className="st4"
-                      d="M231.2 51.7c.8-.5 1.6-.8 2.6-.9v-.2c.2-3.3 1.5-6.3 3-8.7-4.1-4.5-10-6.4-10-6.4s-1.9 4.5-1.9 9.7c1.2.7 2.3 1.6 3.4 2.6 1.1 1.1 2.1 2.5 2.9 3.9zm25.2.1c.7-1.1 1.6-2.2 2.6-3.2 1.1-1.1 2.4-2 3.7-2.7-.6-5.2-3-9.3-3-9.3s-4.6 2.1-8.1 6.2c1 2.3 1.7 5 1.7 7.9 1.1.1 2.2.5 3.1 1.1z"></path>
-                <path className="st3"
-                      d="M248.2 52.1c0-.2 0-.4.1-.6.3-4.7-2.2-9.1-4-11.5-2.1 2.2-5.3 6.2-5.6 10.8v1c1.7 1.1 2.9 3 3.1 5.2h3.8c.2-1.9 1.1-3.7 2.6-4.9z"></path>
-                <path className="st1"
-                      d="M233.7 50.7c.4-.1.7-.1 1.1-.1 1.4 0 2.8.4 3.9 1.2v-1c.3-4.7 3.5-8.7 5.6-10.8 1.7 2.4 4.3 6.9 4 11.5 0 .2 0 .4-.1.6.7-.6 1.5-1 2.4-1.2.9-.2 1.8-.3 2.6-.2 0-2.9-.7-5.6-1.7-7.9-2-4.7-5-7.9-5.2-8.1-.9-.9-2.3-1-3.4-.2-.2.2-3.7 3-6.4 7.3-1.5 2.5-2.7 5.4-3 8.7.2 0 .2.1.2.2z"></path>
-                <path className="st3"
-                      d="M224.7 51.2c-3.3-3.3-8.3-4.2-11.3-4.5.2 2.7 1.1 7 3.6 10.2h10.9c0-.1 0-.3.1-.4-.8-1.8-1.8-3.7-3.3-5.3zm46.2 5.8c2-3.1 2.8-6.8 3-9.1-3 .2-8 1.1-11.4 4.4-1.4 1.3-2.3 2.9-3 4.6v.2h11.4z"></path>
-                <path className="st5"
-                      d="M238.7 51.8c-1.1-.7-2.5-1.2-3.9-1.2-.4 0-.7 0-1.1.1-.9.1-1.8.5-2.6.9-1.7 1.1-2.9 2.8-3.3 4.9 0 .1 0 .3-.1.4h13.9c0-2.1-1.2-3.9-2.9-5.1zm12-.9c-.9.3-1.7.7-2.4 1.2-1.5 1.2-2.5 3-2.6 4.9h13.9v-.2c0-.4-.1-.7-.2-1.1-.5-1.7-1.5-3-2.8-3.9-.9-.6-2-1-3.1-1.1-1.1-.1-1.9-.1-2.8.2z"></path>
-                <path className="st3"
-                      d="M264.3 70.1c3.3-1.4 8.5-4.2 10.1-8.1H212c3.1 7.4 19.7 12.5 31.2 12.5 6.8 0 14.9-1.7 21.1-4.4z"></path>
-                <path className="st2" d="M177.9 49.8h16v14.3h-16z"></path>
-                <path className="st4" d="M186.9 33.4h1.8v-1.5H183v1.5h1.8z"></path>
-              </svg>
-
-              <p className="caption">Heat and eat <br/>whenever you’re ready</p>
-            </div>
-          </div>
-        </div>
-        {/*<!-- .f-strata .hiw -->*/}
-
-        <div className="f-strata mission" style={{display: 'none'}}>
-          <div className="fluid-container">
-            <div className="row center-xy">
-              <div className="phone-col-12 tablet-col-12 desktop-col-12 blurb">
-                <h2>The mission behind <span>our meals</span></h2>
-                <p>
-                  When it comes to food, you shouldn’t have to choose between taste, health, and convenience. Munchery
-                  makes it easy to eat without compromise, delivering delicious, all-natural, chef-crafted dishes right
-                  to
-                  your door — ready <span>to enjoy when you are.</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/*<!-- .f-strata .mission-hero -->*/}
-
-        <div className="f-strata pillars" style={{display: 'none'}}>
-          <div className="fluid-container">
-            <h2>What real food <span>means to us</span></h2>
-            <div className="row center-x">
-              <div className="phone-col-12 tablet-col-6 desktop-col-4">
-                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 170 170" className="real-chefs icon">
-
-                  <path className="st0"
-                        d="M59.3 118.9l-.1-.1c.7-.9 1.9-2.4 3.1-3.7-4.4-5.3-7-12.1-7-19.5 0-1.9.2-3.8.5-5.6-1.3-.1-2.4-1.2-2.4-2.5V72.9c0-1.4 1.1-2.5 2.5-2.5h1.5V49c-8.3-2.5-14.2-10.1-14.2-19 0-1.6.2-3.1.6-4.6C24 38.9 11 61.6 11 87.4c0 25.7 12.9 48.3 32.6 61.9v-6.5c0-10.7 6.4-19.9 15.7-23.9zm68.9-93.5c.4 1.5.6 3 .6 4.6 0 8.9-5.8 16.5-14.2 19v21.5h1.5c1.4 0 2.5 1.1 2.5 2.5v14.5c0 1.3-1 2.4-2.4 2.5.3 1.8.5 3.7.5 5.6 0 7.4-2.7 14.3-7.1 19.6l3 3.6-.1.1c9.3 4 15.8 13.2 15.8 24v6.5c19.7-13.5 32.6-36.2 32.6-61.9.1-25.9-12.9-48.6-32.7-62.1z"></path>
-                  <path className="st1"
-                        d="M63.9 130.7l5.3-3c-2.6-1.6-4.8-3.3-6.4-4.8-8.3 2.8-14.3 10.7-14.3 19.9v9.6a74.1 74.1 0 0 0 20 8l-5.9-27c-.1-1.1.4-2.2 1.3-2.7z"></path>
-                  <path className="st1"
-                        d="M109 122.8c-1.8 1.7-4.2 3.7-7.2 5.4.6.4 1.3.8 1.9 1.3 3.7 3.4 4.1 8.9 4.1 8.9s-5.3.1-9-3c.3 4.8-3 8.9-3 8.9s-4.2-3.7-4.7-8.6c-.1-1 0-1.9.1-2.8.1-.4.1-.7.2-1-1.7.3-3.5.5-5.4.5-4.2 0-8-.8-11.2-2l-6.8 3.8 6 27.3c1.7.3 3.4.5 5.2.6 2.2.2 4.5.3 6.8.3 13.6 0 26.4-3.7 37.4-10v-9.6c0-9.3-6-17.2-14.4-20zm-33.4 16.7c0-2 1.6-3.7 3.7-3.7 2 0 3.7 1.6 3.7 3.7 0 2-1.6 3.7-3.7 3.7s-3.7-1.7-3.7-3.7zm6.7 17.4c-.3 0-.6-.1-.9-.1-1.6-.4-2.7-1.8-2.7-3.5 0-2 1.6-3.7 3.7-3.7.7 0 1.3.2 1.8.5 1.1.6 1.8 1.8 1.8 3.2 0 2-1.6 3.6-3.7 3.6z"></path>
-                  <path className="st2"
-                        d="M112.6 118.8c-.3.4-1.5 2-3.6 4 8.4 2.8 14.4 10.7 14.4 20v9.6c1.7-1 3.4-2 5-3.1v-6.5c0-10.7-6.5-20-15.8-24zm-49.7 4.1c-2.1-1.9-3.3-3.5-3.6-4-9.2 4-15.7 13.2-15.7 23.9v6.5c1.6 1.1 3.3 2.2 5 3.1v-9.6c0-9.2 6-17.1 14.3-19.9zm11.9 7.4c-2-.8-3.9-1.7-5.5-2.7l-5.3 3c-1 .5-1.5 1.6-1.2 2.7l5.9 27c1.8.4 3.5.8 5.4 1.1l-6-27.3 6.7-3.8z"></path>
-                  <circle className="st2" cx="79.2" cy="139.5" r="3.7"></circle>
-                  <path className="st2"
-                        d="M84.2 150.1c-.5-.3-1.2-.5-1.8-.5-2 0-3.7 1.6-3.7 3.7 0 1.7 1.2 3.1 2.7 3.5.3.1.6.1.9.1 2 0 3.7-1.6 3.7-3.7 0-1.3-.7-2.5-1.8-3.1z"></path>
-                  <path className="st3"
-                        d="M86 126.3c-9.6 0-18.1-4.4-23.7-11.2-1.2 1.4-2.4 2.9-3.1 3.7 0 0 0 .1.1.1.3.5 1.6 2 3.6 4 1.6 1.5 3.8 3.3 6.4 4.8 1.6 1 3.5 1.9 5.5 2.7 3.3 1.2 7 2 11.2 2 1.9 0 3.7-.2 5.4-.5-.1.3-.2.7-.2 1-.1.9-.2 1.8-.1 2.8.5 5 4.7 8.6 4.7 8.6s3.2-4.2 3-8.9c3.7 3.1 9 3 9 3s-.4-5.6-4.1-8.9c-.6-.5-1.2-1-1.9-1.3 3-1.7 5.4-3.7 7.2-5.4 2.1-2 3.3-3.6 3.6-4l.1-.1-3-3.6c-5.7 6.8-14.2 11.2-23.7 11.2z"></path>
-                  <path className="st1"
-                        d="M60.9 89.9c-.4 1.8-.6 3.7-.6 5.6 0 14.2 11.5 25.7 25.7 25.7s25.7-11.5 25.7-25.7c0-1.9-.2-3.8-.6-5.6H60.9zm-.5-45.4c1.2.2 2.1 1.3 2.1 2.5v23.4H74V54.3c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v16.1h14.3V54.3c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v16.1h11.5V47c0-1.2.9-2.2 2.1-2.5 7-1.3 12.1-7.4 12.1-14.5 0-8.2-6.6-14.8-14.8-14.8-3.3 0-6.4 1.1-9 3.1-.6.5-1.4.6-2.2.4-.8-.2-1.4-.8-1.7-1.5-1.6-4.2-5.6-7-10.1-7s-8.6 2.8-10.1 7c-.3.7-.9 1.3-1.7 1.5-.8.2-1.6.1-2.2-.4-2.6-2-5.7-3.1-9-3.1-8.2 0-14.8 6.6-14.8 14.8-.2 7.1 4.9 13.3 12 14.5z"></path>
-                  <path className="st2"
-                        d="M57.4 49v21.5h-1.5c-1.4 0-2.5 1.1-2.5 2.5v14.5c0 1.3 1 2.4 2.4 2.5-.3 1.8-.5 3.7-.5 5.6 0 7.4 2.6 14.2 7 19.5 5.6 6.9 14.2 11.2 23.7 11.2s18-4.3 23.7-11.2c4.4-5.3 7.1-12.1 7.1-19.6 0-1.9-.2-3.8-.5-5.6 1.3-.1 2.4-1.2 2.4-2.5V72.9c0-1.4-1.1-2.5-2.5-2.5h-1.5V49c8.3-2.5 14.2-10.1 14.2-19 0-1.6-.2-3.1-.6-4.6-2.1-8.7-9.9-15.2-19.2-15.2-3.4 0-6.6.8-9.5 2.4-3-4.6-8.1-7.5-13.6-7.5S75.4 8 72.5 12.6c-2.9-1.6-6.1-2.4-9.5-2.4-9.3 0-17.2 6.5-19.2 15.2-.4 1.5-.6 3-.6 4.6 0 8.8 5.9 16.5 14.2 19zm19 26.4h37.3v9.5H58.4v-9.5h18zm9.6 45.9c-14.2 0-25.7-11.5-25.7-25.7 0-1.9.2-3.8.6-5.6h50.2c.4 1.8.6 3.7.6 5.6 0 14.1-11.5 25.7-25.7 25.7zM63 15.2c3.3 0 6.4 1.1 9 3.1.6.5 1.5.6 2.2.4.8-.2 1.4-.8 1.7-1.5 1.6-4.2 5.6-7 10.1-7s8.6 2.8 10.1 7c.3.7.9 1.3 1.7 1.5.8.2 1.6.1 2.2-.4 2.6-2 5.7-3.1 9-3.1 8.2 0 14.8 6.6 14.8 14.8 0 7.1-5.1 13.3-12.1 14.5-1.2.2-2.1 1.3-2.1 2.5v23.4H98.1V54.3c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v16.1H78.9V54.3c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v16.1H62.4V47c0-1.2-.9-2.2-2.1-2.5-7-1.3-12.1-7.4-12.1-14.5 0-8.2 6.7-14.8 14.8-14.8z"></path>
-                  <path className="st1" d="M58.4 75.4v9.5h55.2v-9.5H59.9z"></path>
-                </svg>
-
-                <div className="title">Real Chefs</div>
-                <p className="caption">
-                  Our chefs are the talent behind every dish we serve. Innovaters, artists, and James Beard Award
-                  winners,
-                  they handcraft every dish from scratch — and give our food its restaurant-caliber wow-factor.
-                </p>
-              </div>
-              <div className="phone-col-12 tablet-col-6 desktop-col-4">
-                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" width="170" height="170" viewBox="0 0 170 170"
-                     className="real-ingredients icon">
-
-                  <path className="st0"
-                        d="M80.2 21.5l.2.7.8.4c.6.3 1.1.8 1.3 1.4l8.3 21 5.3 1.4c.3 0 .5.1.7.2l6.7 1.8c1.3.4 2.1 1.7 1.8 3.1-.3 1.1-1.3 1.8-2.4 1.8-.2 0-.4 0-.7-.1l-4.2-1-4 39.3h15.3v-7.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-1.8c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v1.8l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v2.7l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v2.7l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v7.7h12.2v-7.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.8l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.8l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-3l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.9c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v2.9l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v2.8l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4V68l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v2.8l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v7.7h12.2v-7.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-1.8c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5V59l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v2.7l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v2.7l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v7.7h10.7c.4-3.1.6-6.2.6-9.4 0-41.4-33.6-75-75-75-9.6 0-18.7 1.8-27.1 5.1l18.2 8.2 4.1 1.3zm-9.1 74.9H11.4c1.9 9.6 5.6 18.6 10.8 26.5.1.1.2.1.3.2l48.9 32.6c4.4.8 9 1.3 13.6 1.3 1.8 0 3.5-.1 5.3-.2l-68-45.4c-1.1-.8-1.5-2.3-.7-3.5.8-1.1 2.3-1.5 3.5-.7l72.8 48.6c3.9-.7 7.8-1.7 11.5-2.9l-68-45.4c-1.1-.8-1.5-2.3-.7-3.5.8-1.1 2.3-1.5 3.5-.7l70.9 47.3c3-1.3 5.9-2.8 8.6-4.4l-56.9-38c-1.1-.8-1.5-2.3-.7-3.5.8-1.1 2.3-1.5 3.5-.7l58.7 39.2c2.8-2 5.5-4.1 7.9-6.5l-1.2.8c-.4.3-.9.4-1.4.4-.8 0-1.6-.4-2.1-1.1-.8-1.1-.5-2.7.7-3.5l15.5-10.4c5.2-8 9-17 10.9-26.7H71.1zm79.2 10.4c.8 1.1.5 2.7-.7 3.5l-27.9 18.6c-.4.3-.9.4-1.4.4-.8 0-1.6-.4-2.1-1.1-.8-1.1-.5-2.7.7-3.5l27.9-18.6c1.2-.7 2.7-.4 3.5.7zm-19.1-3.8c.8 1.1.5 2.7-.7 3.5l-21.4 14.3c-.4.3-.9.4-1.4.4-.8 0-1.6-.4-2.1-1.1-.8-1.1-.5-2.7.7-3.5l21.4-14.3c1.1-.8 2.7-.5 3.5.7zM94 108.6l11.5-7.7c1.1-.8 2.7-.5 3.5.7.8 1.1.5 2.7-.7 3.5l-11.5 7.7c-.4.3-.9.4-1.4.4-.8 0-1.6-.4-2.1-1.1-.7-1.2-.4-2.8.7-3.5zm-39.4 42l-21.2-14.1c6.2 5.8 13.4 10.6 21.2 14.1zM12.9 61.2C11 67.8 10 74.8 10 82c0 3.2.2 6.3.6 9.4H16l-3.1-30.2z"></path>
-                  <path className="st1"
-                        d="M114.3 58.9v-1.8c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.8l2.5 2.1 2.5-2.1zm0 18.4v-2.7l-.9.8c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.7v2.7l2.5 2.1 2.5-2.2zm0-9.2v-2.7l-.9.8c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.7v2.7l2.5 2.1 2.5-2.2zm-.9 16.4c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.7v7.7h5v-7.7l-.9.7z"></path>
-                  <path className="st1"
-                        d="M111.8 66.7c.6 0 1.1-.2 1.6-.6l.9-.8 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.7c.4.5 1 .7 1.6.7z"></path>
-                  <path className="st1"
-                        d="M111.8 75.9c.6 0 1.1-.2 1.6-.6l.9-.8 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.7c.4.5 1 .7 1.6.7z"></path>
-                  <path className="st1"
-                        d="M111.8 85.1c.6 0 1.1-.2 1.6-.6l.9-.8 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.7c.4.5 1 .7 1.6.7zm19.7-35.6v-2.9c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v2.9l2.5 2.1 2.5-2.1zm0 18.5v-2.8l-.9.7c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.8V68l2.5 2.1 2.5-2.1zm-.9 16.5c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.8v7.7h5v-7.7l-.9.8zm.9-7.2v-2.8l-.9.7c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.8v2.8l2.5 2.1 2.5-2zm0-18.6V56l-.9.7c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.8v2.8l2.5 2.1 2.5-2.1z"></path>
-                  <path className="st1"
-                        d="M129 66.6c.6 0 1.1-.2 1.6-.6l.9-.7 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8L129 61l-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.8c.4.3 1 .5 1.6.5z"></path>
-                  <path className="st1"
-                        d="M129 57.3c.6 0 1.1-.2 1.6-.6l.9-.7 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.8c.4.3 1 .5 1.6.5zm0 18.5c.6 0 1.1-.2 1.6-.6l.9-.7 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.8c.4.3 1 .5 1.6.5z"></path>
-                  <path className="st1"
-                        d="M129 85.1c.6 0 1.1-.2 1.6-.6l.9-.7 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.8c.4.3 1 .5 1.6.5zm19.7-7.8v-2.7l-.9.8c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.7v2.7l2.5 2.1 2.5-2.2zm0-18.4v-1.8c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.8l2.5 2.1 2.5-2.1zm0 9.2v-2.7l-.9.8c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.7v2.7l2.5 2.1 2.5-2.2zm-.9 16.4c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.7v7.7h5v-7.7l-.9.7z"></path>
-                  <path className="st1"
-                        d="M146.2 66.7c.6 0 1.1-.2 1.6-.6l.9-.8 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.7c.4.5 1 .7 1.6.7z"></path>
-                  <path className="st1"
-                        d="M146.2 75.9c.6 0 1.1-.2 1.6-.6l.9-.8 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.7c.4.5 1 .7 1.6.7z"></path>
-                  <path className="st1"
-                        d="M146.2 85.1c.6 0 1.1-.2 1.6-.6l.9-.8 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.7c.4.5 1 .7 1.6.7z"></path>
-                  <path className="st2"
-                        d="M76.1 20.3l4.4 2-.3-.8zM35.5 59.8v-.3c0-.1 0-.2.1-.2 0-.1 0-.2.1-.2 0-.1.1-.2.1-.2 0-.1.1-.1.1-.2s.1-.1.1-.2.1-.1.2-.2l.2-.2.2-.2c.1-.1.1-.1.2-.1l.1-.1h.1c.1 0 .2-.1.3-.1.1 0 .1 0 .2-.1h34.2c.1 0 .1 0 .2.1.1 0 .2.1.3.1l.1.1c.1 0 .2.1.2.1.1 0 .1.1.2.1l.2.2.2.2c0 .1.1.1.1.2s.1.1.1.2.1.1.1.2 0 .1.1.2c0 .1 0 .2.1.2v32H89l4.2-40.6-4.9-1.3c-.8-.2-1.4-.8-1.7-1.5l-8.3-21.3-23.4-10.5-19 8.6-3 1.4-1.3.6L23.3 48c-.3.7-.9 1.3-1.7 1.5l-4.7 1.3 4.2 40.6h14.4V59.8zm42 15.1c0-1.6 1.3-2.8 2.8-2.8h2.3c1.6 0 2.8 1.3 2.8 2.8v4.6c0 1.6-1.3 2.8-2.8 2.8h-2.3c-1.6 0-2.8-1.3-2.8-2.8v-4.6zM47.2 28.1c0-1.2.8-2.4 2.1-3l3.5-1.7c1.3-.7 3-.7 4.4 0l3.5 1.7c1.3.6 2.1 1.8 2.1 3v7.3c0 1.9-1.9 3.5-4.3 3.5h-7c-2.4 0-4.3-1.6-4.3-3.5v-7.3zM32 79.5c0 1.6-1.3 2.8-2.8 2.8h-2.3c-1.6 0-2.8-1.3-2.8-2.8v-4.6c0-1.6 1.3-2.8 2.8-2.8h2.3c1.6 0 2.8 1.3 2.8 2.8v4.6z"></path>
-                  <path className="st3"
-                        d="M57.1 62.4l.2 20.7 9.8-20.7zm11.5 29V71l-9.7 20.4zm-16.3-8.3l-.2-20.7H42zm-11.8 8.3h10.4L40.5 70.5zM29.2 72.1h-2.3c-1.6 0-2.8 1.3-2.8 2.8v4.6c0 1.6 1.3 2.8 2.8 2.8h2.3c1.6 0 2.8-1.3 2.8-2.8v-4.6c0-1.6-1.3-2.8-2.8-2.8zm51.1 10.2h2.3c1.6 0 2.8-1.3 2.8-2.8v-4.6c0-1.6-1.3-2.8-2.8-2.8h-2.3c-1.6 0-2.8 1.3-2.8 2.8v4.6c0 1.5 1.2 2.8 2.8 2.8zM51.5 38.9h7c2.4 0 4.3-1.6 4.3-3.5v-7.3c0-1.2-.8-2.4-2.1-3l-3.5-1.7c-1.3-.7-3-.7-4.4 0l-3.5 1.7c-1.3.6-2.1 1.8-2.1 3v7.3c0 2 1.9 3.5 4.3 3.5z"></path>
-                  <path className="st1" d="M32.4 17.1h-5.5V25l.5-1.1c.2-.6.7-1 1.3-1.3l3.8-1.7v-3.8z"></path>
-                  <path className="st4"
-                        d="M161.8 91.4H94l4-39.3 4.2 1.1c.2.1.4.1.7.1 1.1 0 2.1-.7 2.4-1.8.4-1.3-.4-2.7-1.8-3.1l-6.7-1.8c-.2-.1-.5-.2-.7-.2L90.8 45l-8.2-21c-.2-.6-.7-1.1-1.3-1.4l-.8-.4-4.4-2L57.9 12l-1.9-.8h-.1c-.1 0-.2-.1-.3-.1-.1 0-.1 0-.2-.1h-.8c-.1 0-.1 0-.2.1-.1 0-.2.1-.3.1H54l-16.5 7.5v-4.1c0-1.4-1.1-2.5-2.5-2.5H24.4c-1.4 0-2.5 1.1-2.5 2.5v22.5c0 .2 0 .4.1.6L19.1 45 6.4 48.5c-1.3.4-2.1 1.7-1.8 3.1.3 1.1 1.3 1.8 2.4 1.8.2 0 .4 0 .7-.1l4.3-1.2.9 9.1L16 91.4H9.1c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h152.6c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.4-2.5zM26.9 17.1h5.5v3.8l-3.8 1.7c-.6.3-1 .7-1.3 1.3l-.4 1.1v-7.9zm25.2 45.3l.2 20.6L42 62.4h10.1zm-11.6 29V70.5l10.4 20.9H40.5zm16.8-8.3l-.2-20.7h10.1l-9.9 20.7zm11.3 8.3h-9.7L68.6 71v20.4zm20.4 0H73.6v-32c0-.1 0-.2-.1-.2 0-.1 0-.2-.1-.2 0-.1-.1-.2-.1-.2 0-.1-.1-.1-.1-.2s-.1-.1-.1-.2-.1-.1-.2-.2l-.2-.2c-.1-.1-.1-.1-.2-.1-.1-.1-.2-.1-.2-.1l-.1-.1c-.1 0-.2-.1-.3-.1-.1 0-.1 0-.2-.1H37.4c-.1 0-.1 0-.2.1-.1 0-.2.1-.3.1h-.1l-.1.1c-.1 0-.2.1-.2.1-.1 0-.1.1-.2.2l-.2.2-.2.2c0 .1-.1.1-.1.2s-.1.1-.1.2-.1.1-.1.2-.1.2-.1.2c0 .1 0 .2-.1.2v31.9H21.1l-4.2-40.6 4.7-1.3c.8-.2 1.4-.8 1.7-1.5l8.3-21.3 1.3-.6 3-1.4 19-8.6 23.3 10.5L86.6 48c.3.7.9 1.3 1.7 1.5l4.9 1.3L89 91.4z"></path>
-                  <path className="st5"
-                        d="M21.6 108c-.8 1.1-.5 2.7.7 3.5l68 45.4 6.6 4.4c.4.3.9.4 1.4.4.8 0 1.6-.4 2.1-1.1.8-1.1.5-2.7-.7-3.5l-1.8-1.2L25 107.3c-1.1-.8-2.7-.5-3.4.7zm.6 15c-1.1-.5-2.4-.2-3.1.9-.8 1.1-.5 2.7.7 3.5l13.7 9.1 21.2 14.1L74 163.5c.4.3.9.4 1.4.4.8 0 1.6-.4 2.1-1.1.8-1.1.5-2.7-.7-3.5l-5.4-3.6-48.9-32.6c-.1 0-.2-.1-.3-.1zm18.5-18.9c-.8 1.1-.5 2.7.7 3.5l68 45.4 6.7 4.4c.4.3.9.4 1.4.4.8 0 1.6-.4 2.1-1.1.8-1.1.5-2.7-.7-3.5l-3.7-2.5-70.9-47.3c-1.3-.8-2.8-.4-3.6.7zm25.3.7c-.8 1.1-.5 2.7.7 3.5l56.9 38 8.4 5.6c.4.3.9.4 1.4.4.8 0 1.6-.4 2.1-1.1.8-1.1.5-2.7-.7-3.5l-6.7-4.5L69.4 104c-1.1-.7-2.6-.3-3.4.8zm52.2 23.4c.5.7 1.3 1.1 2.1 1.1.5 0 1-.1 1.4-.4l27.9-18.6c1.1-.8 1.5-2.3.7-3.5-.8-1.1-2.3-1.5-3.5-.7l-27.9 18.6c-1.1.8-1.5 2.4-.7 3.5zm13.3 8.7c.5.7 1.3 1.1 2.1 1.1.5 0 1-.1 1.4-.4l1.2-.8 16-10.6c1.1-.8 1.5-2.3.7-3.5-.8-1.1-2.3-1.5-3.5-.7l-1.6 1.1-15.5 10.4c-1.2.7-1.5 2.3-.8 3.4zM105.6 120c.5.7 1.3 1.1 2.1 1.1.5 0 1-.1 1.4-.4l21.4-14.3c1.1-.8 1.5-2.3.7-3.5-.8-1.1-2.3-1.5-3.5-.7l-21.4 14.3c-1.1.8-1.5 2.4-.7 3.5zm-10.2-6.9c.5 0 1-.1 1.4-.4l11.5-7.7c1.1-.8 1.5-2.3.7-3.5-.8-1.1-2.3-1.5-3.5-.7L94 108.6c-1.1.8-1.5 2.3-.7 3.5.5.6 1.3 1 2.1 1z"></path>
-                </svg>
-
-                <div className="title">Real Ingredients</div>
-                <p className="caption">
-                  We source our ingredients for more than just exceptional freshness and taste. We partner with local
-                  farmers who specialize in seasonal, all-natural, and organic produce, offer antibiotic-free meats, and
-                  use wild-caught fish whenever possible, to ensure quality in every dish.
-                </p>
-              </div>
-              <div className="phone-col-12 tablet-col-6 desktop-col-4">
-                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 170 170"
-                     className="real-nutrition icon">
-
-                  <path className="st0"
-                        d="M10.4 85c0 12.1 2.9 23.6 8 33.7L81.1 10.1C41.7 12.3 10.4 45 10.4 85zm81.2-71.5l20.7 35.9 40 69.4c5.1-10.1 8-21.6 8-33.7 0-40-31.3-72.7-70.7-74.9l2 3.3zM85.4 160c19.4 0 37-7.3 50.3-19.4H35C48.3 152.7 66 160 85.4 160z"></path>
-                  <path className="st1"
-                        d="M154.4 134.5c.2-.3.6-1.2 0-2.2l-13.7-23.8H30l-13.7 23.8c-.6 1-.2 1.8 0 2.2s.7 1.1 1.9 1.1h134.4c1.1 0 1.6-.8 1.8-1.1zm-69-119.6c-.4 0-1.3.1-1.9 1.1L69.9 39.5h30.8L87.2 16c-.5-1-1.5-1.1-1.8-1.1zm36.8 61.6h-21v27.1h36.6zM67 44.5l-15.6 27h31.5v-27z"></path>
-                  <path className="st2" d="M96.2 76.5H48.5l-15.6 27.1h63.3z"></path>
-                  <path className="st3" d="M87.9 44.5v27h31.4l-15.6-27z"></path>
-                  <path className="st4"
-                        d="M162.8 136.8l-10.5-18.1-40-69.4-20.7-35.8-1.9-3.3-2.1-3.7c-.4-.8-1.3-1.2-2.2-1.2-.9 0-1.7.5-2.2 1.2l-2.1 3.7-62.7 108.5-10.5 18.1c-.4.8-.4 1.7 0 2.5s1.3 1.2 2.2 1.2h150.6c.9 0 1.7-.5 2.2-1.2s.3-1.7-.1-2.5zm-61.6-60.3h21l15.6 27h-36.6v-27zm18.1-5H87.9v-27h15.8l15.6 27zm-67.9 0l15.6-27h15.8v27H51.4zm49.4-32H69.9L83.5 16c.6-1 1.5-1.1 1.9-1.1.4 0 1.3.1 1.9 1.1l13.5 23.5zm-52.3 37h47.7v27H32.9l15.6-27zm-30.3 59.1c-1.1 0-1.7-.8-1.9-1.1s-.6-1.2 0-2.2L30 108.6h110.6l13.7 23.8c.6 1 .2 1.8 0 2.2-.2.3-.7 1.1-1.9 1.1H18.2z"></path>
-                </svg>
-
-                <div className="title">Real Nutrition</div>
-                <p className="caption">
-                  Our nutritionist-reviewed dishes are designed to meet your macronutrient needs and support your
-                  healthy
-                  lifestyle — so you can eat clean, and feel good about cleaning your plate.
-                </p>
-              </div>
-              <div className="phone-col-12 tablet-col-6 desktop-col-4">
-                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" width="170" height="170" viewBox="0 0 170 170"
-                     className="real-variety icon">
-
-                  <path className="st0"
-                        d="M147.1 42.9c1 5.1-.1 10.4-3 14.7-1 1.5-1.3 3.3-.9 5l.3 1c.8 2.8.4 5.8-1.1 8.3-.2.3-.3.5-.5.8l2.1 7.5c3 .4 5.6 2.6 6.4 5.6.6 2 .3 4.1-.7 6-1 1.8-2.7 3.1-4.7 3.7-1.5.4-3 .4-4.4 0-1 1.1-2.3 1.9-3.7 2.4-.7.2-1.4.3-2.1.3-3.4 0-6.6-2.3-7.5-5.7-.9-3.3.4-6.7 3.1-8.6l-2.1-7.3c-2.9-1.3-5.2-3.9-6.1-7.2l-.3-1c-.4-1.7-1.6-3.1-3.3-3.9-5.8-2.9-9.7-8.3-10.7-14.8-1.5-9.5 4.1-18.7 13.2-21.8 4-1.4 8.2-1.4 12.1-.3C120.1 16.6 103.3 10 85 10c-20.1 0-38.4 8-51.9 20.9 1.8-.2 3.6-.4 5.6-.4 8.2 0 15.2 2.5 19.7 7 2.9 3 4.5 6.7 4.4 10.4-.1 4-2.8 4.4-3.6 4.4h-2.1v1.2c2.3 0 4.3 1.2 5.4 3.1 1.2 1.9 1.2 4.3.2 6.3 0 0 0 .1-.1.1-.3.5-.6.9-1 1.3.1.1.1.2.2.2 1.2 1.9 1.3 4.3.2 6.3v.1c-1.1 2.1-3.2 3.4-5.5 3.4H20.9c-2.3 0-4.4-1.3-5.5-3.4v-.1c-1-2-1-4.4.2-6.3.1-.1.1-.2.2-.2-.4-.4-.7-.8-1-1.3v-.1c-.4-.7-.6-1.4-.7-2.2C11.4 68.3 10 76.5 10 85c0 41.4 33.6 75 75 75s75-33.6 75-75c0-15.6-4.8-30.1-12.9-42.1zM116.3 80l.7-1.3c.7-1.2 2.2-1.6 3.4-.9 1.2.7 1.6 2.2.9 3.4l-.7 1.3c-.5.8-1.3 1.3-2.2 1.3-.4 0-.8-.1-1.2-.3-1.2-.8-1.6-2.3-.9-3.5zm-5.5 9.5l1.5-2.6c.7-1.2 2.2-1.6 3.4-.9 1.2.7 1.6 2.2.9 3.4l-1.5 2.6c-.5.8-1.3 1.3-2.2 1.3-.4 0-.8-.1-1.2-.3-1.2-.8-1.6-2.3-.9-3.5zm-5.5 9.5l1.5-2.6c.7-1.2 2.2-1.6 3.4-.9 1.2.7 1.6 2.2.9 3.4l-1.5 2.6c-.5.8-1.3 1.3-2.2 1.3-.4 0-.8-.1-1.2-.3-1.1-.7-1.6-2.3-.9-3.5zm.4 9.5l-1.5 2.6c-.5.8-1.3 1.3-2.2 1.3-.4 0-.8-.1-1.2-.3-1.2-.7-1.6-2.2-.9-3.4l1.5-2.6c.7-1.2 2.2-1.6 3.4-.9 1.2.5 1.6 2.1.9 3.3zM100 49.8h1.5c1.4 0 2.5 1.1 2.5 2.5s-1.1 2.5-2.5 2.5H100c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5zm-11.2 0h3.1c1.4 0 2.5 1.1 2.5 2.5s-1.1 2.5-2.5 2.5h-3.1c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5zm-11.2 0h3.1c1.4 0 2.5 1.1 2.5 2.5s-1.1 2.5-2.5 2.5h-3.1c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5zm-6.3 62.5c-.4.2-.9.4-1.3.4-.8 0-1.7-.4-2.1-1.2l-1.6-2.6c-.7-1.2-.3-2.7.8-3.4 1.2-.7 2.7-.3 3.4.8l1.6 2.6c.8 1.1.4 2.7-.8 3.4zm-3.4-62.5h1.5c1.4 0 2.5 1.1 2.5 2.5s-1.1 2.5-2.5 2.5h-1.5c-1.4 0-2.5-1.1-2.5-2.5s1.2-2.5 2.5-2.5zm-3 47l1.6 2.6c.7 1.2.3 2.7-.8 3.4-.4.2-.9.4-1.3.4-.8 0-1.7-.4-2.1-1.2l-1.6-2.6c-.7-1.2-.3-2.7.8-3.4 1.1-.7 2.7-.3 3.4.8zm-5.7-9.4l1.6 2.6c.7 1.2.3 2.7-.8 3.4-.4.2-.9.4-1.3.4-.8 0-1.7-.4-2.1-1.2L54.9 90c-.7-1.2-.3-2.7.8-3.4 1.2-.7 2.8-.4 3.5.8zm-8.4-9c1.2-.7 2.7-.3 3.4.8l.8 1.3c.7 1.2.3 2.7-.8 3.4-.4.2-.9.4-1.3.4-.8 0-1.7-.4-2.1-1.2l-.8-1.2c-.7-1.2-.4-2.7.8-3.5zM85 152c-8.3 0-18.1-2.1-25.8-5.4-9.9-4.3-15.1-10.1-15.1-16.8 0-1.4 1.1-2.5 2.5-2.5h2.8c-3.6-6.7-3.4-14.4-3.3-14.8.1-1.3 1.1-2.3 2.4-2.4.5 0 12.3-.5 19.5 6.7 1.3 1.3 2.4 2.8 3.3 4.4.6-.4 1.3-.7 2-1l-1.2-2c-.7-1.2-.3-2.7.8-3.4.9-.5 2-.5 2.8.1 2.6-7.6 9-12.8 9.3-13 1-.8 2.5-.7 3.4.2.3.3 5.7 6.1 7.3 13.8l.3-.5c.7-1.2 2.2-1.6 3.4-.9 1.2.7 1.6 2.2.9 3.4l-1.5 2.6c.5.2.9.5 1.4.8.8-1.3 1.7-2.5 2.9-3.6 7.3-7.1 19.1-6.5 19.6-6.5 1.3.1 2.3 1.1 2.3 2.4 0 .4.2 7.2-2.9 13.5h1.4c1.4 0 2.5 1.1 2.5 2.5-.1 14.5-24.3 22.4-41 22.4z"></path>
-                  <path className="st0"
-                        d="M19.6 52.3h-1.3c-.1 0-.4 0-.7-.1-.4.9-.9 1.8-1.3 2.7.9-.8 2-1.3 3.3-1.4v-1.2z"></path>
-                  <path className="st1"
-                        d="M135.4 86.3c-.3.6-.9 1-1.5 1.2-.7.2-1.3.7-1.7 1.3s-.5 1.4-.3 2.2c.4 1.5 2 2.4 3.5 2 .9-.2 1.5-.9 1.9-1.7.3-.7.9-1.3 1.6-1.5.8-.2 1.6-.1 2.2.4.7.5 1.6.7 2.5.5.7-.2 1.3-.7 1.7-1.3.4-.7.5-1.4.3-2.2-.4-1.4-1.7-2.2-3.1-2-1.2.2-2.4-.6-2.8-1.8l-2-7.1c-.6.3-1.3.6-2 .7h-.1c-.6.2-1.3.3-1.9.3l2 7.1c.1.7.1 1.3-.3 1.9z"></path>
-                  <path className="st2"
-                        d="M112.8 48.8c.7 4.9 3.7 8.9 8 11.1 2.9 1.5 5 4 5.8 7.1l.3 1c.8 3.2 4.1 5.1 7.3 4.3h.1c1.6-.4 2.9-1.4 3.7-2.8s1-3 .6-4.6l-.3-1c-.8-3-.2-6.3 1.5-9 2.4-3.6 3.1-8 2-12.1-1.1-4-3.7-7.3-7.4-9.3-2.2-1.2-4.6-1.8-7-1.8-1.6 0-3.3.3-4.9.8-6.5 2.3-10.8 9.3-9.7 16.3z"></path>
-                  <path className="st3" d="M19.6 53.5c.3 0 .5-.1.8-.1h17.4l-.5-.4h17.3l-.5.5h3v-1.2H19.6v1.2z"></path>
-                  <path className="st1"
-                        d="M19.9 68.5c.2.5.6.7 1.1.7h35.5c.4 0 .9-.3 1.1-.7.4-.7.1-1.3 0-1.5-.1-.2-.5-.6-1-.6H20.9c-.6 0-.9.4-1 .6-.1.2-.4.8 0 1.5-.1 0 0 0 0 0z"></path>
-                  <path className="st2"
-                        d="M43.2 58.4H20.4c-.7 0-1 .5-1.2.7-.1.2-.4.7 0 1.4.3.5.7.8 1.2.8H57c.5 0 1-.3 1.2-.7v-.1c.3-.6.1-1.1 0-1.3-.1-.2-.5-.7-1.2-.7h-8.4L45.9 61l-2.7-2.6z"></path>
-                  <path className="st3" d="M37.3 53l.5.4 5.4 5 2.7 2.6 2.8-2.6 5.4-5 .5-.4z"></path>
-                  <path className="st1"
-                        d="M54.8 41c-3.5-3.6-9.2-5.5-16.1-5.5-11.4 0-18.7 4.5-19 11.7h38.1c-.1-2.1-1.2-4.3-3-6.2z"></path>
-                  <path className="st4"
-                        d="M100 54.8h1.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5H100c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm-19.4-5h-3.1c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h3.1c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5zm11.2 0h-3.1c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h3.1c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5zm-23.9 5h1.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-1.5c-1.4 0-2.5 1.1-2.5 2.5s1.2 2.5 2.5 2.5zM55 80.6l-.8-1.3c-.7-1.2-2.3-1.6-3.4-.8-1.2.7-1.6 2.3-.8 3.4l.8 1.3c.5.8 1.3 1.2 2.1 1.2.4 0 .9-.1 1.3-.4 1.2-.7 1.5-2.2.8-3.4zm5.7 9.4l-1.6-2.6c-.7-1.2-2.3-1.6-3.4-.8-1.2.7-1.6 2.3-.8 3.4l1.6 2.6c.5.8 1.3 1.2 2.1 1.2.4 0 .9-.1 1.3-.4 1.2-.7 1.6-2.2.8-3.4zm12.2 24.9c-1.2.7-1.6 2.3-.8 3.4l1.2 2c.5-.1.9-.2 1.4-.3v-.2c.1-1.7.5-3.3 1-4.8-.8-.6-1.9-.7-2.8-.1zm-.7-6.1l-1.6-2.6c-.7-1.2-2.3-1.6-3.4-.8-1.2.7-1.6 2.3-.8 3.4l1.6 2.6c.5.8 1.3 1.2 2.1 1.2.4 0 .9-.1 1.3-.4 1.1-.6 1.5-2.2.8-3.4zm-5.7-9.4l-1.6-2.6c-.7-1.2-2.3-1.6-3.4-.8-1.2.7-1.6 2.3-.8 3.4l1.6 2.6c.5.8 1.3 1.2 2.1 1.2.4 0 .9-.1 1.3-.4 1.1-.7 1.5-2.2.8-3.4zM115.7 86c-1.2-.7-2.7-.3-3.4.9l-1.5 2.6c-.7 1.2-.3 2.7.9 3.4.4.2.8.3 1.2.3.9 0 1.7-.5 2.2-1.3l1.5-2.6c.7-1.1.3-2.6-.9-3.3zm-16.4 28.6c-1.2-.7-2.7-.3-3.4.9l-.3.5c.3 1.3.4 2.6.4 3.9 1 .1 1.9.3 2.7.7l1.5-2.6c.7-1.2.3-2.7-.9-3.4zm10.9-19.1c-1.2-.7-2.7-.3-3.4.9l-1.5 2.6c-.7 1.2-.3 2.7.9 3.4.4.2.8.3 1.2.3.9 0 1.7-.5 2.2-1.3l1.5-2.6c.7-1.1.3-2.6-.9-3.3zm-5.4 9.6c-1.2-.7-2.7-.3-3.4.9l-1.5 2.6c-.7 1.2-.3 2.7.9 3.4.4.2.8.3 1.2.3.9 0 1.7-.5 2.2-1.3l1.5-2.6c.7-1.1.3-2.7-.9-3.3zm15.6-27.3c-1.2-.7-2.7-.3-3.4.9l-.7 1.3c-.7 1.2-.3 2.7.9 3.4.4.2.8.3 1.2.3.9 0 1.7-.5 2.2-1.3l.7-1.3c.7-1.1.3-2.7-.9-3.3z"></path>
-                  <path className="st4"
-                        d="M150.4 85.8c-.9-3-3.4-5.2-6.4-5.6l-2.1-7.5c.2-.2.3-.5.5-.8 1.5-2.5 1.9-5.5 1.1-8.3l-.3-1c-.4-1.7-.1-3.5.9-5 2.9-4.4 3.9-9.7 3-14.7-.1-.5-.2-.9-.3-1.4-1.4-5.3-5-9.8-9.8-12.4-1.2-.6-2.5-1.2-3.7-1.5-3.9-1.2-8.1-1.1-12.1.3-9.1 3.1-14.7 12.3-13.2 21.8 1 6.5 4.9 11.9 10.7 14.8 1.6.8 2.8 2.2 3.3 3.9l.3 1c.9 3.3 3.2 5.9 6.1 7.2l2.1 7.3c-2.7 1.9-4 5.3-3.1 8.6 1 3.4 4.1 5.7 7.5 5.7.7 0 1.4-.1 2.1-.3 1.5-.4 2.8-1.2 3.7-2.4 1.4.4 2.9.5 4.4 0 2-.6 3.7-1.9 4.7-3.7.9-1.9 1.2-4 .6-6zM126.9 68l-.3-1c-.8-3-2.9-5.6-5.8-7.1-4.4-2.2-7.3-6.3-8-11.1-1.1-7 3.2-14 9.9-16.3 1.6-.5 3.2-.8 4.9-.8 2.4 0 4.8.6 7 1.8 3.7 2 6.3 5.3 7.4 9.3 1.1 4.1.4 8.5-2 12.1-1.8 2.7-2.4 6-1.5 9l.3 1c.4 1.5.2 3.2-.6 4.6s-2.1 2.4-3.7 2.8h-.1c-3.4.8-6.6-1.1-7.5-4.3zm18.4 21.3c-.4.7-1 1.1-1.7 1.3-.9.2-1.8.1-2.5-.5-.6-.5-1.4-.6-2.2-.4-.8.2-1.4.8-1.6 1.5-.3.8-1 1.5-1.9 1.7-1.5.4-3.1-.5-3.5-2-.2-.7-.1-1.5.3-2.2s1-1.1 1.7-1.3c.6-.2 1.2-.6 1.5-1.2.3-.6.4-1.3.2-1.9l-2-7.1c.6-.1 1.3-.1 1.9-.3h.1c.7-.2 1.4-.4 2-.7l2 7.1c.3 1.2 1.5 2 2.8 1.8 1.4-.2 2.7.7 3.1 2 .3.8.2 1.5-.2 2.2zM62 70.9s0-.1 0 0c1.1-2.1 1-4.5-.2-6.4 0-.1-.1-.2-.2-.2.4-.4.7-.8 1-1.3 0 0 0-.1.1-.1 1.1-2 1-4.3-.2-6.3-1.2-1.9-3.2-3.1-5.4-3.1h-3l-5.4 5h8.4c.7 0 1 .5 1.2.7.1.2.4.7 0 1.3v.1c-.3.4-.8.6-1.3.6H20.4c-.5 0-1-.3-1.2-.8-.3-.6-.1-1.2 0-1.4.1-.2.5-.7 1.2-.7h22.8l-5.4-5H20.4c-.3 0-.5 0-.8.1-1.2.2-2.3.7-3.3 1.4-.5.4-1 1-1.4 1.6-.8 1.3-1 2.7-.8 4.1.1.7.3 1.5.7 2.2v.1c.3.5.6.9 1 1.3-.1.1-.1.2-.2.2-1.2 1.9-1.3 4.3-.2 6.3v.1c1.1 2.1 3.2 3.4 5.5 3.4h35.5c2.4.1 4.5-1.1 5.6-3.2zm-42.1-2.4s-.1 0 0 0c-.4-.7-.1-1.3 0-1.5.1-.2.5-.6 1-.6h35.6c.6 0 .9.4 1 .6.1.2.4.8 0 1.5-.2.4-.6.7-1.1.7H20.9c-.4 0-.8-.2-1-.7zm-2.3-16.3c.3.1.6.1.7.1h40.9c.8 0 3.5-.3 3.6-4.4.1-3.7-1.5-7.4-4.4-10.4-4.4-4.5-11.4-7-19.7-7-2 0-3.8.1-5.6.4-11.4 1.5-18.4 7.9-18.4 17 0 3.2 1.8 4 2.9 4.3zm21.1-16.7c6.9 0 12.6 2 16.1 5.5 1.8 1.9 2.9 4.1 3 6.2H19.7c.4-7.2 7.6-11.7 19-11.7z"></path>
-                  <path className="st1"
-                        d="M90.9 121.3v-.4c.4-5.5-2.7-10.7-4.7-13.4-2.4 2.4-6.2 7.1-6.6 12.6v.9c2.2 1.3 3.6 3.6 3.8 6.3h4.3c.1-2.4 1.3-4.6 3.2-6z"></path>
-                  <path className="st5"
-                        d="M74.6 120c.3 0 .6-.1.9-.1 1.5 0 2.9.4 4.1 1.1v-.9c.4-5.5 4.3-10.2 6.6-12.6 2 2.7 5.1 7.9 4.7 13.4v.4c.7-.5 1.5-.9 2.4-1.2.9-.2 1.8-.3 2.6-.3 0-1.3-.1-2.7-.4-3.9-1.5-7.7-7-13.5-7.3-13.8-.9-.9-2.3-1-3.4-.2-.3.3-6.8 5.4-9.3 13-.5 1.5-.9 3.1-1 4.8.1.1.2.2.1.3z"></path>
-                  <path className="st1"
-                        d="M64.4 120.4c-3.9-3.9-9.9-4.9-13.2-5.2.2 3 1.1 8.3 4.2 12.1h12.3c0-.5.1-.9.2-1.4-.8-1.9-1.9-3.9-3.5-5.5z"></path>
-                  <path className="st5"
-                        d="M55.4 127.3c-3.1-3.9-4-9.1-4.2-12.1 3.3.2 9.3 1.3 13.2 5.2 1.6 1.6 2.7 3.6 3.5 5.6.5-2 1.7-3.7 3.3-4.8-.9-1.6-1.9-3-3.3-4.4-7.2-7.2-19-6.7-19.5-6.7-1.3.1-2.3 1.1-2.4 2.4 0 .4-.3 8.1 3.3 14.8h6.1z"></path>
-                  <path className="st1"
-                        d="M106.4 121.4c-1.4 1.4-2.5 3.1-3.3 4.8.1.4.1.7.1 1.1h13c2.5-3.7 3.3-8.2 3.5-10.9-3.3.3-9.3 1.2-13.3 5z"></path>
-                  <path className="st5"
-                        d="M103 125.6c.1.2.1.4.1.6.8-1.7 1.8-3.4 3.3-4.8 4-3.8 10-4.8 13.3-5-.3 2.7-1 7.2-3.5 10.9h5.7c3.1-6.4 2.9-13.1 2.9-13.5 0-1.3-1.1-2.3-2.3-2.4-.5 0-12.2-.7-19.6 6.5-1.1 1.1-2.1 2.3-2.9 3.6 1.4.9 2.5 2.4 3 4.1z"></path>
-                  <path className="st3"
-                        d="M67.9 126c-.1.4-.2.9-.2 1.4h15.6c-.1-2.7-1.6-5-3.8-6.3-1.2-.7-2.6-1.1-4.1-1.1-.3 0-.6 0-.9.1-.5.1-1 .2-1.4.3-.7.2-1.4.6-2 1-1.5.9-2.7 2.6-3.2 4.6zm25.5-5.8c-.9.2-1.7.6-2.4 1.2-2 1.4-3.2 3.6-3.3 6h15.6c0-.4-.1-.7-.1-1.1 0-.2-.1-.4-.1-.6-.5-1.8-1.6-3.2-2.9-4.2-.4-.3-.9-.6-1.4-.8-.8-.4-1.8-.6-2.7-.7-1-.1-1.9-.1-2.7.2z"></path>
-                  <path className="st1" d="M49.6 132.3C52.7 141 71.8 147 85 147c13.1 0 32.3-5.7 35.5-14.6H49.6z"></path>
-                  <path className="st5"
-                        d="M123.4 127.3H46.6c-1.4 0-2.5 1.1-2.5 2.5 0 6.7 5.2 12.5 15.1 16.8 7.6 3.3 17.5 5.4 25.8 5.4 16.7 0 40.9-7.9 40.9-22.1 0-1.4-1.1-2.6-2.5-2.6zm-2.9 5C117.3 141.2 98.1 147 85 147c-13.2 0-32.3-6-35.4-14.6h70.9z"></path>
-                </svg>
-
-                <div className="title">Real Variety</div>
-                <p className="caption">
-                  We understand that food is personal. Our ever-changing menus are designed to accomodate a variety of
-                  tastes and needs, whether you’re vegetarian, paleo, gluten-free, or simply someone with a deep
-                  appreciation for really delicious food.
-                </p>
-              </div>
-              <div className="phone-col-12 tablet-col-6 desktop-col-4">
-                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 170 170" className="real-impact icon">
-
-                  <path className="st0"
-                        d="M153.2 53.8l-3.4 18c-.4 2.2-1.9 4-4.1 4.8-2.1.8-4.5.3-6.2-1.2l-20.9-17.8c-.7-.6-1-1.5-.8-2.4.2-.9.8-1.6 1.6-1.9l7.1-2.5c-10.1-12.4-25.3-19.7-41.3-19.7-27.5 0-50.8 21.4-53 48.8-.3 4.1-3.8 7.3-8 7.3-1.2 0-2.3-.3-3.4-.8-3-1.5-4.9-4.9-4.5-8.5 1.6-17 9.3-32.8 21.9-44.4 12.8-11.9 29.5-18.4 47-18.4 23 0 44.2 11.2 57.1 30.1l5.1-1.8A74.501 74.501 0 0 0 84.7 9.3c-41.4 0-75 33.6-75 75 0 11.3 2.5 22 7 31.6L20 97.7c.4-2.2 1.9-4 4.1-4.8 2.1-.8 4.5-.3 6.2 1.2l20.9 17.8c.7.6 1 1.5.8 2.4-.2.9-.8 1.6-1.6 1.9l-7.1 2.5c10.1 12.4 25.3 19.7 41.3 19.7 27.5 0 50.8-21.4 53-48.8.2-2.1 1.2-4.1 2.8-5.5 1.6-1.4 3.7-2 5.8-1.9 2.1.2 4.1 1.2 5.4 2.8 1.4 1.6 2 3.7 1.9 5.8-1.4 17.3-9.2 33.3-22 45.1-12.8 11.9-29.5 18.4-47 18.4-23 0-44.2-11.2-57.1-30.1l-5.1 1.8c13.5 20.1 36.3 33.3 62.3 33.3 41.4 0 75-33.6 75-75 .1-10.8-2.3-21.2-6.4-30.5zM79.8 66.9c0 4.7-3.2 8.7-7.6 9.8v2.4l3.7 31.3c.2 1.8-.3 3.6-1.5 4.9s-2.9 2.1-4.7 2.1c-1.8 0-3.5-.8-4.7-2.1-1.2-1.3-1.8-3.1-1.5-4.9l3.7-31.3v-2.4c-4.4-1.1-7.6-5.1-7.6-9.8V53.7c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v13.2c0 1.9 1.1 3.6 2.6 4.4V53.7c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v17.6c1.6-.9 2.6-2.5 2.6-4.4V53.7c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v13.2zm28.4 48.4c-1.2 1.3-2.9 2.1-4.7 2.1s-3.5-.8-4.7-2.1c-1.2-1.3-1.8-3.1-1.5-4.9v-.1l3.3-19.2h-.1c-5.1 0-9.3-4.2-9.3-9.3V63.6c0-6.8 5.5-12.4 12.4-12.4 1.4 0 2.5 1.1 2.5 2.5v34.7l3.7 22v.1c.1 1.7-.4 3.5-1.6 4.8z"></path>
-                  <path className="st1"
-                        d="M77.3 51.2c-1.4 0-2.5 1.1-2.5 2.5v13.2c0 1.9-1.1 3.6-2.6 4.4V53.7c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v17.6c-1.6-.9-2.6-2.5-2.6-4.4V53.7c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v13.2c0 4.7 3.2 8.7 7.6 9.8v2.4l-3.7 31.3c-.2 1.8.3 3.6 1.5 4.9 1.2 1.3 2.9 2.1 4.7 2.1 1.8 0 3.5-.8 4.7-2.1s1.8-3.1 1.5-4.9l-3.7-31.3v-2.4c4.4-1.1 7.6-5.1 7.6-9.8V53.7c0-1.4-1.1-2.5-2.5-2.5zM70.7 112c-.1.2-.5.4-1 .4s-.8-.3-1-.4c-.1-.2-.4-.5-.3-1l1.3-10.7L71 111c0 .5-.2.8-.3 1z"></path>
-                  <path className="st2"
-                        d="M68.4 111c-.1.5.2.8.3 1 .1.2.5.4 1 .4s.8-.3 1-.4.4-.5.3-1l-1.3-10.7-1.3 10.7zm33.8.1c0 .5.2.8.3 1 .1.2.5.4 1 .4s.8-.3 1-.4c.1-.2.4-.5.3-1l-1.3-7.5-1.3 7.5z"></path>
-                  <path className="st1"
-                        d="M109.7 110.3l-3.7-22V53.7c0-1.4-1.1-2.5-2.5-2.5-6.8 0-12.4 5.5-12.4 12.4v18.2c0 5.1 4.2 9.3 9.3 9.3h.1l-3.3 19.2v.1c-.2 1.8.3 3.6 1.5 4.9 1.2 1.3 2.9 2.1 4.7 2.1s3.5-.8 4.7-2.1c1.2-1.3 1.8-3.1 1.5-4.9.1 0 .1-.1.1-.1zM100.4 86c-2.4 0-4.3-1.9-4.3-4.3V63.6c0-3.2 2-5.9 4.9-6.9V86h-.6zm4 26c-.1.2-.5.4-1 .4s-.8-.3-1-.4c-.1-.2-.4-.5-.3-1l1.3-7.5 1.3 7.5c.1.5-.1.9-.3 1z"></path>
-                  <path className="st2" d="M101 56.6c-2.8 1-4.9 3.7-4.9 6.9v18.2c0 2.4 1.9 4.3 4.3 4.3h.6V56.6z"></path>
-                  <path className="st3"
-                        d="M139.3 49.6c-11.9-18.5-32.1-29.5-54-29.5-16.2 0-31.7 6.1-43.6 17.1C30.1 48 22.8 62.6 21.4 78.4c-.1 1.5.6 3 1.8 3.6.4.2.7.3 1.2.3 1.5 0 2.9-1.2 3-2.8 2.5-29.9 27.9-53.4 58-53.4 18.8 0 36.5 9.1 47.4 24.5.5.6.6 1.5.3 2.2-.2.7-.8 1.3-1.6 1.6l-6.3 2.2 17.6 15c.5.4 1 .3 1.3.2.2-.1.7-.3.8-1l4.2-22.7-6.9 2.4c-1 .5-2.2.1-2.9-.9z"></path>
-                  <path className="st1"
-                        d="M85.3 15.1c-17.5 0-34.2 6.5-47 18.4C25.8 45.2 18 60.9 16.4 77.9c-.3 3.6 1.5 7 4.5 8.5 1.1.5 2.2.8 3.4.8 4.1 0 7.6-3.2 8-7.3 2.2-27.4 25.5-48.8 53-48.8 16 0 31.3 7.3 41.3 19.7l-7.1 2.5c-.8.3-1.5 1-1.6 1.9-.2.9.2 1.8.8 2.4l20.9 17.8c1.7 1.5 4 1.9 6.2 1.2 2.1-.8 3.7-2.5 4.1-4.8l3.4-18 1.7-9c.2-.9-.2-1.8-.8-2.4-.7-.6-1.6-.8-2.5-.5l-4 1.4-5.1 1.8c-13.1-18.8-34.3-30-57.3-30zm63.9 33.1L145 70.9c-.1.7-.6.9-.8 1-.2.1-.8.2-1.3-.2l-17.6-15 6.3-2.2c.7-.3 1.3-.9 1.6-1.6.2-.7.1-1.6-.3-2.2-10.9-15.3-28.6-24.5-47.4-24.5-30.1 0-55.5 23.4-58 53.4-.1 1.5-1.4 2.8-3 2.8-.4 0-.8-.1-1.2-.3-1.2-.6-1.9-2-1.8-3.6 1.4-15.8 8.7-30.4 20.3-41.2 11.9-11 27.4-17.1 43.6-17.1 21.9 0 42.1 11 54 29.5.6 1 1.8 1.4 2.9 1l6.9-2.5z"></path>
-                  <path className="st4"
-                        d="M28.4 118.8c.8 0 1.6.4 2.1 1.1 11.9 18.5 32.1 29.5 54 29.5 16.2 0 31.7-6.1 43.6-17.1 11.8-11 19.1-25.8 20.4-41.8.1-.8-.2-1.6-.7-2.2-.5-.6-1.2-1-2-1-.8-.1-1.6.2-2.2.7-.6.5-1 1.2-1.1 2-2.5 29.9-27.9 53.4-58 53.4-18.8 0-36.5-9.1-47.4-24.5-.5-.6-.6-1.5-.3-2.2.2-.7.8-1.3 1.6-1.6l6.3-2.2-17.7-15c-.5-.4-1.1-.3-1.3-.2-.2.1-.7.3-.8 1l-4.2 22.7 6.9-2.4c.3-.2.6-.2.8-.2z"></path>
-                  <path className="st1"
-                        d="M84.5 154.4c17.5 0 34.2-6.5 47-18.4 12.7-11.8 20.5-27.8 22-45.1.2-2.1-.5-4.2-1.9-5.8-1.4-1.6-3.3-2.6-5.4-2.8-2.1-.2-4.2.5-5.8 1.9-1.6 1.4-2.6 3.3-2.8 5.5-2.2 27.4-25.5 48.8-53 48.8-16 0-31.3-7.3-41.3-19.7l7.1-2.5c.8-.3 1.5-1 1.6-1.9.2-.9-.2-1.8-.8-2.4L30.3 94.1c-1.7-1.5-4-1.9-6.2-1.2-2.1.8-3.7 2.5-4.1 4.8l-3.4 18.2-1.6 8.8c-.2.9.2 1.8.8 2.4.7.6 1.6.8 2.5.5l4.1-1.4 5.1-1.8c12.9 18.8 34.1 30 57 30zm-63.8-33.1l4.2-22.7c.1-.7.6-.9.8-1 .2-.1.8-.2 1.3.2l17.6 15-6.3 2.2c-.7.3-1.3.9-1.6 1.6-.2.7-.1 1.6.3 2.2 10.9 15.3 28.6 24.5 47.4 24.5 30.1 0 55.5-23.4 58-53.4.1-.8.4-1.5 1.1-2 .6-.5 1.4-.8 2.2-.7.8.1 1.5.4 2 1s.8 1.4.7 2.2c-1.3 16-8.6 30.9-20.4 41.8-11.9 11-27.4 17.1-43.6 17.1-21.9 0-42.1-11-54-29.5-.5-.7-1.3-1.1-2.1-1.1-.3 0-.6 0-.8.1l-6.8 2.5z"></path>
-                </svg>
-
-                <div className="title">Real Impact</div>
-                <p className="caption">
-                  We’re proud to offer food that’s as good for the planet as it is for the body. We’re changing the way
-                  people eat, creating a community around healthy living, and building a sustainable and socially
-                  responsible food eco-system.
-                </p>
-              </div>
-              <div className="phone-col-12 tablet-col-6 desktop-col-4">
-                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 170 170"
-                     className="real-transparency icon">
-
-                  <path className="st0"
-                        d="M85.4 9.5c-41.4 0-75 33.6-75 75s33.6 75 75 75 75-33.6 75-75-33.6-75-75-75zm56.3 93.9c.3 1.1-.1 2.2-1 2.8l-8.3 5.4-.5 9.9c-.1 1.1-.9 2.1-1.9 2.3l-9.7 2.2-3.8 9.1c-.4 1-1.5 1.7-2.6 1.5l-9.8-1.2-6.7 7.3c-.8.8-2 1-3 .5l-8.8-4.5-8.8 4.5c-.4.2-.8.3-1.1.3-.7 0-1.4-.3-1.8-.8l-6.7-7.3-9.8 1.2c-1.1.1-2.2-.5-2.6-1.5L51 126l-9.7-2.2c-1.1-.2-1.9-1.2-1.9-2.3l-.5-9.9-8.3-5.4c-.9-.6-1.4-1.8-1-2.8L32 94l-6-7.9c-.7-.9-.7-2.1 0-3l6-7.9-2.9-9.5c-.3-1.1.1-2.2 1-2.8l8.3-5.4.5-9.9c.1-1.1.9-2.1 1.9-2.3l9.7-2.2 3.8-9.1c.4-1 1.5-1.7 2.6-1.5l9.8 1.2 6.7-7.3c.8-.8 2-1 3-.5l8.8 4.5 8.8-4.5c1-.5 2.2-.3 3 .5l6.7 7.3 9.8-1.2c1.1-.1 2.2.5 2.6 1.5l3.8 9.1 9.7 2.2c1.1.2 1.9 1.2 1.9 2.3l.5 9.9 8.3 5.4c.9.6 1.4 1.8 1 2.8l-2.9 9.5 6 7.9c.7.9.7 2.1 0 3l-6 7.9 3.3 9.4z"></path>
-                  <path className="st1"
-                        d="M133.6 74.9l2.8-8.9-7.8-5c-.7-.4-1.1-1.2-1.1-2l-.5-9.3-9.1-2.1c-.8-.2-1.4-.7-1.8-1.5l-3.6-8.6-9.2 1.2c-.8.1-1.6-.2-2.1-.8l-6.3-6.8-8.3 4.3c-.7.4-1.6.4-2.3 0L76 31.1 69.6 38c-.5.6-1.3.9-2.1.8l-9.2-1.2-3.6 8.6c-.3.7-1 1.3-1.8 1.5l-9.1 2.1-.4 9.2c0 .8-.5 1.5-1.1 2l-7.8 5 2.8 8.9c.2.8.1 1.6-.4 2.3l-5.6 7.4 5.6 7.4c.5.6.6 1.5.4 2.3l-2.8 8.9 7.8 5c.7.4 1.1 1.2 1.1 2l.5 9.3 9.1 2.1c.8.2 1.4.7 1.8 1.5l3.6 8.6 9.2-1.2c.8-.1 1.6.2 2.1.8l6.3 6.8 6.9-3.6v-12.9c-13.7-1.3-24.5-12.8-24.5-26.9 0-6.1 4.3-15.8 12.6-28.7 6.1-9.4 12.3-17.3 12.4-17.4.5-.6 1.2-1 2-1s1.5.4 2 1c1 1.3 25 31.9 25 46.1 0 14-10.8 25.6-24.5 26.9v12.9l6.9 3.6 6.3-6.8c.5-.6 1.4-.9 2.1-.8l9.2 1.2 3.6-8.6c.3-.7 1-1.3 1.8-1.5l9.1-2.1.5-9.3c0-.8.5-1.5 1.1-2l7.8-5-2.8-8.9c-.2-.8-.1-1.6.4-2.3l5.6-7.4-5.6-7.4c-.4-.7-.6-1.6-.3-2.3z"></path>
-                  <path className="st2"
-                        d="M144.7 83l-6-7.9 2.9-9.5c.3-1.1-.1-2.2-1-2.8l-8.3-5.4-.5-9.9c-.1-1.1-.9-2.1-1.9-2.3l-9.7-2.2-3.8-9.1c-.4-1-1.5-1.7-2.6-1.5l-9.8 1.2-6.7-7.3c-.8-.8-2-1-3-.5l-8.8 4.5-8.8-4.5c-1-.5-2.2-.3-3 .5L67 33.6l-10-1.2c-1.1-.1-2.2.5-2.6 1.5L50.5 43l-9.7 2.2c-1.1.2-1.9 1.2-1.9 2.3l-.5 9.9-8.3 5.4c-.9.6-1.4 1.8-1 2.8l2.9 9.5-6 7.9c-.7.9-.7 2.1 0 3l6 7.9-2.9 9.5c-.3 1.1.1 2.2 1 2.8l8.3 5.4.5 9.9c.1 1.1.9 2.1 1.9 2.3l9.7 2.2 3.8 9.1c.4 1 1.5 1.7 2.6 1.5l9.8-1.2 6.7 7.3c.5.5 1.2.8 1.8.8.4 0 .8-.1 1.1-.3l8.8-4.5 8.8 4.5c1 .5 2.2.3 3-.5l6.7-7.3 9.8 1.2c1.1.1 2.2-.5 2.6-1.5l3.8-9.1 9.7-2.2c1.1-.2 1.9-1.2 1.9-2.3l.5-9.9 8.3-5.4c.9-.6 1.4-1.8 1-2.8l-2.9-9.5 6-7.9c1.1-.8 1.1-2.1.4-3zm-56.8 27.6l9.6-11.2c.9-1 .8-2.6-.3-3.5s-2.6-.8-3.5.3l-5.8 6.8V84.5c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v6.9l-5.2-4.2c-1.1-.9-2.6-.7-3.5.4s-.7 2.7.4 3.5l8.3 6.7v18.5c-10.9-1.2-19.5-10.6-19.5-21.8 0-9.5 14.4-30.4 22-40.4 7.6 10 22 31 22 40.4 0 11.3-8.5 20.6-19.5 21.8v-5.7zm46-18.6c-.5.6-.6 1.5-.4 2.3l2.8 8.9-7.8 5c-.7.4-1.1 1.2-1.1 2l-.5 9.3-9.1 2.1c-.8.2-1.4.7-1.8 1.5l-3.6 8.6-9.2-1.2c-.8-.1-1.6.2-2.1.8l-6.3 6.8-6.9-3.6v-12.9c13.7-1.3 24.5-12.8 24.5-26.9 0-14.2-24-44.8-25-46.1-.5-.6-1.2-1-2-1s-1.5.4-2 1c-.1.1-6.3 8-12.4 17.4-8.4 12.9-12.6 22.6-12.6 28.7 0 14 10.8 25.6 24.5 26.9v12.9l-6.9 3.6-6.3-6.8c-.5-.6-1.3-.9-2.1-.8l-9.2 1.2-3.6-8.6c-.3-.7-1-1.3-1.8-1.5l-9.1-2.1-.5-9.3c0-.8-.5-1.5-1.1-2l-7.8-5 2.8-8.9c.2-.8.1-1.6-.4-2.3l-5.6-7.4 5.6-7.4c.5-.6.6-1.5.4-2.3L34.4 66l7.8-5c.7-.4 1.1-1.2 1.1-2l.5-9.3 9.1-2.1c.8-.2 1.4-.7 1.8-1.5l3.6-8.6 9.2 1.2c.8.1 1.6-.2 2.1-.8l6.3-6.8 8.3 4.3c.7.4 1.6.4 2.3 0l8.3-4.3 6.3 6.8c.5.6 1.4.9 2.1.8l9.2-1.2 3.6 8.6c.3.7 1 1.3 1.8 1.5l9.1 2.1.5 9.3c0 .8.5 1.5 1.1 2l7.8 5-2.8 8.9c-.2.8-.1 1.6.4 2.3l5.6 7.4-5.6 7.4z"></path>
-                  <path className="st3"
-                        d="M107.3 94.6c0-9.5-14.4-30.4-22-40.4-7.6 10-22 31-22 40.4 0 11.3 8.5 20.6 19.5 21.8V97.9l-8.3-6.7c-1.1-.9-1.2-2.4-.4-3.5s2.4-1.2 3.5-.4l5.2 4.2v-6.9c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5V103l5.8-6.8c.9-1 2.5-1.2 3.5-.3s1.2 2.5.3 3.5l-9.6 11.2v5.8c11-1.2 19.5-10.6 19.5-21.8z"></path>
-                </svg>
-
-                <div className="title">Real Transparency</div>
-                <p className="caption">
-                  We believe in complete transparency, from the farm to your fork. To us, where your food comes from,
-                  how
-                  it’s made, and how it makes you feel are just as important as how delicious it tastes.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/*<!-- .f-strata pillars -->*/}
-
-        <div className="f-strata manifesto">
-          <div className="fluid-container">
-            <div className="row center-x">
-              <div className="video-wrapper phone-col-12 tablet-col-10 desktop-col-9">
                 <div>
-                  <div className="video masked">
-                    <iframe width="100%" height="100%"
-                            src="https://www.youtube.com/embed/e6TeqtjXprY?modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=1&amp;enablejsapi=1"
-                            frameBorder="0" allowFullScreen=""></iframe>
-                  </div>
-                </div>
-              </div>
 
-              <div className="phone-col-12 tablet-col-10 desktop-col-12 blurb">
-                <h2>The Munchery Manifesto</h2>
-                <p>
-                  We’ve entered a world which transcends traditional mealtimes. Your desk is your dinner table. Your
-                  home
-                  is your office. Your office is a coffee shop. And when it comes to dinner, you’ve already got enough
-                  on
-                  your plate without having to worry about what’s going <span><i>on</i> your plate.</span>
-                </p>
-                <p>
-                  But just because you’re busy doesn’t mean you’re willing to compromise when it comes to food — in
-                  fact,
-                  your standards are sky high. You want delicious, all-natural, chef-crafted food, precisely where and
-                  when you want it, whether that means scoring an easy win for dinner tonight, or stocking the fridge
-                  with
-                  meals for the week. You need mealtime on your terms, and that’s where we come in. It’s not take-out.
-                  It’s not home cooking. <span>It’s Munchery.</span>
-                </p>
-              </div>
+                  <input type="submit" name="commit" value="Log In" id="login_button" className="orange button"
+                         data-disable-with="Logging In..."/>
+
+                  <div style={{marginTop: '10px'}}>
+                    <a className="secondary" href="/users/password/new/">Forgot your password?</a>
+                  </div>
+
+                  <input value="true" type="hidden" name="user[remember_me]" id="user_remember_me"/>
+                </div>
+              </form>
             </div>
           </div>
+
+          <div className="signup">
+            <span className="gray">Don't have an account?</span>
+            <a href="/users/signup/">Sign up for free</a>
+          </div>
         </div>
-        {/*<!-- .f-strata .manifesto -->*/}
+        <div className="dialog-mask modal clickable"></div>
+        <div id="activate-account-success" className="dialog zoom-in signin-form"
+             style={{position: 'fixed', top: '0px', left: '348.5px'}}><a href="#" className="close close-x"></a>
+          <div className="activate-account">
+            <h3>Check Your Email</h3>
+
+            <p>
+              We just sent you an email. Follow the instructions to activate your account.
+            </p>
+          </div>
+        </div>
+        <div className="dialog-mask modal clickable"></div>
+        <div id="activate-account-dialog" className="dialog zoom-in signin-form"
+             style={{position: 'fixed', top: '0px', left: '348.5px'}}><a href="#" className="close close-x"></a>
+          <div className="activate-account">
+            <form className="activate-account-form" id="new_user" action="/users/password.json" acceptCharset="UTF-8"
+                  data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"/>
+
+              <h3>Activate Your Account</h3>
+
+              <p>
+                It looks like you have an existing Munchery account with the following email address that needs to be
+                activated.
+              </p>
+
+              <input type="email" value="" name="user[email]" id="user_email"/>
+              <input type="submit" name="commit" value="Send Activation Email" className="large orange button"
+                     data-disable-with="Sending Email..."/>
+              <a className="switch-to-login desktop-link" data-return-url="/checkout/" href="/users/login/">Log into a
+                different account</a>
+              <a className="mobile-link" data-return-url="/checkout/" href="/users/login/">Log into a different account</a>
+            </form>
+          </div>
+        </div>
+        <div className="dialog-mask modal clickable"></div>
 
 
-        <div className="f-strata villain">
-          <div className="fluid-container">
-            <div className="row center-xy">
-              <div className="phone-col-12 tablet-col-12 desktop-col-12 container">
-                <h1>Join us at the table</h1>
-                <p>Sign up now to take a look at our mouthwatering menus and find out what
-                  <span>we’re cooking up next.</span>
-                </p>
-                <div className="signup-login-form">
-                  <form className="email-squeeze-form" action="/menus/subscribe.json" acceptCharset="UTF-8"
-                        data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"/>
-                    <input type="hidden" name="bypass_email_requirement" id="bypass_email_requirement" value="1"/>
+        <nav className={"phone-nav" + (this.state.open ? ' onscreen' : '')}>
+          <section>
 
-                    <input type="hidden" name="_skip_confirmation_instructions" id="_skip_confirmation_instructions"
-                           value="1"/>
-                    <input type="email" name="email" id="email" placeholder="Email" className="user-input email"
-                           maxLength="254"/>
-                    <input type="text" name="zipcode" id="zipcode" maxLength="5" placeholder="ZIP Code"
-                           className="user-input zip-code" inputMode="numeric" pattern="[\d\s\.()-]*"
-                           autoCorrect="off"
-                           autoCapitalize="none" noValidate="noValidate"/>
-                    <input type="hidden" name="gate" id="gate" value="Static Email Gate"/>
-                    <button name="button" type="submit" className="large orange button">See The Menu</button>
+            <ul className="secondary">
+              <li><a href="/users/login/">Log In</a></li>
+            </ul>
 
-                    <div className="errors">
-                      <div className="error-message email-error hidden">
-                        Please enter a valid email address.
-                      </div>
 
-                      <div className="error-message zipcode-error hidden">
-                        Please enter a 5-digit ZIP code.
-                      </div>
+            <h3>Order On The Go</h3>
+            <ul>
+              <li className="download">
+                <a className="ios"
+                   href="http://mnch.me/a/110101738656125502?channel=interstitial&amp;data=eyJyZWZlcnJlcl92YWxpZCI6ZmFsc2UsInJlZmVycmVyX2Vycm9yIjoiU29ycnksIHRoYXQgaW52aXRlIGNvZGUgY2Fubm90IGJlIHVzZWQuIiwicmVmZXJyZXJfY29kZSI6bnVsbCwicmVmZXJyZXJfbmFtZSI6IllvdXIgRnJpZW5kIiwicmVmZXJyZXJfY3JlZGl0IjoiJDIwIiwiaW52aXRlcl9jcmVkaXQiOjIwLCJyZWZlcnJlZV9jcmVkaXQiOiIkMjAiLCJpbnZpdGVlX2NyZWRpdCI6MjAsInJlZmVycmVyX3Rva2VuIjoiYW5vbi1iYWZiYWJhYjZlMmUwMjdhYmIwN2U3ZGFkYTlkNjJkMCIsInQiOm51bGwsImEiOm51bGwsImQiOm51bGx9">Download
+                  for <strong>iPhone</strong></a>
+              </li>
+              <li className="download">
+                <a className="android"
+                   href="http://mnch.me/a/110101738656125502?channel=interstitial&amp;data=eyJyZWZlcnJlcl92YWxpZCI6ZmFsc2UsInJlZmVycmVyX2Vycm9yIjoiU29ycnksIHRoYXQgaW52aXRlIGNvZGUgY2Fubm90IGJlIHVzZWQuIiwicmVmZXJyZXJfY29kZSI6bnVsbCwicmVmZXJyZXJfbmFtZSI6IllvdXIgRnJpZW5kIiwicmVmZXJyZXJfY3JlZGl0IjoiJDIwIiwiaW52aXRlcl9jcmVkaXQiOjIwLCJyZWZlcnJlZV9jcmVkaXQiOiIkMjAiLCJpbnZpdGVlX2NyZWRpdCI6MjAsInJlZmVycmVyX3Rva2VuIjoiYW5vbi1iYWZiYWJhYjZlMmUwMjdhYmIwN2U3ZGFkYTlkNjJkMCIsInQiOm51bGwsImEiOm51bGwsImQiOm51bGx9">Download
+                  for <strong>Android</strong></a>
+              </li>
+            </ul>
+          </section>
+        </nav>
 
-                      <div className="error-message unknown-error hidden">
-                        Error: please <a href="/support/">contact support</a>
+
+        <div className="header-container">
+          <nav className="desktop-nav ">
+            <div className="fluid-container full-width">
+              <div className="row">
+                <a href="/" className="logo-container"></a>
+
+                <ul className="rag-right nav-links">
+
+
+                  <li><a href="" id="login_button" className="show-signin-form" data-return-url="">Log In</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          <div className="hamburger-nav-container">
+            <nav className="hamburger-nav" onClick={() => this.setState({open: !this.state.open})}></nav>
+            <a href="/" className="clickable-area"></a>
+          </div>
+        </div>
+
+
+        <table className="fatal-error">
+          <tbody>
+          <tr>
+            <td className="message">
+
+            </td>
+            <td className="close-box"></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div className="freezable-body">
+          <a className="screen-reader" href="#content">Skip Navigation</a>
+
+          <div className="post-header">
+
+            <div className="f-strata hero">
+              <div className="slideshow chef"></div>
+              <div className="slideshow farm"></div>
+              <div className="slideshow packaged"></div>
+              <div className="slideshow plated"></div>
+              <div className="slideshow produce"></div>
+
+              <div className="fluid-container">
+                <div className="row center-xy">
+                  <div className="phone-col-12 tablet-col-12 desktop-col-12 container">
+                    <h1>Fresh, healthy, and delicious, delivered <span>to your door.</span></h1>
+                    <p>Chef-crafted <span>| Cooked from scratch</span> <span>| All-natural</span></p>
+                    <div className="signup-login-form">
+                      <form className="email-squeeze-form" action="/menus/subscribe.json" acceptCharset="UTF-8"
+                            data-remote="true" method="post">
+                        <input name="utf8" type="hidden" value="✓"/>
+                        <input type="hidden" name="bypass_email_requirement" id="bypass_email_requirement" value="1"/>
+
+                        <input type="hidden" name="_skip_confirmation_instructions" id="_skip_confirmation_instructions"
+                               value="1"/>
+                        <input type="email" name="email" id="email" placeholder="Email" className="user-input email"
+                               maxLength="254"/>
+                        <input type="text" name="zipcode" id="zipcode" maxLength="5" placeholder="ZIP Code"
+                               className="user-input zip-code" inputMode="numeric" pattern="[\d\s\.()-]*"
+                               autoCorrect="off"
+                               autoCapitalize="none" noValidate="noValidate"/>
+                        <input type="hidden" name="gate" id="gate" value="Static Email Gate"/>
+                        <button name="button" type="submit" className="large orange button">See The Menu</button>
+
+                        <div className="errors">
+                          <div className="error-message email-error hidden">
+                            Please enter a valid email address.
+                          </div>
+
+                          <div className="error-message zipcode-error hidden">
+                            Please enter a 5-digit ZIP code.
+                          </div>
+
+                          <div className="error-message unknown-error hidden">
+                            Error: please <a href="/support/">contact support</a>
+                          </div>
+                        </div>
+                      </form>
+                      <div className="or-separator">OR</div>
+
+                      <a
+                        href="/users/preauth/facebook.json?return=https%3A%2F%2Fmunchery.com%2Fmenus%2F&amp;signup=%2Fsignup-page%2Fconfirm"
+                        id="facebook_login_button" className="popup facebook-popup facebook large button" data-width="650"
+                        data-height="700">
+                        <span>Continue with Facebook</span>
+                      </a>
+
+                      <div className="terms">By clicking “See the Menu” or “Continue with Facebook” <br/>you agree to our
+                        <a className="secondary" target="_blank" href="/about/privacy-and-terms-of-service/">
+                          Terms &amp; Conditions</a>.
                       </div>
                     </div>
-                  </form>
-                  <div className="or-separator">OR</div>
 
-                  <a
-                    href="/users/preauth/facebook.json?return=https%3A%2F%2Fmunchery.com%2Fmenus%2F&amp;signup=%2Fsignup-page%2Fconfirm"
-                    id="facebook_login_button" className="popup facebook-popup facebook large button" data-width="650"
-                    data-height="700">
-                    <span>Continue with Facebook</span>
-                  </a>
-
-                  <div className="terms">By clicking “See the Menu” or “Continue with Facebook” <br/>you agree to our
-                    <a className="secondary" target="_blank" href="/about/privacy-and-terms-of-service/">
-                      Terms &amp; Conditions
-                    </a>
                   </div>
                 </div>
+              </div>
+            </div>
 
+            <div className="f-strata hiw">
+              <h2>How it works, <br/>from the farm to your fork</h2>
+
+              <div className="route">
+                <div className="stop ingredients">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 332 92"
+                       className="hiw-ingredients icon">
+                    <path className="st0"
+                          d="M200.8 43.1h10.6v2.5h-10.6zm36.3 22.2h-14.9c.3 1 .4 2 .4 3.1 0 2.3-.7 4.5-1.9 6.2h40.1c-1.2-1.8-1.9-3.9-1.9-6.2 0-1.1.2-2.1.4-3.1h-22.2zm-20.6-22.2h10.6v2.5h-10.6zm27 .3h16c1.9 0 3.3-1.9 2.6-3.7l-1.4-4.1c-1-2.4-3.4-4-6.1-4h-11.2c-1.1 0-2 .9-2 2v7.7c.1 1.2 1 2.1 2.1 2.1zM296 79.7H35.8c-4.6 0-8.4 3.1-9.5 7.3h279.3c-1.2-4.2-5-7.3-9.6-7.3z"></path>
+                    <path className="st1"
+                          d="M141.3 68.2l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8V59l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-2.7l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-1.8c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.8l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.7l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.7l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v6.4h5v-6.3zm17.2 0l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8V59l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-2.8l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-2.8l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-2.9c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5V34l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.8l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.8l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.8l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v6.4h5v-6.2zm17.2 0l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8V59l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-2.7l4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8v-1.8c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.8l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.7l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v2.7l-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4v6.4h5v-6.3z"></path>
+                    <path className="st2"
+                          d="M107.3 12.3l-1.7-.5 1.8.8zM67 46.7v-.4c0-.1 0-.2.1-.2 0-.1 0-.2.1-.2 0-.1.1-.2.1-.2 0-.1.1-.1.1-.2s.1-.1.1-.2.1-.1.2-.2l.2-.2c.1-.1.1-.1.2-.1.1-.1.2-.1.2-.1l.1-.1h.1c.1 0 .2-.1.3-.1.1 0 .1-.1.2-.1h30.8c.1 0 .1 0 .2.1.1 0 .2.1.3.1.1 0 .1.1.1.1.1 0 .2.1.2.1.1 0 .1.1.2.2l.2.2.2.2c0 .1.1.1.1.2s.1.1.1.2.1.1.1.2 0 .2.1.2c0 .1 0 .2.1.2v28.5h13.2l3.7-35.9-4.1-1.1c-.8-.2-1.4-.8-1.7-1.5l-7.4-19-20.7-9.5L64 17.2l-7.4 19c-.3.7-.9 1.3-1.7 1.5l-4 1.1 3.7 35.9H67v-28zm37.9 13.7c0-1.6 1.3-2.8 2.8-2.8h1.4c1.6 0 2.8 1.3 2.8 2.8v3.5c0 1.6-1.3 2.8-2.8 2.8h-1.4c-1.6 0-2.8-1.3-2.8-2.8v-3.5zM77.8 18.2c0-1.1.7-2.1 1.9-2.7l3.1-1.5c1.2-.6 2.7-.6 3.9 0l3.1 1.5c1.2.6 1.9 1.6 1.9 2.7v6.6c0 1.7-1.7 3.2-3.8 3.2h-6.2c-2.1 0-3.8-1.4-3.8-3.2v-6.6zM64.1 63.9c0 1.6-1.3 2.8-2.8 2.8h-1.4c-1.6 0-2.8-1.3-2.8-2.8v-3.5c0-1.6 1.3-2.8 2.8-2.8h1.4c1.6 0 2.8 1.3 2.8 2.8v3.5z"></path>
+                    <path className="st3"
+                          d="M96.6 57.8l-8 16.9h8zM82 66.3l-.2-17.1h-8.3zm4.8-17.1l.2 17.1 8.2-17.1zM72 57.3v17.4h8.6zm-10.7.3h-1.4c-1.6 0-2.8 1.3-2.8 2.8v3.5c0 1.6 1.3 2.8 2.8 2.8h1.4c1.6 0 2.8-1.3 2.8-2.8v-3.5c0-1.6-1.2-2.8-2.8-2.8zm46.4 9.1h1.4c1.6 0 2.8-1.3 2.8-2.8v-3.5c0-1.6-1.3-2.8-2.8-2.8h-1.4c-1.6 0-2.8 1.3-2.8 2.8v3.5c0 1.6 1.2 2.8 2.8 2.8zM81.6 27.9h6.2c2.1 0 3.8-1.4 3.8-3.2v-6.6c0-1.1-.7-2.1-1.9-2.7l-3.1-1.5c-1.2-.6-2.7-.6-3.9 0l-3.1 1.5c-1.2.6-1.9 1.6-1.9 2.7v6.6c.1 1.8 1.8 3.2 3.9 3.2z"></path>
+                    <path className="st1" d="M61 13.1l3.2-1.5v-3h-4.4v5.6c.3-.5.7-.9 1.2-1.1z"></path>
+                    <path className="st4"
+                          d="M200.8 43.1h10.6v2.5h5v-2.5H227v2.5h5v-2.5h1.1c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5H232v-1.9c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.9h-10.6v-1.9c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.9h-10.6v-1.9c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.9h-1.1c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h1.1v2.5h5v-2.5z"></path>
+                    <path className="st2"
+                          d="M211.4 57.2c5.1 0 9.4 3.4 10.7 8.1h37.2c1.3-4.7 5.6-8.1 10.7-8.1s9.4 3.4 10.7 8.1h3.4c2.5 0 4.4-2.3 3.9-4.8l-3-15.2c-.4-2-2.2-3.5-4.3-3.5H267l-1.4-6.1c-1.1-4.9-5.5-8.3-10.5-8.3h-15c-1.8 0-3.3 1.5-3.3 3.3v14.9h-43.2c-1.6 0-3 1.3-3 3v13.8c0 1.6 1.3 3 3 3h6.9c1.5-4.7 5.8-8.2 10.9-8.2zm30.1-23.6c0-1.1.9-2 2-2h11.2c2.6 0 5 1.6 6.1 4l1.4 4.1c.6 1.8-.7 3.7-2.6 3.7h-16c-1.1 0-2-.9-2-2v-7.8z"></path>
+                    <circle className="st5" cx="211.4" cy="68.4" r="6.2"></circle>
+                    <circle className="st5" cx="270.1" cy="68.4" r="6.2"></circle>
+                    <path className="st4"
+                          d="M329.3 87h-18.6c-1.2-7-7.3-12.3-14.6-12.3h-16.7c1.2-1.8 1.9-3.9 1.9-6.2 0-1.1-.2-2.1-.4-3.1-1.3-4.7-5.6-8.1-10.7-8.1s-9.4 3.4-10.7 8.1c-.3 1-.4 2-.4 3.1 0 2.3.7 4.5 1.9 6.2h-40.1c1.2-1.8 1.9-3.9 1.9-6.2 0-1.1-.2-2.1-.4-3.1-1.3-4.7-5.6-8.1-10.7-8.1s-9.4 3.4-10.7 8.1c-.3 1-.4 2-.4 3.1 0 2.3.7 4.5 1.9 6.2h-82.2l3.5-34.6 3.4.9c.2.1.4.1.7.1 1.1 0 2.1-.7 2.4-1.8.4-1.3-.4-2.7-1.8-3.1l-6-1.6c-.2-.1-.4-.2-.7-.2l-4.6-1.2-7.3-18.7c-.2-.6-.7-1.1-1.3-1.4l-.9-.4-1.9-.8-19.9-9h-.1c-.1 0-.2-.1-.3-.1-.1 0-.1 0-.2-.1h-.8c-.1 0-.1 0-.2.1-.1 0-.2.1-.3.1h-.1L69.2 9.3V6.1c0-1.4-1.1-2.5-2.5-2.5h-9.4c-1.4 0-2.5 1.1-2.5 2.5v20.2c0 .2 0 .4.1.5l-2.5 6.4-11.2 3c-1.3.4-2.1 1.7-1.8 3.1.3 1.1 1.3 1.8 2.4 1.8.2 0 .4 0 .7-.1l3.6-1 3.5 34.6H35.8c-7.3 0-13.4 5.4-14.6 12.3H2.7C1.3 86.9.2 88 .2 89.4S1.4 92 2.7 92h326.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.4-2.5zm-59.2-24.8c3.4 0 6.2 2.8 6.2 6.2s-2.8 6.2-6.2 6.2-6.2-2.8-6.2-6.2 2.8-6.2 6.2-6.2zm-58.7 0c3.4 0 6.2 2.8 6.2 6.2s-2.8 6.2-6.2 6.2-6.2-2.8-6.2-6.2 2.8-6.2 6.2-6.2zM59.8 8.6h4.4v3L61 13.1c-.5.2-.9.6-1.2 1.1V8.6zm-8.9 30.1l4-1.1c.8-.2 1.4-.8 1.7-1.5l7.4-19 20.7-9.3 20.7 9.3 7.4 19c.3.7.9 1.3 1.7 1.5l4.1 1.1-3.7 35.9h-13.2V46.1c0-.1 0-.2-.1-.2 0-.1 0-.2-.1-.2 0-.1-.1-.2-.1-.2 0-.1-.1-.1-.1-.2s-.1-.1-.1-.2l-.2-.2-.2-.2-.2-.2c-.1-.1-.2-.1-.2-.1l-.1-.1c-.1 0-.2-.1-.3-.1-.1 0-.1 0-.2-.1H68.9c-.1 0-.1 0-.2.1-.1 0-.2.1-.3.1h-.1l-.1.1c-.1 0-.2.1-.2.1-.1 0-.1.1-.2.1l-.2.2-.2.2c0 .1-.1.1-.1.2s-.1.1-.1.2-.1.1-.1.2-.1.2-.1.2c0 .1 0 .2-.1.2v28.4H54.6l-3.7-35.7zm30.9 10.5l.2 17.1-8.5-17.1h8.3zM72 57.3l8.6 17.3H72V57.3zm14.8-8.1h8.3L87 66.3l-.2-17.1zm9.8 8.6v16.9h-8l8-16.9zM26.3 87c1.1-4.2 4.9-7.3 9.5-7.3H296c4.6 0 8.4 3.1 9.5 7.3H26.3z"></path>
+                  </svg>
+
+                  <p className="caption">Fresh, local, <br/>all-natural ingredients</p>
+                </div>
+                <div className="stop chefs">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 332 92" className="hiw-chefs icon">
+
+                    <path className="st0"
+                          d="M295 82.2h-12.7c-.5.1-1.1.1-1.6.1h-75.9c-.5 0-1.1 0-1.6-.1H34.8c-4.2 0-7.9 2-9.2 4.8h278.7c-1.4-2.8-5-4.8-9.3-4.8z"></path>
+                    <path className="st1"
+                          d="M291.7 28.7c1-.9 2.6-.9 3.5.1.8.9 2.3 1 3.2.1.9-.8 1-2.3.1-3.2-.5-.5-1.2-.8-1.9-.7-.8.1-1.5-.2-2.1-.8s-.8-1.4-.6-2.1c.1-.7-.1-1.4-.6-1.9-.8-.9-2.3-1-3.2-.1-.8.8-1 2-.3 3s.6 2.4-.3 3.3l-5.8 5.4 2.2 2.3 5.8-5.4z"></path>
+                    <path className="st2"
+                          d="M234.4 57.9c.2.6.1 1.3-.2 1.9-.3.6-.7 1.2-1.1 1.7h40.7c.4-.9.8-1.8 1.1-2.8 1.6-5.9 4.7-11.1 8.9-15l.7-.7c.4-.4.7-1 .7-1.6s-.2-1.2-.6-1.6l-6.8-7.3c-.4-.4-1-.7-1.6-.7-.6 0-1.2.2-1.6.6l-.9.9c-2.7 2.5-5.8 4.4-9.4 5.8-1.2.5-2.6-.1-3.2-1.2 0-.1-3.1-6.1-9.1-11.1-5-4.2-10.6-6.2-16.5-6.2-3.2 0-6.5.6-9.9 1.8-11.1 3.9-17.3 11.2-20.6 17.9l28.1 16.2c.7.3 1.1.8 1.3 1.4z"></path>
+                    <path className="st3"
+                          d="M213.3 54.8l-3.8 6.7h5.6zm7 6.7h6.1c.7-.6 1.4-1.3 2-2.1l-10.2-5.9 2.1 8zM209 52.4l-11.4 3.1c1 2.3 2.4 4.4 4.3 6.1h1.8l5.3-9.2zm-1.3-4.9l-10.2-5.9c-1.2 2.8-1.5 5.9-1.2 9l11.4-3.1z"></path>
+                    <path className="st1"
+                          d="M198.7 73.2c1 2.5 3.4 4.1 6.1 4.1h75.9c2.7 0 5.1-1.6 6.1-4.1l2.8-6.7H196l2.7 6.7zM69.1 63.8V49.3c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v14.5h12.6V49.3c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v14.5h10V42.6c0-1.2.9-2.2 2.1-2.5 6.3-1.2 10.9-6.7 10.9-13.1 0-7.3-6-13.3-13.3-13.3-2.9 0-5.7.9-8.1 2.7-.6.5-1.4.6-2.2.4-.8-.2-1.4-.8-1.7-1.5-1.4-3.8-5-6.3-9.1-6.3-4 0-7.6 2.5-9.1 6.3-.3.7-.9 1.3-1.7 1.5-.8.2-1.6.1-2.2-.4-2.3-1.8-5.1-2.7-8.1-2.7-7.3 0-13.3 6-13.3 13.3 0 6.4 4.6 11.9 10.9 13.1 1.2.2 2.1 1.3 2.1 2.5v21.2h10.2zm-13.7 5V77h49.9v-8.2H56.5z"></path>
+                    <path className="st3"
+                          d="M141.6 77.2h28.7c1.3 0 2.4-1.1 2.4-2.4V56.4c0-9.2-7.5-16.8-16.8-16.8s-16.8 7.5-16.8 16.8v18.4c.1 1.3 1.2 2.4 2.5 2.4zM156 43.3c7.5 0 13.7 6.1 13.7 13.7s-6.1 13.7-13.7 13.7-13.7-6.1-13.7-13.7 6.2-13.7 13.7-13.7z"></path>
+                    <path className="st1"
+                          d="M156 65.6c4.8 0 8.7-3.9 8.7-8.7s-3.9-8.7-8.7-8.7-8.7 3.9-8.7 8.7 3.9 8.7 8.7 8.7zm-3-9.6c.3-.8.8-1.4 1.5-1.8v-2.5c0-.8.6-1.4 1.4-1.4.8 0 1.4.6 1.4 1.4v2.5c1.3.7 2 2.2 1.5 3.7-.5 1.6-2.3 2.5-3.9 2-1.5-.5-2.4-2.3-1.9-3.9z"></path>
+                    <path className="st4"
+                          d="M156 70.6c7.5 0 13.7-6.1 13.7-13.7s-6.1-13.7-13.7-13.7-13.7 6.1-13.7 13.7 6.2 13.7 13.7 13.7zm0-22.3c4.8 0 8.7 3.9 8.7 8.7s-3.9 8.7-8.7 8.7-8.7-3.9-8.7-8.7 3.9-8.7 8.7-8.7z"></path>
+                    <path className="st4"
+                          d="M155 59.9c1.6.5 3.4-.4 3.9-2 .5-1.5-.2-3-1.5-3.7v-2.5c0-.8-.6-1.4-1.4-1.4-.8 0-1.4.6-1.4 1.4v2.5c-.7.4-1.2 1-1.5 1.8-.6 1.6.3 3.4 1.9 3.9z"></path>
+                    <path className="st5" d="M178.9 23.2h-45.8c1 2.2 3.1 3.7 5.6 3.7h34.5c2.5 0 4.7-1.5 5.7-3.7z"></path>
+                    <path className="st4"
+                          d="M329.3 87h-19.7c-1.4-5.6-7.4-9.8-14.5-9.8h-4.7c.4-.6.8-1.3 1.1-2.1l4.2-10.2c.3-.8.2-1.7-.2-2.3-.5-.7-1.2-1.1-2.1-1.1h-14.1c.2-.5.3-1 .5-1.5 1.4-5 3.9-9.4 7.5-12.6l.7-.7c1.4-1.3 2.2-3.1 2.3-5 .1-1.4-.3-2.7-1-3.9l4.4-4c2.6 1.3 5.9 1 8.2-1.1 2.9-2.7 3.1-7.3.4-10.3-.9-1-2.1-1.7-3.4-2.1-.3-1.3-.9-2.5-1.8-3.5-2.7-2.9-7.3-3.1-10.3-.4-2.1 1.9-2.8 4.9-2 7.5l-4.6 4.2c-1.1-.8-2.4-1.2-3.8-1.3-1.9-.1-3.8.6-5.2 1.9l-.9.9c-1.7 1.6-3.7 2.9-5.8 4-3.9-6.3-17.4-24-40.4-15.9-11.9 4.1-19.2 12.1-23.3 20.1l-3.1-1.8c-.6-.3-1.3-.4-1.9-.2-.6.2-1.2.6-1.5 1.2-3.1 5.3-3.9 11.5-2.3 17.5.7 2.6 1.9 5 3.4 7.2h-3.1c-.8 0-1.6.4-2.1 1.1-.5.7-.6 1.6-.2 2.3l4.2 10.2c.3.7.7 1.4 1.1 2.1h-17.8c.3-.8.4-1.6.4-2.4V56.4c0-11.2-8.4-20.4-19.3-21.6v-2.9h14.7c6.2 0 11.2-5 11.2-11.2 0-1.4-1.1-2.5-2.5-2.5h-51.8c-1.4 0-2.5 1.1-2.5 2.5 0 6.2 5 11.2 11.2 11.2h14.7v2.9c-10.8 1.2-19.3 10.5-19.3 21.6v18.4c0 .8.1 1.7.4 2.4h-24.3v-11c0-1.4-1.1-2.5-2.5-2.5h-1.1V44.5c7.6-2.3 13-9.4 13-17.5 0-10.1-8.2-18.3-18.3-18.3-3 0-6 .7-8.6 2.2-2.7-4.2-7.3-6.8-12.4-6.8S70.7 6.7 68 10.9c-2.6-1.4-5.6-2.2-8.6-2.2-10.1 0-18.3 8.2-18.3 18.3 0 8.1 5.3 15.2 13 17.5v19.2H53c-1.4 0-2.5 1.1-2.5 2.5v11H34.8c-7.2 0-13.1 4.2-14.5 9.8H2.7C1.3 87 .2 88.1.2 89.5S1.4 92 2.7 92h326.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.4-2.5zM138.8 26.9c-2.5 0-4.7-1.5-5.6-3.7H179c-1 2.2-3.1 3.7-5.6 3.7h-34.6zm150.8 39.6l-2.8 6.7c-1 2.5-3.4 4.1-6.1 4.1h-75.9c-2.7 0-5.1-1.6-6.1-4.1l-2.8-6.7h93.7zm-63.1-5h-6.1l-2.2-8 10.2 5.9c-.6.8-1.3 1.5-1.9 2.1zm-13.2-6.7l1.8 6.7h-5.7l3.9-6.7zm76.3-28.5c.9-.9 1.1-2.3.3-3.3-.7-.9-.5-2.2.3-3 .9-.8 2.3-.8 3.2.1.5.5.7 1.2.6 1.9-.1.8.1 1.6.6 2.1s1.3.9 2.1.8c.7-.1 1.4.2 1.9.7.8.9.8 2.4-.1 3.2-.9.8-2.4.8-3.2-.1-.9-1-2.5-1.1-3.5-.1l-5.8 5.3-2.2-2.3 5.8-5.3zm-63.9-3.9c3.4-1.2 6.7-1.8 9.9-1.8 6 0 11.5 2.1 16.5 6.2 6 4.9 9 11 9.1 11.1.6 1.2 1.9 1.7 3.2 1.2 3.5-1.4 6.7-3.3 9.4-5.8l.9-.9c.4-.4 1-.6 1.6-.6.6 0 1.1.3 1.6.7l6.8 7.3c.4.4.6 1 .6 1.6s-.3 1.1-.7 1.6l-.7.7c-4.2 3.9-7.3 9.1-8.9 15-.3 1-.6 1.9-1.1 2.8H233c.4-.6.8-1.1 1.1-1.7.3-.6.4-1.3.2-1.9-.2-.6-.6-1.2-1.2-1.5L205 40.2c3.4-6.6 9.6-13.9 20.7-17.8zm-28.2 19.2l10.2 5.9-11.4 3.1c-.4-3 0-6.1 1.2-9zm.1 13.8l11.4-3.1-5.3 9.2h-1.8c-1.8-1.7-3.3-3.7-4.3-6.1zm-58.4 1c0-9.2 7.5-16.8 16.8-16.8s16.8 7.5 16.8 16.8v18.4c0 1.3-1.1 2.4-2.4 2.4h-28.7c-1.3 0-2.4-1.1-2.4-2.4V56.4zM71.6 68.8h33.7V77H55.4v-8.2h16.2zM57 40.1c-6.3-1.2-10.9-6.7-10.9-13.1 0-7.3 6-13.3 13.3-13.3 2.9 0 5.7.9 8.1 2.7.6.5 1.5.6 2.2.4.8-.2 1.4-.8 1.7-1.5 1.4-3.8 5-6.3 9.1-6.3 4 0 7.6 2.5 9.1 6.3.3.7.9 1.3 1.7 1.5.8.2 1.6.1 2.2-.4 2.3-1.8 5.1-2.7 8.1-2.7 7.3 0 13.3 6 13.3 13.3 0 6.4-4.6 11.9-10.9 13.1-1.2.2-2.1 1.3-2.1 2.5v21.2h-10V49.3c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v14.5H74.1V49.3c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v14.5H59V42.6c0-1.3-.8-2.3-2-2.5zM25.6 87c1.4-2.8 5-4.8 9.2-4.8h168.3c.5.1 1.1.1 1.6.1h75.9c.5 0 1.1 0 1.6-.1H295c4.2 0 7.9 2 9.2 4.8H25.6z"></path>
+                  </svg>
+
+                  <p className="caption">Ever-changing menu <br/>of chef-crafted dishes</p>
+                </div>
+                <div className="stop order">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 332 92" className="hiw-order icon">
+
+                    <path className="st0"
+                          d="M329.3 87h-19.4c-.5-6.9-6.3-12.4-13.3-12.4h-2.8V17.1c0-6.9-5.6-12.6-12.6-12.6H198c-6.9 0-12.6 5.6-12.6 12.6v57.5h-2.8c-7 0-12.8 5.5-13.3 12.4H58l14-5.2c3.5-1.3 5.3-5.2 4-8.7L58.2 24.4c-1.3-3.5-5.2-5.3-8.7-4L24 29.7c-3.5 1.3-5.3 5.2-4 8.7L37.9 87H2.7C1.3 87 .2 88.1.2 89.5S1.4 92 2.7 92h326.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.4-2.5zM24.7 36.7c-.3-.9.1-2 1.1-2.3L51.2 25c.2-.1.4-.1.6-.1.7 0 1.4.5 1.7 1.2l17.9 48.7c.3.9-.1 2-1.1 2.3l-25.4 9.4c-.5.2-.9.1-1.4-.1-.4-.2-.8-.6-.9-1L24.7 36.7zm165.8-19.6c0-4.2 3.4-7.6 7.6-7.6h83.1c4.2 0 7.6 3.4 7.6 7.6v57.5h-98.3V17.1zm-7.8 62.5h113.9c4.2 0 7.7 3.1 8.3 7.1H174.4c.6-4 4.1-7.1 8.3-7.1z"></path>
+                    <path className="st1"
+                          d="M288.8 17.1c0-4.2-3.4-7.6-7.6-7.6H198c-4.2 0-7.6 3.4-7.6 7.6v57.5h98.3V17.1zM281 63.8c0 2.5-2 4.5-4.5 4.5h-74.2c-2.5 0-4.5-2-4.5-4.5V21.4c0-2.5 2-4.5 4.5-4.5h74.2c2.5 0 4.5 2 4.5 4.5v42.4zm15.5 15.8H182.7c-4.2 0-7.7 3.1-8.3 7.1h130.4c-.6-4-4.1-7.1-8.3-7.1z"></path>
+                    <path className="st2"
+                          d="M276.5 16.9h-74.2c-2.5 0-4.5 2-4.5 4.5v42.4c0 2.5 2 4.5 4.5 4.5h74.2c2.5 0 4.5-2 4.5-4.5V21.4c0-2.5-2-4.5-4.5-4.5zm-20.6 42.6c0 .8-.7 1.5-1.5 1.5h-29.6c-.8 0-1.5-.7-1.5-1.5v-4c0-.8.7-1.5 1.5-1.5h29.6c.8 0 1.5.7 1.5 1.5v4zm16.3-29.6c0 8.6-6.5 15.8-14.9 16.7-.2.1-.5.1-.7.1h-34.4c-.2 0-.5 0-.7-.1-8.4-.9-14.9-8.1-14.9-16.7v-1.6c0-1.4 1.1-2.5 2.5-2.5h60.6c1.4 0 2.5 1.1 2.5 2.5v1.6z"></path>
+                    <path className="st0"
+                          d="M166.2 34.8h.7c1.4-.1 2.4-1.3 2.3-2.7-.1-1.4-1.3-2.4-2.7-2.3h-.5c-1.4.1-2.4 1.3-2.3 2.7.1 1.3 1.2 2.3 2.5 2.3zm10.5-.8h.7c1.4-.1 2.4-1.3 2.3-2.7s-1.3-2.4-2.7-2.3h-.5c-1.4.1-2.4 1.3-2.3 2.7.1 1.3 1.2 2.3 2.5 2.3zm-21 1.6h.7c1.4-.1 2.4-1.3 2.3-2.7s-1.3-2.4-2.7-2.3h-.5c-1.4.1-2.4 1.3-2.3 2.7.1 1.3 1.2 2.3 2.5 2.3zm-84 .1c-1.4.1-2.4 1.4-2.2 2.7.1 1.3 1.2 2.3 2.5 2.3h.7c1.4-.1 2.4-1.4 2.2-2.7-.1-1.4-1.4-2.4-2.7-2.2l-.5-.1zm21.1 3h.7c1.4-.1 2.4-1.4 2.2-2.7-.1-1.4-1.3-2.4-2.7-2.2h-.5c-1.4.1-2.4 1.4-2.2 2.7.2 1.2 1.3 2.2 2.5 2.2zm-10.4 1h.7c1.4-.1 2.4-1.4 2.2-2.7-.1-1.4-1.4-2.4-2.7-2.2h-.5c-1.4.1-2.4 1.4-2.2 2.7.1 1.2 1.2 2.2 2.5 2.2z"></path>
+                    <path className="st3"
+                          d="M117.6 41.1c.3 0 .5-.3.4-.6v-.1l-.5-7.7-.1-.1s-.1 0-.1.1l-.4 7.9c.2.3.5.5.7.5z"></path>
+                    <path className="st3"
+                          d="M100.7 36c.6 2.1-2.3 5.7-1.2 7.5 1.1 1.9 5.6 1.2 7.1 2.7 1.5 1.5.8 6 2.7 7.1 1.9 1.1 5.4-1.7 7.5-1.2 2.1.5 3.7 4.8 5.9 4.8s3.9-4.2 5.9-4.8c2.1-.6 5.7 2.3 7.5 1.2 1.9-1.1 1.2-5.6 2.7-7.1 1.5-1.5 6-.8 7.1-2.7 1.1-1.9-1.7-5.4-1.2-7.5.5-2.1 4.8-3.7 4.8-5.9s-4.2-3.9-4.8-5.9c-.6-2.1 2.3-5.7 1.2-7.5-1.1-1.9-5.6-1.2-7.1-2.7-1.5-1.5-.8-6-2.7-7.1-1.9-1.1-5.4 1.7-7.5 1.2-2.1-.5-3.7-4.8-5.9-4.8s-3.9 4.2-5.9 4.8c-2.1.6-5.7-2.3-7.5-1.2-1.9 1.1-1.2 5.6-2.7 7.1-1.5 1.5-6 .8-7.1 2.7-1.1 1.9 1.7 5.4 1.2 7.5-.5 2.1-4.8 3.7-4.8 5.9s4.2 3.9 4.8 5.9zm25.6-11.5v-2.2c0-.9-.1-1.7.1-2.6.3-1.2 1.6-2.2 2.8-2.2.2 0 .7.1.9.1l.1.1v7.2l.1 4c0 .5.1 2.6.1 3.8l.5 6.1.1 1.8v.4c-.2.8-.9 1.4-1.7 1.4-.7 0-1.4-.4-1.6-1.1-.1-.3-.1-.5-.1-.8v-.6l.6-4.5c.1-.4.1-.8.1-1.2.1-1-.5-1.7-.5-1.7-.6-.3-1.1-.8-1.4-1.5-.3-.6-.2-1.4-.2-2.1v-4.2c.1.1.1-.1.1-.2zm-11.6-6.2c0-.1.1-.2.2-.2h.9c.1 0 .2.1.2.2l.1 6.1c.1.2.2.3.4.3.1 0 .3-.1.4-.3l.1-6.1c0-.1.1-.2.2-.2h.9c.1 0 .2.1.2.2l.1 5.8v.1c0 .1 0 .3.1.4h.2c.1 0 .3-.1.4-.3l.1-6.1c0-.1.1-.2.2-.2h.9c.1 0 .2.1.2.2v.7c0 1.7.1 3.4.1 5v.2c-.1 1.2-.9 2.2-2 2.6 0 0 .1 1.2.1 1.4 0 .5.1 1 .1 1.5.2 1.8.3 3.7.5 5.5 0 .4.1.8.1 1.2 0 .5.1.9.1 1.4.1.8.1 1.6.2 2.4 0 .6 0 1.3-.5 1.7-.4.4-.9.7-1.5.7s-1.2-.3-1.6-.8c-.4-.6-.4-1.3-.3-2 0-.7.1-1.4.1-2.2.1-.6.1-1.3.2-1.9.1-.9.2-1.9.3-2.8.1-1 .2-2.1.3-3.1.1-.9.2-1.9.2-2.8-.8-.2-1.5-.8-1.9-1.6-.1-.3-.2-.6-.2-.9-.2-.2-.1-6.1-.1-6.1z"></path>
+                    <path className="st3"
+                          d="M129.4 41c.2 0 .4-.2.4-.4v-.1l-.2-4.7-.5 4.8c-.1.2 0 .4.3.4zm-1.8-14.6v4.1c.1.4.4.7.7.7.4 0 .7-.3.7-.7l-.2-6.9v-4.3h-.1c-1.3.4-1.1 1.8-1.1 2.8.1 1.4 0 2.9 0 4.3z"></path>
+                    <path className="st2"
+                          d="M126.3 29.1c0 .7-.1 1.4.2 2.1.3.7.8 1.2 1.4 1.5 0 0 .6.7.5 1.7 0 .4-.1.8-.1 1.2l-.6 4.5v.6c0 .3 0 .5.1.8.3.7.9 1.1 1.6 1.1.8 0 1.5-.6 1.7-1.4v-.4L131 39l-.5-6.1c-.1-1.2-.1-3.3-.1-3.8l-.1-4v-7.2s0-.1-.1-.1c-.2-.1-.7-.1-.9-.1-1.3 0-2.5.9-2.8 2.2-.2.8-.1 1.7-.1 2.6v4.2c-.1.6-.1 1.5-.1 2.4zm3.1 6.7s.1-.1 0 0l.3 4.7v.1c0 .2-.2.4-.4.4s-.4-.2-.4-.4l.5-4.8zm-.6-16.5c.1 0 .1 0 .1.1v4.2l.2 6.9c0 .4-.3.7-.7.7-.4 0-.7-.3-.7-.7v-8.4c-.1-1.1-.2-2.5 1.1-2.8zm-14.2 5c0 .3.1.6.2.9.4.8 1 1.4 1.9 1.6-.1.9-.1 1.9-.2 2.8-.1 1-.2 2.1-.3 3.1-.1.9-.2 1.9-.3 2.8-.1.6-.1 1.3-.2 1.9-.1.7-.1 1.4-.1 2.2 0 .7-.1 1.4.3 2 .4.5 1 .8 1.6.8.6 0 1.1-.3 1.5-.7.5-.5.5-1.1.5-1.7 0-.8-.1-1.6-.2-2.4 0-.5-.1-.9-.1-1.4 0-.4-.1-.8-.1-1.2-.2-1.8-.4-3.7-.5-5.5 0-.5-.1-1-.1-1.5 0-.1-.1-1.3-.1-1.4 1.1-.3 1.9-1.4 2-2.6v-.2c0-1.7 0-3.4-.1-5v-.7c0-.1-.1-.2-.2-.2h-.9c-.1 0-.2.1-.2.2l-.1 6.1c-.1.2-.2.3-.4.3h-.2c-.1-.1-.2-.3-.1-.4V24l-.1-5.8c0-.1-.1-.2-.2-.2h-.9c-.1 0-.2.1-.2.2l-.1 6.1c-.1.2-.2.3-.4.3-.1 0-.3-.1-.4-.3l-.1-6.1c0-.1-.1-.2-.2-.2h-.9c-.1 0-.2.1-.2.2.2.1.1 6 .1 6.1 0-.1 0 0 0 0zm2.9 8.4c0-.1 0-.1 0 0h.1l.5 7.7v.1c0 .3-.2.6-.4.6-.3 0-.5-.3-.5-.6l.3-7.8zM259 41.1c4.4-1.5 7.7-5.5 8.1-10.3H259v10.3zm-39.3-10.3h-8.1c.4 4.8 3.7 8.9 8.1 10.3V30.8z"></path>
+                    <path className="st0"
+                          d="M269.7 25.8h-60.6c-1.4 0-2.5 1.1-2.5 2.5v1.6c0 8.6 6.5 15.8 14.9 16.7.2.1.5.1.7.1h34.4c.2 0 .5 0 .7-.1 8.4-.9 14.9-8.1 14.9-16.7v-1.6c0-1.4-1.2-2.5-2.5-2.5zm-58.1 5h8.1v10.3c-4.4-1.5-7.7-5.5-8.1-10.3zM254 41.7h-29.3V31.1H254v10.6zm5-.6V30.8h8.1c-.3 4.8-3.6 8.8-8.1 10.3z"></path>
+                    <path className="st3"
+                          d="M224.7 31.1H254v10.6h-29.3zM254.4 54h-29.6c-.8 0-1.5.7-1.5 1.5v4c0 .8.7 1.5 1.5 1.5h29.6c.8 0 1.5-.7 1.5-1.5v-4c0-.8-.7-1.5-1.5-1.5z"></path>
+                    <path className="st1"
+                          d="M43.5 86.4c.4.2.9.2 1.4.1l25.4-9.4c.9-.3 1.4-1.4 1.1-2.3L53.5 26.1c-.3-.7-1-1.2-1.7-1.2-.2 0-.4 0-.6.1l-25.4 9.4c-.9.3-1.4 1.4-1.1 2.3l17.9 48.7c.2.5.5.8.9 1zm13.2-7.1c-1.5.5-3.1-.2-3.7-1.7s.2-3.1 1.7-3.7c1.5-.5 3.1.2 3.7 1.7.6 1.5-.2 3.2-1.7 3.7zm-16.5-5.7L28.2 41c-.5-1.3.2-2.8 1.5-3.3l20.6-7.6c1.3-.5 2.8.2 3.3 1.5l12 32.6c.5 1.3-.2 2.8-1.5 3.3l-20.6 7.6c-1.4.5-2.8-.2-3.3-1.5z"></path>
+                    <path className="st2"
+                          d="M64.1 67.5c1.3-.5 2-1.9 1.5-3.3l-12-32.6c-.5-1.3-1.9-2-3.3-1.5l-20.6 7.6c-1.3.5-2 1.9-1.5 3.3l12 32.6c.5 1.3 1.9 2 3.3 1.5l20.6-7.6zM39.6 57l-4-8.5h-.4c-1 0-2-.6-2.3-1.6-.5-1.3.2-2.7 1.5-3.2l8.2-3 6.5-2.4 1.7-.6c1.3-.5 2.7.2 3.2 1.5.4 1.1 0 2.4-1 3l2.4 9.1c.3 1.2-.3 2.5-1.6 3l-11.1 4.1c-.3.1-.6.2-.9.2-.9-.2-1.8-.7-2.2-1.6zm2.2 9.7l-1-2.8c-.3-.8.1-1.8 1-2.1l15.1-5.5c.8-.3 1.8.1 2.1 1l1 2.8c.3.8-.1 1.8-1 2.1l-15.1 5.5c-.9.2-1.8-.2-2.1-1z"></path>
+                    <ellipse transform="rotate(-20.199 55.728 76.624)" className="st4" cx="55.7" cy="76.6" rx="2.9"
+                             ry="2.9"></ellipse>
+                    <path className="st3"
+                          d="M58.9 62.1c.8-.3 1.3-1.2 1-2.1l-1-2.8c-.3-.8-1.2-1.3-2.1-1l-15.1 5.5c-.8.3-1.3 1.2-1 2.1l1 2.8c.3.8 1.2 1.3 2.1 1l15.1-5.5z"></path>
+                    <path className="st2"
+                          d="M49.9 50.3l-1.7-6.4-1.5.5 1 2.7c.3.9-.1 1.8-1 2.1l-1.8.8c-.9.3-1.8-.1-2.1-1l-1-2.7-1.5.5 2.8 6 6.8-2.5z"></path>
+                    <path className="st0"
+                          d="M42.7 58.3l11.1-4.1c1.2-.4 1.9-1.7 1.6-3L53 42.1c1-.6 1.4-1.8 1-3-.5-1.3-1.9-2-3.2-1.5l-1.8.7-6.5 2.4-8.2 3c-1.3.5-2 1.9-1.5 3.2.4 1 1.3 1.6 2.3 1.6h.4l4 8.5c.4.9 1.3 1.4 2.3 1.4.3 0 .6 0 .9-.1zm-.9-12l5-1.8 1.5-.5 1.7 6.4-6.8 2.5-2.8-6 1.4-.6z"></path>
+                    <path className="st3"
+                          d="M44.9 50l1.9-.7c.9-.3 1.3-1.3 1-2.1l-1-2.7-5 1.8 1 2.7c.3.9 1.2 1.3 2.1 1z"></path>
+                    <path className="st5"
+                          d="M50.9 15.8c2.1-.7 4.3-.6 6.3.3 2 1 3.5 2.6 4.2 4.7.4 1 1.3 1.7 2.4 1.7.3 0 .6 0 .8-.1 1.3-.5 2-1.9 1.5-3.2-1.2-3.3-3.6-6-6.8-7.6-3.2-1.5-6.8-1.7-10.2-.5-1.3.5-2 1.9-1.5 3.2s2 1.9 3.3 1.5z"></path>
+                    <path className="st5"
+                          d="M50.9 7.7c7.2-2.5 15.1 1.2 17.6 8.4.4 1 1.3 1.7 2.4 1.7.3 0 .6 0 .8-.1 1.3-.5 2-1.9 1.5-3.2C69.8 4.7 59-.5 49.2 3c-1.3.5-2 1.9-1.5 3.2s1.9 2 3.2 1.5z"></path>
+                  </svg>
+
+                  <p className="caption">Order for tonight, <br/>or schedule ahead for the week</p>
+                </div>
+                <div className="stop delivery">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 332 92" className="hiw-delivery icon">
+
+                    <path className="st0"
+                          d="M224.7 30.9h-13.3c-2.6 0-5 1.6-6.1 4l-1.8 7.8h21.1V30.9zm-17.5 36.8c0 2.6-.9 5.1-2.5 7H246c-1.5-1.9-2.5-4.3-2.5-7v-.6H229c-1.4 0-2.5-1.1-2.5-2.5h-19.8c.4 1 .5 2 .5 3.1zm87.8 12H34.8c-4.6 0-8.4 3.1-9.5 7.3h279.3c-1.2-4.2-5-7.3-9.6-7.3z"></path>
+                    <path className="st1"
+                          d="M329.3 87h-19.6c-1.2-7-7.3-12.3-14.6-12.3h-31.6c1.5-1.9 2.5-4.3 2.5-7v-.6h9.5c1.4 0 2.5-1.1 2.5-2.5V21.1c0-4.7-3.8-8.5-8.5-8.5h-34.3c-4.7 0-8.5 3.8-8.5 8.5v43.5c0 1.4 1.1 2.5 2.5 2.5h14.5v.6c0 2.6.9 5.1 2.5 7H205c1.5-1.9 2.5-4.3 2.5-7 0-1.1-.2-2.1-.4-3.1-1.3-4.7-5.6-8.1-10.7-8.1s-9.4 3.4-10.7 8.1c-.3 1-.4 2-.4 3.1 0 2.6.9 5.1 2.5 7h-153c-7.3 0-13.4 5.4-14.6 12.3H2.7C1.3 87 .2 88.1.2 89.5S1.4 92 2.7 92h326.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.4-2.5zm-80.8-19.3c0-3.4 2.8-6.2 6.2-6.2s6.2 2.8 6.2 6.2-2.8 6.2-6.2 6.2-6.2-2.8-6.2-6.2zm-3.5-5.6h-13.5v-41c0-1.9 1.6-3.5 3.5-3.5h34.3c1.9 0 3.5 1.6 3.5 3.5v41h-8.5c-1.9-3.3-5.5-5.6-9.7-5.6s-7.6 2.3-9.6 5.6zm-49-.6c3.4 0 6.2 2.8 6.2 6.2s-2.8 6.2-6.2 6.2-6.2-2.8-6.2-6.2 2.8-6.2 6.2-6.2zM25.3 87c1.1-4.2 4.9-7.3 9.5-7.3H295c4.6 0 8.4 3.1 9.5 7.3H25.3z"></path>
+                    <path className="st2"
+                          d="M196 56.5c5.1 0 9.4 3.4 10.7 8.1h19.8v-38h-18.4c-3.5 0-6.5 2.4-7.2 5.8l-2 8.7h-13.7c-2.1 0-3.9 1.5-4.3 3.5L178.2 58c-.7 3.4 1.9 6.5 5.3 6.5h1.6c1.5-4.6 5.8-8 10.9-8zm9.3-21.6c1-2.4 3.4-4 6.1-4h13.3v11.8h-21.1l1.7-7.8z"></path>
+                    <circle className="st3" cx="196" cy="67.7" r="6.2"></circle>
+                    <path className="st4"
+                          d="M254.7 56.5c4.1 0 7.7 2.3 9.7 5.6h8.5v-41c0-1.9-1.6-3.5-3.5-3.5h-34.3c-1.9 0-3.5 1.6-3.5 3.5v41H245c2-3.3 5.6-5.6 9.7-5.6zm.4-22.1v-1.8c0-.7-.1-1.4.1-2.2.3-1 1.3-1.8 2.4-1.8.2 0 .6 0 .8.1 0 0 .1 0 .1.1v9.4c0 .4.1 2.2.1 3.2l.5 5.1.1 1.5v.4c-.1.7-.7 1.2-1.4 1.2-.6 0-1.1-.4-1.4-.9-.1-.2-.1-.4-.1-.6v-.5l.5-3.8c0-.3.1-.7.1-1 .1-.8-.4-1.4-.4-1.4-.5-.2-.9-.7-1.2-1.2-.3-.5-.2-1.1-.2-1.7v-4.1zm-8.7 14.4c-.4-.5-.3-1.1-.3-1.7 0-.6.1-1.2.1-1.8.1-.5.1-1.1.2-1.6.1-.8.2-1.6.2-2.4.1-.9.2-1.7.2-2.6.1-.8.1-1.6.2-2.4-.7-.2-1.3-.7-1.6-1.4-.1-.2-.2-.5-.2-.8v-5c0-.1.1-.2.1-.2h.8c.1 0 .1.1.1.2l.1 5.1c.1.2.2.2.3.2.1 0 .2 0 .3-.2l.1-5.1c0-.1.1-.2.1-.2h.8c.1 0 .1.1.1.2l.1 4.9v.1c0 .1 0 .3.1.3h.1c.1 0 .2 0 .3-.2l.1-5.1c0-.1.1-.2.1-.2h.8c.1 0 .1.1.1.2V34c-.1 1-.7 1.9-1.7 2.2 0 0 .1 1 .1 1.1 0 .4.1.9.1 1.3.1 1.5.3 3.1.4 4.6 0 .3.1.7.1 1 0 .4.1.8.1 1.2.1.7.1 1.3.1 2 0 .5 0 1.1-.4 1.5-.3.3-.8.6-1.2.6-.1 0-.6-.3-.9-.7z"></path>
+                    <path className="st4"
+                          d="M248.2 47.8v-.1l-.4-6.5v-.1.1l-.3 6.6c0 .3.2.5.4.5.1 0 .3-.2.3-.5zm9.5.4c.2 0 .3-.1.3-.3v-.1l-.2-4-.4 4.1c-.1.2.1.3.3.3zM256.2 36v3.4c.1.4.3.6.6.6s.6-.3.6-.6l-.2-5.8V30h-.1c-1.1.3-1 1.5-.9 2.4V36z"></path>
+                    <circle className="st3" cx="254.7" cy="67.7" r="6.2"></circle>
+                    <path className="st2"
+                          d="M255.1 38.3c0 .6-.1 1.2.2 1.7.2.5.7 1 1.2 1.2 0 0 .5.6.4 1.4 0 .3-.1.7-.1 1l-.5 3.8v.5c0 .2 0 .4.1.6.2.6.8.9 1.4.9.7 0 1.3-.5 1.4-1.2v-.4l-.1-1.5-.5-5.1c0-1-.1-2.8-.1-3.2v-9.4s0-.1-.1-.1c-.2-.1-.6-.1-.8-.1-1.1 0-2.1.8-2.4 1.8-.2.7-.1 1.4-.1 2.2v5.9zm2.6 5.6c0-.1 0-.1 0 0l.2 4v.1c0 .2-.1.3-.3.3-.2 0-.3-.1-.3-.3l.4-4.1zm-.5-13.9s.1 0 0 0l.1 3.6.2 5.8c0 .3-.3.6-.6.6s-.5-.2-.6-.6v-7c-.1-.9-.2-2.1.9-2.4zM249 48.9c.4-.4.4-.9.4-1.5 0-.7-.1-1.3-.1-2 0-.4-.1-.8-.1-1.2 0-.3-.1-.7-.1-1-.2-1.5-.3-3.1-.4-4.6 0-.4-.1-.9-.1-1.3 0-.1-.1-1.1-.1-1.1 1-.3 1.6-1.2 1.7-2.2v-4.9c0-.1-.1-.2-.1-.2h-.8c-.1 0-.1.1-.1.2l-.1 5.1c-.1.2-.2.2-.3.2h-.1c-.1-.1-.1-.2-.1-.3V34l-.1-4.9c0-.1-.1-.2-.1-.2h-.8c-.1 0-.1.1-.1.2l-.1 5.1c-.1.2-.2.2-.3.2-.1 0-.2 0-.3-.2l-.1-5.1c0-.1-.1-.2-.1-.2h-.8c-.1 0-.1.1-.1.2 0 0-.1 5 0 5 0 .3.1.5.2.8.3.7.9 1.2 1.6 1.4-.1.8-.1 1.6-.2 2.4-.1.9-.2 1.7-.2 2.6-.1.8-.2 1.6-.2 2.4-.1.5-.1 1.1-.2 1.6-.1.6-.1 1.2-.1 1.8 0 .6-.1 1.2.3 1.7.3.4.8.7 1.3.7 0 0 .4-.2.8-.6zm-1.6-1l.3-6.6v-.1.1l.4 6.5v.1c0 .3-.2.5-.4.5-.1-.1-.3-.3-.3-.5z"></path>
+                    <path className="st5"
+                          d="M284.3 47.3h5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-5c-1.4 0-2.5 1.1-2.5 2.5s1.2 2.5 2.5 2.5zm0 9.1h12.9c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-12.9c-1.4 0-2.5 1.1-2.5 2.5s1.2 2.5 2.5 2.5zm0 9.3h20.9c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-20.9c-1.4 0-2.5 1.1-2.5 2.5s1.2 2.5 2.5 2.5z"></path>
+                    <path className="st3"
+                          d="M110.8 11.4l4.4 4c-1.3-1.5-2.7-2.9-4.4-4zm5.2 28.2c2.3-3.3 3.7-7.2 3.7-11.6 0-.4 0-.8-.1-1.3H116v12.9zM79.8 26.8c0 .4-.1.8-.1 1.3 0 4.3 1.4 8.3 3.7 11.6V26.8h-3.6z"></path>
+                    <path className="st4"
+                          d="M88.5 26.8v17.7c1.5 1.1 3.2 1.9 5 2.5V35.7c0-1.1.9-2 2-2h8.5c1.1 0 2 .9 2 2V47c1.8-.6 3.5-1.4 5-2.5V26.8H88.5z"></path>
+                    <path className="st5" d="M91 6.4h-5.5c-.7 0-1.3.6-1.3 1.3v7.5l8.1-7.6c-.1-.7-.6-1.2-1.3-1.2z"></path>
+                    <path className="st4" d="M99.4 7.8l-14.9 14h30.3z"></path>
+                    <path className="st1"
+                          d="M78.2 26.8h5.2v12.8c1.4 1.9 3.1 3.6 5 4.9V26.8H111v17.7c1.9-1.3 3.6-3 5-4.9V26.8h5.2c1 0 2-.6 2.3-1.6s.1-2.1-.7-2.8l-7.8-7.1-4.4-4-9.8-8.9c-1-.9-2.4-.9-3.4 0L92 7.5l-8.1 7.6-7.7 7.2c-.7.7-1 1.8-.6 2.7.6 1.2 1.6 1.8 2.6 1.8zm21.2-19l15.4 14H84.5l14.9-14z"></path>
+                    <path className="st5"
+                          d="M104 33.7h-8.5c-1.1 0-2 .9-2 2V47c2 .6 4 1 6.2 1s4.3-.4 6.2-1V35.7c.1-1.1-.8-2-1.9-2z"></path>
+                    <path className="st3"
+                          d="M70.4 59.6c.8-2.2 1.3-4.6 1.3-7.1 0-5.8-2.5-11.1-6.5-14.7v19.7c1.8.6 3.6 1.3 5.2 2.1zm-30.9-2.1V36.7c-4.7 3.7-7.8 9.4-7.8 15.8 0 2.7.5 5.3 1.5 7.6 2-1 4.1-1.9 6.3-2.6z"></path>
+                    <path className="st4"
+                          d="M65.2 67.2c1.1-1 2.1-2.1 2.9-3.3-.9-.4-1.9-.8-2.9-1.2v4.5zm-29.5-2.8c1.1 1.5 2.4 2.8 3.8 3.9v-5.6c-1.3.5-2.6 1.1-3.8 1.7z"></path>
+                    <path className="st1"
+                          d="M33.3 60.1c.6 1.5 1.5 3 2.4 4.3 1.2-.6 2.5-1.2 3.8-1.7v5.6c1.5 1.2 3.2 2.1 5 2.8V34h15.7v36.6c1.8-.9 3.5-2 5-3.4v-4.5c1 .4 2 .8 2.9 1.2.9-1.3 1.7-2.8 2.3-4.4-1.6-.8-3.4-1.5-5.2-2.1V31.5c0-1.4-1.1-2.5-2.5-2.5h-1.6c0-1.4-1.1-2.5-2.5-2.5H46.1c-1.4 0-2.5 1.1-2.5 2.5H42c-1.4 0-2.5 1.1-2.5 2.5v26.1c-2.2.6-4.3 1.5-6.2 2.5z"></path>
+                    <path className="st4"
+                          d="M58.6 34H44.5v37.2c2.2.9 4.7 1.4 7.2 1.4 3 0 5.9-.7 8.5-1.9V34h-1.6zm-7.5 35.5h-3.6v-3.6h3.6v3.6zm0-6.9h-3.6V59h3.6v3.6zm0-6.9h-3.6v-3.6h3.6v3.6zm0-6.9h-3.6v-3.6h3.6v3.6zm0-6.8h-3.6v-3.6h3.6V42zm6.1 27.5h-3.6v-3.6h3.6v3.6zm0-6.9h-3.6V59h3.6v3.6zm0-6.9h-3.6v-3.6h3.6v3.6zm0-6.9h-3.6v-3.6h3.6v3.6zm0-6.8h-3.6v-3.6h3.6V42z"></path>
+                    <path className="st5"
+                          d="M47.6 38.4h3.6V42h-3.6zm6 0h3.6V42h-3.6zm-6 6.9h3.6v3.6h-3.6zm6 0h3.6v3.6h-3.6zm-6 6.9h3.6v3.6h-3.6zm6 0h3.6v3.6h-3.6zm-6 6.9h3.6v3.6h-3.6zm6 0h3.6v3.6h-3.6zm-6 6.8h3.6v3.6h-3.6zm6 0h3.6v3.6h-3.6z"></path>
+                    <path className="st1"
+                          d="M132 43.6l.5.2c.3.1.6.2 1 .2 1 0 1.9-.6 2.3-1.5.5-1.3-.1-2.7-1.4-3.3l-.5-.2c-1.3-.5-2.7.1-3.3 1.4-.5 1.2.1 2.6 1.4 3.2zm9.7 4l.5.2c.3.1.6.2 1 .2 1 0 1.9-.6 2.3-1.5.5-1.3-.1-2.7-1.4-3.3l-.5-.2c-1.3-.5-2.7.1-3.3 1.4-.5 1.2.1 2.6 1.4 3.2zm-19-7.9c.3.1.6.2 1 .2 1 0 1.9-.6 2.3-1.5.5-1.3-.1-2.7-1.4-3.3l-.5-.2c-1.3-.5-2.7.1-3.3 1.4-.5 1.3.1 2.7 1.4 3.3l.5.1zm28.7 11.9l.5.2c.3.1.6.2 1 .2 1 0 1.9-.6 2.3-1.5.5-1.3-.1-2.7-1.4-3.3l-.5-.2c-1.3-.5-2.7.1-3.3 1.4-.5 1.2.1 2.6 1.4 3.2zm21.9.4h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm-10.5 0h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm-86 8.7h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm21-5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5zm31.5 5h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm-10-5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5zm-11 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5zm-21 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5zm73.5 5h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm-21 0h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm31.5 0h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm-21 0h.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5z"></path>
+                  </svg>
+
+                  <p className="caption">Expertly chilled <br/>and delivered fresh</p>
+                </div>
+                <div className="stop enjoy">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 332 92" className="hiw-enjoy icon">
+
+                    <path className="st0"
+                          d="M92.9 15.6c0-5.3-4.3-9.7-9.7-9.7h-2.8c-5.3 0-9.7 4.3-9.7 9.7v5.1h22.1v-5.1zm90.9 59.1h4.2c3.3 0 5.9-2.6 5.9-5.9v-4.7h-16v4.7c0 3.2 2.6 5.9 5.9 5.9zm10-29.3c0-3.8-3.1-6.9-6.9-6.9h-2.1c-3.8 0-6.9 3.1-6.9 6.9v4.4h16v-4.4zM295 79.7H34.8c-4.6 0-8.4 3.1-9.5 7.3h279.3c-1.2-4.2-5-7.3-9.6-7.3z"></path>
+                    <path className="st1"
+                          d="M329.3 87h-19.6c-1.2-7-7.3-12.3-14.6-12.3h-28.6c7.7-3.4 13.5-8.5 13.5-15.2 0-1.4-1.1-2.5-2.5-2.5h-.9c2.6-5.6 2.4-11.5 2.4-11.8 0-1.3-1.1-2.3-2.3-2.4-.4 0-7.7-.4-14 3.1-1.3.7-2.5 1.6-3.7 2.7-1 1-1.9 2.1-2.6 3.2 1.3.9 2.4 2.3 2.8 3.9.1.4.2.7.2 1.1.7-1.6 1.7-3.3 3-4.6 3.4-3.3 8.4-4.1 11.4-4.4-.2 2.4-1 6.1-3 9.1H217c-2.6-3.2-3.4-7.6-3.6-10.2 3 .3 8 1.2 11.3 4.5 1.5 1.5 2.5 3.4 3.2 5.3.3-2.1 1.5-3.9 3.3-4.9-.8-1.4-1.8-2.7-3-4-1-1-2.2-1.9-3.4-2.6-6.3-3.8-13.8-3.5-14.2-3.4-1.3.1-2.3 1.1-2.4 2.4 0 .4-.3 7 2.8 12.9h-2c-1.4 0-2.5 1.1-2.5 2.5 0 6 4.7 11.3 13.6 15.2h-23c1.1-1.7 1.7-3.7 1.7-5.9V45.4c0-4-2-7.6-5.1-9.8v-6.2c0-1.4-1.1-2.5-2.5-2.5h-10.7c-1.4 0-2.5 1.1-2.5 2.5v6.2c-3.1 2.2-5.1 5.7-5.1 9.8v23.4c0 2.2.6 4.2 1.7 5.9h-18.5c2.6-2.8 4.2-6.5 4.2-10.6v-1.5c0-1.4-1.1-2.5-2.5-2.5h-2.1c2.8-2.8 4.6-6.7 4.6-11v-1.5c0-1.4-1.1-2.5-2.5-2.5h-46V23.3c0-1.4-1.1-2.5-2.5-2.5H97.9v-5.1C97.9 7.6 91.3 1 83.2 1h-2.8c-8.1 0-14.7 6.6-14.7 14.7v5.1H54.5c-1.4 0-2.5 1.1-2.5 2.5v51.4H34.8c-7.3 0-13.4 5.4-14.6 12.3H2.7C1.3 87 .2 88.1.2 89.5S1.4 92 2.7 92h326.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.4-2.5zM212 62h62.4c-1.6 3.9-6.8 6.7-10.1 8.1-6.2 2.7-14.3 4.4-21.1 4.4-11.5 0-28-5.1-31.2-12.5zm-29-30.1h5.7v1.6H183v-1.6zm-5.1 32.2V45.4c0-3.8 3.1-6.9 6.9-6.9h2.1c3.8 0 6.9 3.1 6.9 6.9v23.4c0 3.3-2.6 5.9-5.9 5.9h-4.2c-3.3 0-5.9-2.6-5.9-5.9v-4.7zm-29.7-14h7c-.4 4.1-3.2 7.6-7 8.9v-8.9zm0 15h7c-.4 4.1-3.2 7.6-7 8.9v-8.9zm-31.4-14.8h26.4v9.3h-26.4v-9.3zm0 15h26.4v9.3h-26.4v-9.3zm-12-.2h7V74c-3.8-1.3-6.6-4.8-7-8.9zm7-15V59c-3.8-1.4-6.6-4.8-7-8.9h7zm-41-34.5c0-5.3 4.3-9.7 9.7-9.7h2.8c5.3 0 9.7 4.3 9.7 9.7v5.1H70.8v-5.1zM57 25.8h49.7v19.3h-4.4c-1.4 0-2.5 1.1-2.5 2.5v1.5c0 4.3 1.8 8.2 4.6 11h-2.1c-1.4 0-2.5 1.1-2.5 2.5v1.5c0 3.7 1.3 7.1 3.5 9.8H57V25.8zM25.3 87c1.1-4.2 4.9-7.3 9.5-7.3H295c4.6 0 8.4 3.1 9.5 7.3H25.3z"></path>
+                    <path className="st2" d="M89.8 56.9s-.1.1 0 0l-.6 6.1c0 .2.2.5.5.5s.5-.2.5-.5v-.1l-.4-6z"></path>
+                    <path className="st2"
+                          d="M99.8 64.1v-1.5c0-1.4 1.1-2.5 2.5-2.5h2.1c-2.8-2.8-4.6-6.7-4.6-11v-1.5c0-1.4 1.1-2.5 2.5-2.5h4.4V25.8H57v48.1h46.2c-2.1-2.7-3.4-6.1-3.4-9.8zM78.4 42.5c-.1 1.5-1.1 2.8-2.5 3.2-.1 0 .1 1.6.1 1.7.1.6.1 1.3.2 1.9l.6 6.9c0 .5.1 1 .1 1.5.1.6.1 1.1.2 1.7.1 1 .2 2 .2 3 0 .8 0 1.6-.6 2.2-.5.5-1.1.8-1.8.8-.8 0-1.5-.4-2-1.1-.6-.7-.4-1.7-.4-2.5.1-.9.1-1.8.2-2.7.1-.8.2-1.6.2-2.4.1-1.2.2-2.4.3-3.5.1-1.3.2-2.6.4-3.9.1-1.2.2-2.4.3-3.5-1-.3-1.9-1-2.3-2-.2-.3-.3-.7-.3-1.1v-.1l.1-7.4c0-.2.1-.3.2-.3h1.2c.1 0 .2.1.2.3l.1 7.7c.1.3.3.3.5.3s.3-.1.5-.3l.1-7.7c0-.2.1-.3.2-.3h1.2c.1 0 .2.1.2.3l.1 7.3v.1c0 .2 0 .4.2.5.1 0 .1.1.2.1.2 0 .3-.1.5-.3l.1-7.7c0-.2.1-.3.2-.3h1.2c.1 0 .2.1.2.3v.8c0 2.1.1 4.2.1 6.3-.2 0-.2.1-.2.2zm13.4 20.7c0 .2 0 .3-.1.5-.2 1-1.1 1.7-2.1 1.7-.9 0-1.7-.5-2-1.4-.1-.3-.2-.6-.2-.9v-.7l.8-5.6c.1-.5.1-1 .2-1.5.1-1.2-.6-2.1-.6-2.1-.7-.4-1.4-1-1.7-1.8-.4-.8-.3-1.7-.3-2.6v-8.6c0-1.1-.1-2.2.1-3.2.4-1.6 1.9-2.7 3.5-2.7.3 0 .9.1 1.2.1.1 0 .1.1.1.1v8.9l.1 5c0 .7.1 3.3.2 4.8l.7 7.6.1 2.2v.2z"></path>
+                    <path className="st2"
+                          d="M74.9 53.1c-.1-.1-.1-.1-.1 0l-.4 9.9c0 .4.3.7.6.7s.6-.4.6-.8v-.2l-.7-9.6zM89 41.7v-5.3h-.1c-1.6.5-1.4 2.2-1.4 3.5v10.4c.1.5.5.9.9.9.5 0 .9-.4.9-.9l-.3-8.6z"></path>
+                    <path className="st3"
+                          d="M91 53.2c-.1-1.5-.2-4.1-.2-4.8l-.1-5v-8.9c0-.1 0-.1-.1-.1-.3-.1-.9-.1-1.2-.1-1.6 0-3.1 1.1-3.5 2.7-.3 1.1-.1 2.1-.1 3.2v8.6c0 .9-.1 1.8.3 2.6s1 1.5 1.7 1.8c0 0 .8.9.6 2.1-.1.5-.1 1-.2 1.5l-.8 5.6v.7c0 .3.1.6.2.9.3.8 1.1 1.4 2 1.4 1 0 1.9-.7 2.1-1.7v-.5l-.1-2.2-.6-7.8zm-2.6-2c-.4 0-.8-.3-.9-.9V39.9c0-1.3-.2-3.1 1.4-3.5h.1v5.3l.2 8.6c.1.5-.3.9-.8.9zM90.1 63c0 .3-.2.5-.5.5s-.5-.2-.5-.5l.6-6s0-.1.1-.1l.1.1.2 5.9v.1zM78.3 35.1c0-.2-.1-.3-.2-.3h-1.2c-.1 0-.2.1-.2.3l-.1 7.7c-.1.3-.3.3-.5.3-.1 0-.1 0-.2-.1-.2-.1-.2-.3-.2-.5v-.1l-.1-7.3c0-.2-.1-.3-.2-.3h-1.2c-.1 0-.2.1-.2.3l-.1 7.7c-.1.3-.3.3-.5.3s-.3-.1-.5-.3l-.1-7.7c0-.2-.1-.3-.2-.3h-1.2c-.1 0-.2.1-.2.3l-.1 7.4v.1c0 .4.1.8.3 1.1.4 1 1.3 1.7 2.3 2-.1 1.2-.2 2.4-.3 3.5-.1 1.3-.2 2.6-.4 3.9-.1 1.2-.2 2.4-.3 3.5-.1.8-.2 1.6-.2 2.4-.1.9-.1 1.8-.2 2.7-.1.9-.2 1.8.4 2.5.5.6 1.2 1 2 1.1.7 0 1.3-.3 1.8-.8.6-.6.6-1.4.6-2.2 0-1-.1-2-.2-3-.1-.6-.1-1.1-.2-1.7 0-.5-.1-1-.1-1.5l-.6-6.9c-.1-.6-.1-1.3-.2-1.9 0-.1-.2-1.7-.1-1.7 1.4-.4 2.4-1.8 2.5-3.2v-.3c0-2.1 0-4.2-.1-6.3.2-.1.2-.4.2-.7zM75 63.7c-.3 0-.6-.3-.6-.7l.4-9.9s0-.1.1-.1l.1.1.6 9.6v.2c-.1.4-.3.8-.6.8zm80.2 1.4h-7V74c3.8-1.3 6.6-4.8 7-8.9zm-43.4 0h-7c.4 4.1 3.2 7.6 7 8.9v-8.9z"></path>
+                    <path className="st2" d="M116.8 65.3h26.4v9.3h-26.4z"></path>
+                    <path className="st3"
+                          d="M111.8 59v-8.9h-7c.4 4.1 3.2 7.5 7 8.9zm43.4-8.9h-7V59c3.8-1.3 6.6-4.8 7-8.9z"></path>
+                    <path className="st2" d="M116.8 50.3h26.4v9.3h-26.4z"></path>
+                    <path className="st4"
+                          d="M231.2 51.7c.8-.5 1.6-.8 2.6-.9v-.2c.2-3.3 1.5-6.3 3-8.7-4.1-4.5-10-6.4-10-6.4s-1.9 4.5-1.9 9.7c1.2.7 2.3 1.6 3.4 2.6 1.1 1.1 2.1 2.5 2.9 3.9zm25.2.1c.7-1.1 1.6-2.2 2.6-3.2 1.1-1.1 2.4-2 3.7-2.7-.6-5.2-3-9.3-3-9.3s-4.6 2.1-8.1 6.2c1 2.3 1.7 5 1.7 7.9 1.1.1 2.2.5 3.1 1.1z"></path>
+                    <path className="st3"
+                          d="M248.2 52.1c0-.2 0-.4.1-.6.3-4.7-2.2-9.1-4-11.5-2.1 2.2-5.3 6.2-5.6 10.8v1c1.7 1.1 2.9 3 3.1 5.2h3.8c.2-1.9 1.1-3.7 2.6-4.9z"></path>
+                    <path className="st1"
+                          d="M233.7 50.7c.4-.1.7-.1 1.1-.1 1.4 0 2.8.4 3.9 1.2v-1c.3-4.7 3.5-8.7 5.6-10.8 1.7 2.4 4.3 6.9 4 11.5 0 .2 0 .4-.1.6.7-.6 1.5-1 2.4-1.2.9-.2 1.8-.3 2.6-.2 0-2.9-.7-5.6-1.7-7.9-2-4.7-5-7.9-5.2-8.1-.9-.9-2.3-1-3.4-.2-.2.2-3.7 3-6.4 7.3-1.5 2.5-2.7 5.4-3 8.7.2 0 .2.1.2.2z"></path>
+                    <path className="st3"
+                          d="M224.7 51.2c-3.3-3.3-8.3-4.2-11.3-4.5.2 2.7 1.1 7 3.6 10.2h10.9c0-.1 0-.3.1-.4-.8-1.8-1.8-3.7-3.3-5.3zm46.2 5.8c2-3.1 2.8-6.8 3-9.1-3 .2-8 1.1-11.4 4.4-1.4 1.3-2.3 2.9-3 4.6v.2h11.4z"></path>
+                    <path className="st5"
+                          d="M238.7 51.8c-1.1-.7-2.5-1.2-3.9-1.2-.4 0-.7 0-1.1.1-.9.1-1.8.5-2.6.9-1.7 1.1-2.9 2.8-3.3 4.9 0 .1 0 .3-.1.4h13.9c0-2.1-1.2-3.9-2.9-5.1zm12-.9c-.9.3-1.7.7-2.4 1.2-1.5 1.2-2.5 3-2.6 4.9h13.9v-.2c0-.4-.1-.7-.2-1.1-.5-1.7-1.5-3-2.8-3.9-.9-.6-2-1-3.1-1.1-1.1-.1-1.9-.1-2.8.2z"></path>
+                    <path className="st3"
+                          d="M264.3 70.1c3.3-1.4 8.5-4.2 10.1-8.1H212c3.1 7.4 19.7 12.5 31.2 12.5 6.8 0 14.9-1.7 21.1-4.4z"></path>
+                    <path className="st2" d="M177.9 49.8h16v14.3h-16z"></path>
+                    <path className="st4" d="M186.9 33.4h1.8v-1.5H183v1.5h1.8z"></path>
+                  </svg>
+
+                  <p className="caption">Heat and eat <br/>whenever you’re ready</p>
+                </div>
+              </div>
+            </div>
+            {/*<!-- .f-strata .hiw -->*/}
+
+            <div className="f-strata mission">
+              <div className="fluid-container">
+                <div className="row center-xy">
+                  <div className="phone-col-12 tablet-col-12 desktop-col-12 blurb">
+                    <h2>The mission behind <span>our meals</span></h2>
+                    <p>
+                      When it comes to food, you shouldn’t have to choose between taste, health, and convenience. Munchery
+                      makes it easy to eat without compromise, delivering delicious, all-natural, chef-crafted dishes right
+                      to
+                      your door — ready <span>to enjoy when you are.</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/*<!-- .f-strata .mission-hero -->*/}
+
+            <div className="f-strata pillars">
+              <div className="fluid-container">
+                <h2>What real food <span>means to us</span></h2>
+                <div className="row center-x">
+                  <div className="phone-col-12 tablet-col-6 desktop-col-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 170 170" className="real-chefs icon">
+
+                      <path className="st0"
+                            d="M59.3 118.9l-.1-.1c.7-.9 1.9-2.4 3.1-3.7-4.4-5.3-7-12.1-7-19.5 0-1.9.2-3.8.5-5.6-1.3-.1-2.4-1.2-2.4-2.5V72.9c0-1.4 1.1-2.5 2.5-2.5h1.5V49c-8.3-2.5-14.2-10.1-14.2-19 0-1.6.2-3.1.6-4.6C24 38.9 11 61.6 11 87.4c0 25.7 12.9 48.3 32.6 61.9v-6.5c0-10.7 6.4-19.9 15.7-23.9zm68.9-93.5c.4 1.5.6 3 .6 4.6 0 8.9-5.8 16.5-14.2 19v21.5h1.5c1.4 0 2.5 1.1 2.5 2.5v14.5c0 1.3-1 2.4-2.4 2.5.3 1.8.5 3.7.5 5.6 0 7.4-2.7 14.3-7.1 19.6l3 3.6-.1.1c9.3 4 15.8 13.2 15.8 24v6.5c19.7-13.5 32.6-36.2 32.6-61.9.1-25.9-12.9-48.6-32.7-62.1z"></path>
+                      <path className="st1"
+                            d="M63.9 130.7l5.3-3c-2.6-1.6-4.8-3.3-6.4-4.8-8.3 2.8-14.3 10.7-14.3 19.9v9.6a74.1 74.1 0 0 0 20 8l-5.9-27c-.1-1.1.4-2.2 1.3-2.7z"></path>
+                      <path className="st1"
+                            d="M109 122.8c-1.8 1.7-4.2 3.7-7.2 5.4.6.4 1.3.8 1.9 1.3 3.7 3.4 4.1 8.9 4.1 8.9s-5.3.1-9-3c.3 4.8-3 8.9-3 8.9s-4.2-3.7-4.7-8.6c-.1-1 0-1.9.1-2.8.1-.4.1-.7.2-1-1.7.3-3.5.5-5.4.5-4.2 0-8-.8-11.2-2l-6.8 3.8 6 27.3c1.7.3 3.4.5 5.2.6 2.2.2 4.5.3 6.8.3 13.6 0 26.4-3.7 37.4-10v-9.6c0-9.3-6-17.2-14.4-20zm-33.4 16.7c0-2 1.6-3.7 3.7-3.7 2 0 3.7 1.6 3.7 3.7 0 2-1.6 3.7-3.7 3.7s-3.7-1.7-3.7-3.7zm6.7 17.4c-.3 0-.6-.1-.9-.1-1.6-.4-2.7-1.8-2.7-3.5 0-2 1.6-3.7 3.7-3.7.7 0 1.3.2 1.8.5 1.1.6 1.8 1.8 1.8 3.2 0 2-1.6 3.6-3.7 3.6z"></path>
+                      <path className="st2"
+                            d="M112.6 118.8c-.3.4-1.5 2-3.6 4 8.4 2.8 14.4 10.7 14.4 20v9.6c1.7-1 3.4-2 5-3.1v-6.5c0-10.7-6.5-20-15.8-24zm-49.7 4.1c-2.1-1.9-3.3-3.5-3.6-4-9.2 4-15.7 13.2-15.7 23.9v6.5c1.6 1.1 3.3 2.2 5 3.1v-9.6c0-9.2 6-17.1 14.3-19.9zm11.9 7.4c-2-.8-3.9-1.7-5.5-2.7l-5.3 3c-1 .5-1.5 1.6-1.2 2.7l5.9 27c1.8.4 3.5.8 5.4 1.1l-6-27.3 6.7-3.8z"></path>
+                      <circle className="st2" cx="79.2" cy="139.5" r="3.7"></circle>
+                      <path className="st2"
+                            d="M84.2 150.1c-.5-.3-1.2-.5-1.8-.5-2 0-3.7 1.6-3.7 3.7 0 1.7 1.2 3.1 2.7 3.5.3.1.6.1.9.1 2 0 3.7-1.6 3.7-3.7 0-1.3-.7-2.5-1.8-3.1z"></path>
+                      <path className="st3"
+                            d="M86 126.3c-9.6 0-18.1-4.4-23.7-11.2-1.2 1.4-2.4 2.9-3.1 3.7 0 0 0 .1.1.1.3.5 1.6 2 3.6 4 1.6 1.5 3.8 3.3 6.4 4.8 1.6 1 3.5 1.9 5.5 2.7 3.3 1.2 7 2 11.2 2 1.9 0 3.7-.2 5.4-.5-.1.3-.2.7-.2 1-.1.9-.2 1.8-.1 2.8.5 5 4.7 8.6 4.7 8.6s3.2-4.2 3-8.9c3.7 3.1 9 3 9 3s-.4-5.6-4.1-8.9c-.6-.5-1.2-1-1.9-1.3 3-1.7 5.4-3.7 7.2-5.4 2.1-2 3.3-3.6 3.6-4l.1-.1-3-3.6c-5.7 6.8-14.2 11.2-23.7 11.2z"></path>
+                      <path className="st1"
+                            d="M60.9 89.9c-.4 1.8-.6 3.7-.6 5.6 0 14.2 11.5 25.7 25.7 25.7s25.7-11.5 25.7-25.7c0-1.9-.2-3.8-.6-5.6H60.9zm-.5-45.4c1.2.2 2.1 1.3 2.1 2.5v23.4H74V54.3c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v16.1h14.3V54.3c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v16.1h11.5V47c0-1.2.9-2.2 2.1-2.5 7-1.3 12.1-7.4 12.1-14.5 0-8.2-6.6-14.8-14.8-14.8-3.3 0-6.4 1.1-9 3.1-.6.5-1.4.6-2.2.4-.8-.2-1.4-.8-1.7-1.5-1.6-4.2-5.6-7-10.1-7s-8.6 2.8-10.1 7c-.3.7-.9 1.3-1.7 1.5-.8.2-1.6.1-2.2-.4-2.6-2-5.7-3.1-9-3.1-8.2 0-14.8 6.6-14.8 14.8-.2 7.1 4.9 13.3 12 14.5z"></path>
+                      <path className="st2"
+                            d="M57.4 49v21.5h-1.5c-1.4 0-2.5 1.1-2.5 2.5v14.5c0 1.3 1 2.4 2.4 2.5-.3 1.8-.5 3.7-.5 5.6 0 7.4 2.6 14.2 7 19.5 5.6 6.9 14.2 11.2 23.7 11.2s18-4.3 23.7-11.2c4.4-5.3 7.1-12.1 7.1-19.6 0-1.9-.2-3.8-.5-5.6 1.3-.1 2.4-1.2 2.4-2.5V72.9c0-1.4-1.1-2.5-2.5-2.5h-1.5V49c8.3-2.5 14.2-10.1 14.2-19 0-1.6-.2-3.1-.6-4.6-2.1-8.7-9.9-15.2-19.2-15.2-3.4 0-6.6.8-9.5 2.4-3-4.6-8.1-7.5-13.6-7.5S75.4 8 72.5 12.6c-2.9-1.6-6.1-2.4-9.5-2.4-9.3 0-17.2 6.5-19.2 15.2-.4 1.5-.6 3-.6 4.6 0 8.8 5.9 16.5 14.2 19zm19 26.4h37.3v9.5H58.4v-9.5h18zm9.6 45.9c-14.2 0-25.7-11.5-25.7-25.7 0-1.9.2-3.8.6-5.6h50.2c.4 1.8.6 3.7.6 5.6 0 14.1-11.5 25.7-25.7 25.7zM63 15.2c3.3 0 6.4 1.1 9 3.1.6.5 1.5.6 2.2.4.8-.2 1.4-.8 1.7-1.5 1.6-4.2 5.6-7 10.1-7s8.6 2.8 10.1 7c.3.7.9 1.3 1.7 1.5.8.2 1.6.1 2.2-.4 2.6-2 5.7-3.1 9-3.1 8.2 0 14.8 6.6 14.8 14.8 0 7.1-5.1 13.3-12.1 14.5-1.2.2-2.1 1.3-2.1 2.5v23.4H98.1V54.3c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v16.1H78.9V54.3c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v16.1H62.4V47c0-1.2-.9-2.2-2.1-2.5-7-1.3-12.1-7.4-12.1-14.5 0-8.2 6.7-14.8 14.8-14.8z"></path>
+                      <path className="st1" d="M58.4 75.4v9.5h55.2v-9.5H59.9z"></path>
+                    </svg>
+
+                    <div className="title">Real Chefs</div>
+                    <p className="caption">
+                      Our chefs are the talent behind every dish we serve. Innovaters, artists, and James Beard Award
+                      winners,
+                      they handcraft every dish from scratch — and give our food its restaurant-caliber wow-factor.
+                    </p>
+                  </div>
+                  <div className="phone-col-12 tablet-col-6 desktop-col-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" width="170" height="170" viewBox="0 0 170 170"
+                         className="real-ingredients icon">
+
+                      <path className="st0"
+                            d="M80.2 21.5l.2.7.8.4c.6.3 1.1.8 1.3 1.4l8.3 21 5.3 1.4c.3 0 .5.1.7.2l6.7 1.8c1.3.4 2.1 1.7 1.8 3.1-.3 1.1-1.3 1.8-2.4 1.8-.2 0-.4 0-.7-.1l-4.2-1-4 39.3h15.3v-7.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-1.8c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v1.8l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v2.7l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v2.7l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v7.7h12.2v-7.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.8l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.8l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-3l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.9c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v2.9l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v2.8l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4V68l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v2.8l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v7.7h12.2v-7.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-2.7l-4.1-3.4c-1.1-.9-1.2-2.5-.3-3.5.9-1.1 2.5-1.2 3.5-.3l.9.8v-1.8c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5V59l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v2.7l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v2.7l.9-.8c1.1-.9 2.6-.7 3.5.3.9 1.1.7 2.6-.3 3.5l-4.1 3.4v7.7h10.7c.4-3.1.6-6.2.6-9.4 0-41.4-33.6-75-75-75-9.6 0-18.7 1.8-27.1 5.1l18.2 8.2 4.1 1.3zm-9.1 74.9H11.4c1.9 9.6 5.6 18.6 10.8 26.5.1.1.2.1.3.2l48.9 32.6c4.4.8 9 1.3 13.6 1.3 1.8 0 3.5-.1 5.3-.2l-68-45.4c-1.1-.8-1.5-2.3-.7-3.5.8-1.1 2.3-1.5 3.5-.7l72.8 48.6c3.9-.7 7.8-1.7 11.5-2.9l-68-45.4c-1.1-.8-1.5-2.3-.7-3.5.8-1.1 2.3-1.5 3.5-.7l70.9 47.3c3-1.3 5.9-2.8 8.6-4.4l-56.9-38c-1.1-.8-1.5-2.3-.7-3.5.8-1.1 2.3-1.5 3.5-.7l58.7 39.2c2.8-2 5.5-4.1 7.9-6.5l-1.2.8c-.4.3-.9.4-1.4.4-.8 0-1.6-.4-2.1-1.1-.8-1.1-.5-2.7.7-3.5l15.5-10.4c5.2-8 9-17 10.9-26.7H71.1zm79.2 10.4c.8 1.1.5 2.7-.7 3.5l-27.9 18.6c-.4.3-.9.4-1.4.4-.8 0-1.6-.4-2.1-1.1-.8-1.1-.5-2.7.7-3.5l27.9-18.6c1.2-.7 2.7-.4 3.5.7zm-19.1-3.8c.8 1.1.5 2.7-.7 3.5l-21.4 14.3c-.4.3-.9.4-1.4.4-.8 0-1.6-.4-2.1-1.1-.8-1.1-.5-2.7.7-3.5l21.4-14.3c1.1-.8 2.7-.5 3.5.7zM94 108.6l11.5-7.7c1.1-.8 2.7-.5 3.5.7.8 1.1.5 2.7-.7 3.5l-11.5 7.7c-.4.3-.9.4-1.4.4-.8 0-1.6-.4-2.1-1.1-.7-1.2-.4-2.8.7-3.5zm-39.4 42l-21.2-14.1c6.2 5.8 13.4 10.6 21.2 14.1zM12.9 61.2C11 67.8 10 74.8 10 82c0 3.2.2 6.3.6 9.4H16l-3.1-30.2z"></path>
+                      <path className="st1"
+                            d="M114.3 58.9v-1.8c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.8l2.5 2.1 2.5-2.1zm0 18.4v-2.7l-.9.8c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.7v2.7l2.5 2.1 2.5-2.2zm0-9.2v-2.7l-.9.8c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.7v2.7l2.5 2.1 2.5-2.2zm-.9 16.4c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.7v7.7h5v-7.7l-.9.7z"></path>
+                      <path className="st1"
+                            d="M111.8 66.7c.6 0 1.1-.2 1.6-.6l.9-.8 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.7c.4.5 1 .7 1.6.7z"></path>
+                      <path className="st1"
+                            d="M111.8 75.9c.6 0 1.1-.2 1.6-.6l.9-.8 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.7c.4.5 1 .7 1.6.7z"></path>
+                      <path className="st1"
+                            d="M111.8 85.1c.6 0 1.1-.2 1.6-.6l.9-.8 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.7c.4.5 1 .7 1.6.7zm19.7-35.6v-2.9c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v2.9l2.5 2.1 2.5-2.1zm0 18.5v-2.8l-.9.7c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.8V68l2.5 2.1 2.5-2.1zm-.9 16.5c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.8v7.7h5v-7.7l-.9.8zm.9-7.2v-2.8l-.9.7c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.8v2.8l2.5 2.1 2.5-2zm0-18.6V56l-.9.7c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.8v2.8l2.5 2.1 2.5-2.1z"></path>
+                      <path className="st1"
+                            d="M129 66.6c.6 0 1.1-.2 1.6-.6l.9-.7 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8L129 61l-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.8c.4.3 1 .5 1.6.5z"></path>
+                      <path className="st1"
+                            d="M129 57.3c.6 0 1.1-.2 1.6-.6l.9-.7 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.8c.4.3 1 .5 1.6.5zm0 18.5c.6 0 1.1-.2 1.6-.6l.9-.7 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.8c.4.3 1 .5 1.6.5z"></path>
+                      <path className="st1"
+                            d="M129 85.1c.6 0 1.1-.2 1.6-.6l.9-.7 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.8c.4.3 1 .5 1.6.5zm19.7-7.8v-2.7l-.9.8c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.7v2.7l2.5 2.1 2.5-2.2zm0-18.4v-1.8c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v1.8l2.5 2.1 2.5-2.1zm0 9.2v-2.7l-.9.8c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.7v2.7l2.5 2.1 2.5-2.2zm-.9 16.4c-.5.4-1 .6-1.6.6s-1.1-.2-1.6-.6l-.9-.7v7.7h5v-7.7l-.9.7z"></path>
+                      <path className="st1"
+                            d="M146.2 66.7c.6 0 1.1-.2 1.6-.6l.9-.8 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.7c.4.5 1 .7 1.6.7z"></path>
+                      <path className="st1"
+                            d="M146.2 75.9c.6 0 1.1-.2 1.6-.6l.9-.8 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.7c.4.5 1 .7 1.6.7z"></path>
+                      <path className="st1"
+                            d="M146.2 85.1c.6 0 1.1-.2 1.6-.6l.9-.8 4.1-3.4c1.1-.9 1.2-2.5.3-3.5-.9-1.1-2.5-1.2-3.5-.3l-.9.8-2.5 2.1-2.5-2.1-.9-.8c-1.1-.9-2.6-.7-3.5.3-.9 1.1-.7 2.6.3 3.5l4.1 3.4.9.7c.4.5 1 .7 1.6.7z"></path>
+                      <path className="st2"
+                            d="M76.1 20.3l4.4 2-.3-.8zM35.5 59.8v-.3c0-.1 0-.2.1-.2 0-.1 0-.2.1-.2 0-.1.1-.2.1-.2 0-.1.1-.1.1-.2s.1-.1.1-.2.1-.1.2-.2l.2-.2.2-.2c.1-.1.1-.1.2-.1l.1-.1h.1c.1 0 .2-.1.3-.1.1 0 .1 0 .2-.1h34.2c.1 0 .1 0 .2.1.1 0 .2.1.3.1l.1.1c.1 0 .2.1.2.1.1 0 .1.1.2.1l.2.2.2.2c0 .1.1.1.1.2s.1.1.1.2.1.1.1.2 0 .1.1.2c0 .1 0 .2.1.2v32H89l4.2-40.6-4.9-1.3c-.8-.2-1.4-.8-1.7-1.5l-8.3-21.3-23.4-10.5-19 8.6-3 1.4-1.3.6L23.3 48c-.3.7-.9 1.3-1.7 1.5l-4.7 1.3 4.2 40.6h14.4V59.8zm42 15.1c0-1.6 1.3-2.8 2.8-2.8h2.3c1.6 0 2.8 1.3 2.8 2.8v4.6c0 1.6-1.3 2.8-2.8 2.8h-2.3c-1.6 0-2.8-1.3-2.8-2.8v-4.6zM47.2 28.1c0-1.2.8-2.4 2.1-3l3.5-1.7c1.3-.7 3-.7 4.4 0l3.5 1.7c1.3.6 2.1 1.8 2.1 3v7.3c0 1.9-1.9 3.5-4.3 3.5h-7c-2.4 0-4.3-1.6-4.3-3.5v-7.3zM32 79.5c0 1.6-1.3 2.8-2.8 2.8h-2.3c-1.6 0-2.8-1.3-2.8-2.8v-4.6c0-1.6 1.3-2.8 2.8-2.8h2.3c1.6 0 2.8 1.3 2.8 2.8v4.6z"></path>
+                      <path className="st3"
+                            d="M57.1 62.4l.2 20.7 9.8-20.7zm11.5 29V71l-9.7 20.4zm-16.3-8.3l-.2-20.7H42zm-11.8 8.3h10.4L40.5 70.5zM29.2 72.1h-2.3c-1.6 0-2.8 1.3-2.8 2.8v4.6c0 1.6 1.3 2.8 2.8 2.8h2.3c1.6 0 2.8-1.3 2.8-2.8v-4.6c0-1.6-1.3-2.8-2.8-2.8zm51.1 10.2h2.3c1.6 0 2.8-1.3 2.8-2.8v-4.6c0-1.6-1.3-2.8-2.8-2.8h-2.3c-1.6 0-2.8 1.3-2.8 2.8v4.6c0 1.5 1.2 2.8 2.8 2.8zM51.5 38.9h7c2.4 0 4.3-1.6 4.3-3.5v-7.3c0-1.2-.8-2.4-2.1-3l-3.5-1.7c-1.3-.7-3-.7-4.4 0l-3.5 1.7c-1.3.6-2.1 1.8-2.1 3v7.3c0 2 1.9 3.5 4.3 3.5z"></path>
+                      <path className="st1" d="M32.4 17.1h-5.5V25l.5-1.1c.2-.6.7-1 1.3-1.3l3.8-1.7v-3.8z"></path>
+                      <path className="st4"
+                            d="M161.8 91.4H94l4-39.3 4.2 1.1c.2.1.4.1.7.1 1.1 0 2.1-.7 2.4-1.8.4-1.3-.4-2.7-1.8-3.1l-6.7-1.8c-.2-.1-.5-.2-.7-.2L90.8 45l-8.2-21c-.2-.6-.7-1.1-1.3-1.4l-.8-.4-4.4-2L57.9 12l-1.9-.8h-.1c-.1 0-.2-.1-.3-.1-.1 0-.1 0-.2-.1h-.8c-.1 0-.1 0-.2.1-.1 0-.2.1-.3.1H54l-16.5 7.5v-4.1c0-1.4-1.1-2.5-2.5-2.5H24.4c-1.4 0-2.5 1.1-2.5 2.5v22.5c0 .2 0 .4.1.6L19.1 45 6.4 48.5c-1.3.4-2.1 1.7-1.8 3.1.3 1.1 1.3 1.8 2.4 1.8.2 0 .4 0 .7-.1l4.3-1.2.9 9.1L16 91.4H9.1c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h152.6c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.4-2.5zM26.9 17.1h5.5v3.8l-3.8 1.7c-.6.3-1 .7-1.3 1.3l-.4 1.1v-7.9zm25.2 45.3l.2 20.6L42 62.4h10.1zm-11.6 29V70.5l10.4 20.9H40.5zm16.8-8.3l-.2-20.7h10.1l-9.9 20.7zm11.3 8.3h-9.7L68.6 71v20.4zm20.4 0H73.6v-32c0-.1 0-.2-.1-.2 0-.1 0-.2-.1-.2 0-.1-.1-.2-.1-.2 0-.1-.1-.1-.1-.2s-.1-.1-.1-.2-.1-.1-.2-.2l-.2-.2c-.1-.1-.1-.1-.2-.1-.1-.1-.2-.1-.2-.1l-.1-.1c-.1 0-.2-.1-.3-.1-.1 0-.1 0-.2-.1H37.4c-.1 0-.1 0-.2.1-.1 0-.2.1-.3.1h-.1l-.1.1c-.1 0-.2.1-.2.1-.1 0-.1.1-.2.2l-.2.2-.2.2c0 .1-.1.1-.1.2s-.1.1-.1.2-.1.1-.1.2-.1.2-.1.2c0 .1 0 .2-.1.2v31.9H21.1l-4.2-40.6 4.7-1.3c.8-.2 1.4-.8 1.7-1.5l8.3-21.3 1.3-.6 3-1.4 19-8.6 23.3 10.5L86.6 48c.3.7.9 1.3 1.7 1.5l4.9 1.3L89 91.4z"></path>
+                      <path className="st5"
+                            d="M21.6 108c-.8 1.1-.5 2.7.7 3.5l68 45.4 6.6 4.4c.4.3.9.4 1.4.4.8 0 1.6-.4 2.1-1.1.8-1.1.5-2.7-.7-3.5l-1.8-1.2L25 107.3c-1.1-.8-2.7-.5-3.4.7zm.6 15c-1.1-.5-2.4-.2-3.1.9-.8 1.1-.5 2.7.7 3.5l13.7 9.1 21.2 14.1L74 163.5c.4.3.9.4 1.4.4.8 0 1.6-.4 2.1-1.1.8-1.1.5-2.7-.7-3.5l-5.4-3.6-48.9-32.6c-.1 0-.2-.1-.3-.1zm18.5-18.9c-.8 1.1-.5 2.7.7 3.5l68 45.4 6.7 4.4c.4.3.9.4 1.4.4.8 0 1.6-.4 2.1-1.1.8-1.1.5-2.7-.7-3.5l-3.7-2.5-70.9-47.3c-1.3-.8-2.8-.4-3.6.7zm25.3.7c-.8 1.1-.5 2.7.7 3.5l56.9 38 8.4 5.6c.4.3.9.4 1.4.4.8 0 1.6-.4 2.1-1.1.8-1.1.5-2.7-.7-3.5l-6.7-4.5L69.4 104c-1.1-.7-2.6-.3-3.4.8zm52.2 23.4c.5.7 1.3 1.1 2.1 1.1.5 0 1-.1 1.4-.4l27.9-18.6c1.1-.8 1.5-2.3.7-3.5-.8-1.1-2.3-1.5-3.5-.7l-27.9 18.6c-1.1.8-1.5 2.4-.7 3.5zm13.3 8.7c.5.7 1.3 1.1 2.1 1.1.5 0 1-.1 1.4-.4l1.2-.8 16-10.6c1.1-.8 1.5-2.3.7-3.5-.8-1.1-2.3-1.5-3.5-.7l-1.6 1.1-15.5 10.4c-1.2.7-1.5 2.3-.8 3.4zM105.6 120c.5.7 1.3 1.1 2.1 1.1.5 0 1-.1 1.4-.4l21.4-14.3c1.1-.8 1.5-2.3.7-3.5-.8-1.1-2.3-1.5-3.5-.7l-21.4 14.3c-1.1.8-1.5 2.4-.7 3.5zm-10.2-6.9c.5 0 1-.1 1.4-.4l11.5-7.7c1.1-.8 1.5-2.3.7-3.5-.8-1.1-2.3-1.5-3.5-.7L94 108.6c-1.1.8-1.5 2.3-.7 3.5.5.6 1.3 1 2.1 1z"></path>
+                    </svg>
+
+                    <div className="title">Real Ingredients</div>
+                    <p className="caption">
+                      We source our ingredients for more than just exceptional freshness and taste. We partner with local
+                      farmers who specialize in seasonal, all-natural, and organic produce, offer antibiotic-free meats, and
+                      use wild-caught fish whenever possible, to ensure quality in every dish.
+                    </p>
+                  </div>
+                  <div className="phone-col-12 tablet-col-6 desktop-col-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 170 170"
+                         className="real-nutrition icon">
+
+                      <path className="st0"
+                            d="M10.4 85c0 12.1 2.9 23.6 8 33.7L81.1 10.1C41.7 12.3 10.4 45 10.4 85zm81.2-71.5l20.7 35.9 40 69.4c5.1-10.1 8-21.6 8-33.7 0-40-31.3-72.7-70.7-74.9l2 3.3zM85.4 160c19.4 0 37-7.3 50.3-19.4H35C48.3 152.7 66 160 85.4 160z"></path>
+                      <path className="st1"
+                            d="M154.4 134.5c.2-.3.6-1.2 0-2.2l-13.7-23.8H30l-13.7 23.8c-.6 1-.2 1.8 0 2.2s.7 1.1 1.9 1.1h134.4c1.1 0 1.6-.8 1.8-1.1zm-69-119.6c-.4 0-1.3.1-1.9 1.1L69.9 39.5h30.8L87.2 16c-.5-1-1.5-1.1-1.8-1.1zm36.8 61.6h-21v27.1h36.6zM67 44.5l-15.6 27h31.5v-27z"></path>
+                      <path className="st2" d="M96.2 76.5H48.5l-15.6 27.1h63.3z"></path>
+                      <path className="st3" d="M87.9 44.5v27h31.4l-15.6-27z"></path>
+                      <path className="st4"
+                            d="M162.8 136.8l-10.5-18.1-40-69.4-20.7-35.8-1.9-3.3-2.1-3.7c-.4-.8-1.3-1.2-2.2-1.2-.9 0-1.7.5-2.2 1.2l-2.1 3.7-62.7 108.5-10.5 18.1c-.4.8-.4 1.7 0 2.5s1.3 1.2 2.2 1.2h150.6c.9 0 1.7-.5 2.2-1.2s.3-1.7-.1-2.5zm-61.6-60.3h21l15.6 27h-36.6v-27zm18.1-5H87.9v-27h15.8l15.6 27zm-67.9 0l15.6-27h15.8v27H51.4zm49.4-32H69.9L83.5 16c.6-1 1.5-1.1 1.9-1.1.4 0 1.3.1 1.9 1.1l13.5 23.5zm-52.3 37h47.7v27H32.9l15.6-27zm-30.3 59.1c-1.1 0-1.7-.8-1.9-1.1s-.6-1.2 0-2.2L30 108.6h110.6l13.7 23.8c.6 1 .2 1.8 0 2.2-.2.3-.7 1.1-1.9 1.1H18.2z"></path>
+                    </svg>
+
+                    <div className="title">Real Nutrition</div>
+                    <p className="caption">
+                      Our nutritionist-reviewed dishes are designed to meet your macronutrient needs and support your
+                      healthy
+                      lifestyle — so you can eat clean, and feel good about cleaning your plate.
+                    </p>
+                  </div>
+                  <div className="phone-col-12 tablet-col-6 desktop-col-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" width="170" height="170" viewBox="0 0 170 170"
+                         className="real-variety icon">
+
+                      <path className="st0"
+                            d="M147.1 42.9c1 5.1-.1 10.4-3 14.7-1 1.5-1.3 3.3-.9 5l.3 1c.8 2.8.4 5.8-1.1 8.3-.2.3-.3.5-.5.8l2.1 7.5c3 .4 5.6 2.6 6.4 5.6.6 2 .3 4.1-.7 6-1 1.8-2.7 3.1-4.7 3.7-1.5.4-3 .4-4.4 0-1 1.1-2.3 1.9-3.7 2.4-.7.2-1.4.3-2.1.3-3.4 0-6.6-2.3-7.5-5.7-.9-3.3.4-6.7 3.1-8.6l-2.1-7.3c-2.9-1.3-5.2-3.9-6.1-7.2l-.3-1c-.4-1.7-1.6-3.1-3.3-3.9-5.8-2.9-9.7-8.3-10.7-14.8-1.5-9.5 4.1-18.7 13.2-21.8 4-1.4 8.2-1.4 12.1-.3C120.1 16.6 103.3 10 85 10c-20.1 0-38.4 8-51.9 20.9 1.8-.2 3.6-.4 5.6-.4 8.2 0 15.2 2.5 19.7 7 2.9 3 4.5 6.7 4.4 10.4-.1 4-2.8 4.4-3.6 4.4h-2.1v1.2c2.3 0 4.3 1.2 5.4 3.1 1.2 1.9 1.2 4.3.2 6.3 0 0 0 .1-.1.1-.3.5-.6.9-1 1.3.1.1.1.2.2.2 1.2 1.9 1.3 4.3.2 6.3v.1c-1.1 2.1-3.2 3.4-5.5 3.4H20.9c-2.3 0-4.4-1.3-5.5-3.4v-.1c-1-2-1-4.4.2-6.3.1-.1.1-.2.2-.2-.4-.4-.7-.8-1-1.3v-.1c-.4-.7-.6-1.4-.7-2.2C11.4 68.3 10 76.5 10 85c0 41.4 33.6 75 75 75s75-33.6 75-75c0-15.6-4.8-30.1-12.9-42.1zM116.3 80l.7-1.3c.7-1.2 2.2-1.6 3.4-.9 1.2.7 1.6 2.2.9 3.4l-.7 1.3c-.5.8-1.3 1.3-2.2 1.3-.4 0-.8-.1-1.2-.3-1.2-.8-1.6-2.3-.9-3.5zm-5.5 9.5l1.5-2.6c.7-1.2 2.2-1.6 3.4-.9 1.2.7 1.6 2.2.9 3.4l-1.5 2.6c-.5.8-1.3 1.3-2.2 1.3-.4 0-.8-.1-1.2-.3-1.2-.8-1.6-2.3-.9-3.5zm-5.5 9.5l1.5-2.6c.7-1.2 2.2-1.6 3.4-.9 1.2.7 1.6 2.2.9 3.4l-1.5 2.6c-.5.8-1.3 1.3-2.2 1.3-.4 0-.8-.1-1.2-.3-1.1-.7-1.6-2.3-.9-3.5zm.4 9.5l-1.5 2.6c-.5.8-1.3 1.3-2.2 1.3-.4 0-.8-.1-1.2-.3-1.2-.7-1.6-2.2-.9-3.4l1.5-2.6c.7-1.2 2.2-1.6 3.4-.9 1.2.5 1.6 2.1.9 3.3zM100 49.8h1.5c1.4 0 2.5 1.1 2.5 2.5s-1.1 2.5-2.5 2.5H100c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5zm-11.2 0h3.1c1.4 0 2.5 1.1 2.5 2.5s-1.1 2.5-2.5 2.5h-3.1c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5zm-11.2 0h3.1c1.4 0 2.5 1.1 2.5 2.5s-1.1 2.5-2.5 2.5h-3.1c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5zm-6.3 62.5c-.4.2-.9.4-1.3.4-.8 0-1.7-.4-2.1-1.2l-1.6-2.6c-.7-1.2-.3-2.7.8-3.4 1.2-.7 2.7-.3 3.4.8l1.6 2.6c.8 1.1.4 2.7-.8 3.4zm-3.4-62.5h1.5c1.4 0 2.5 1.1 2.5 2.5s-1.1 2.5-2.5 2.5h-1.5c-1.4 0-2.5-1.1-2.5-2.5s1.2-2.5 2.5-2.5zm-3 47l1.6 2.6c.7 1.2.3 2.7-.8 3.4-.4.2-.9.4-1.3.4-.8 0-1.7-.4-2.1-1.2l-1.6-2.6c-.7-1.2-.3-2.7.8-3.4 1.1-.7 2.7-.3 3.4.8zm-5.7-9.4l1.6 2.6c.7 1.2.3 2.7-.8 3.4-.4.2-.9.4-1.3.4-.8 0-1.7-.4-2.1-1.2L54.9 90c-.7-1.2-.3-2.7.8-3.4 1.2-.7 2.8-.4 3.5.8zm-8.4-9c1.2-.7 2.7-.3 3.4.8l.8 1.3c.7 1.2.3 2.7-.8 3.4-.4.2-.9.4-1.3.4-.8 0-1.7-.4-2.1-1.2l-.8-1.2c-.7-1.2-.4-2.7.8-3.5zM85 152c-8.3 0-18.1-2.1-25.8-5.4-9.9-4.3-15.1-10.1-15.1-16.8 0-1.4 1.1-2.5 2.5-2.5h2.8c-3.6-6.7-3.4-14.4-3.3-14.8.1-1.3 1.1-2.3 2.4-2.4.5 0 12.3-.5 19.5 6.7 1.3 1.3 2.4 2.8 3.3 4.4.6-.4 1.3-.7 2-1l-1.2-2c-.7-1.2-.3-2.7.8-3.4.9-.5 2-.5 2.8.1 2.6-7.6 9-12.8 9.3-13 1-.8 2.5-.7 3.4.2.3.3 5.7 6.1 7.3 13.8l.3-.5c.7-1.2 2.2-1.6 3.4-.9 1.2.7 1.6 2.2.9 3.4l-1.5 2.6c.5.2.9.5 1.4.8.8-1.3 1.7-2.5 2.9-3.6 7.3-7.1 19.1-6.5 19.6-6.5 1.3.1 2.3 1.1 2.3 2.4 0 .4.2 7.2-2.9 13.5h1.4c1.4 0 2.5 1.1 2.5 2.5-.1 14.5-24.3 22.4-41 22.4z"></path>
+                      <path className="st0"
+                            d="M19.6 52.3h-1.3c-.1 0-.4 0-.7-.1-.4.9-.9 1.8-1.3 2.7.9-.8 2-1.3 3.3-1.4v-1.2z"></path>
+                      <path className="st1"
+                            d="M135.4 86.3c-.3.6-.9 1-1.5 1.2-.7.2-1.3.7-1.7 1.3s-.5 1.4-.3 2.2c.4 1.5 2 2.4 3.5 2 .9-.2 1.5-.9 1.9-1.7.3-.7.9-1.3 1.6-1.5.8-.2 1.6-.1 2.2.4.7.5 1.6.7 2.5.5.7-.2 1.3-.7 1.7-1.3.4-.7.5-1.4.3-2.2-.4-1.4-1.7-2.2-3.1-2-1.2.2-2.4-.6-2.8-1.8l-2-7.1c-.6.3-1.3.6-2 .7h-.1c-.6.2-1.3.3-1.9.3l2 7.1c.1.7.1 1.3-.3 1.9z"></path>
+                      <path className="st2"
+                            d="M112.8 48.8c.7 4.9 3.7 8.9 8 11.1 2.9 1.5 5 4 5.8 7.1l.3 1c.8 3.2 4.1 5.1 7.3 4.3h.1c1.6-.4 2.9-1.4 3.7-2.8s1-3 .6-4.6l-.3-1c-.8-3-.2-6.3 1.5-9 2.4-3.6 3.1-8 2-12.1-1.1-4-3.7-7.3-7.4-9.3-2.2-1.2-4.6-1.8-7-1.8-1.6 0-3.3.3-4.9.8-6.5 2.3-10.8 9.3-9.7 16.3z"></path>
+                      <path className="st3" d="M19.6 53.5c.3 0 .5-.1.8-.1h17.4l-.5-.4h17.3l-.5.5h3v-1.2H19.6v1.2z"></path>
+                      <path className="st1"
+                            d="M19.9 68.5c.2.5.6.7 1.1.7h35.5c.4 0 .9-.3 1.1-.7.4-.7.1-1.3 0-1.5-.1-.2-.5-.6-1-.6H20.9c-.6 0-.9.4-1 .6-.1.2-.4.8 0 1.5-.1 0 0 0 0 0z"></path>
+                      <path className="st2"
+                            d="M43.2 58.4H20.4c-.7 0-1 .5-1.2.7-.1.2-.4.7 0 1.4.3.5.7.8 1.2.8H57c.5 0 1-.3 1.2-.7v-.1c.3-.6.1-1.1 0-1.3-.1-.2-.5-.7-1.2-.7h-8.4L45.9 61l-2.7-2.6z"></path>
+                      <path className="st3" d="M37.3 53l.5.4 5.4 5 2.7 2.6 2.8-2.6 5.4-5 .5-.4z"></path>
+                      <path className="st1"
+                            d="M54.8 41c-3.5-3.6-9.2-5.5-16.1-5.5-11.4 0-18.7 4.5-19 11.7h38.1c-.1-2.1-1.2-4.3-3-6.2z"></path>
+                      <path className="st4"
+                            d="M100 54.8h1.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5H100c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5zm-19.4-5h-3.1c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h3.1c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5zm11.2 0h-3.1c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5h3.1c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5zm-23.9 5h1.5c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.5-2.5-2.5h-1.5c-1.4 0-2.5 1.1-2.5 2.5s1.2 2.5 2.5 2.5zM55 80.6l-.8-1.3c-.7-1.2-2.3-1.6-3.4-.8-1.2.7-1.6 2.3-.8 3.4l.8 1.3c.5.8 1.3 1.2 2.1 1.2.4 0 .9-.1 1.3-.4 1.2-.7 1.5-2.2.8-3.4zm5.7 9.4l-1.6-2.6c-.7-1.2-2.3-1.6-3.4-.8-1.2.7-1.6 2.3-.8 3.4l1.6 2.6c.5.8 1.3 1.2 2.1 1.2.4 0 .9-.1 1.3-.4 1.2-.7 1.6-2.2.8-3.4zm12.2 24.9c-1.2.7-1.6 2.3-.8 3.4l1.2 2c.5-.1.9-.2 1.4-.3v-.2c.1-1.7.5-3.3 1-4.8-.8-.6-1.9-.7-2.8-.1zm-.7-6.1l-1.6-2.6c-.7-1.2-2.3-1.6-3.4-.8-1.2.7-1.6 2.3-.8 3.4l1.6 2.6c.5.8 1.3 1.2 2.1 1.2.4 0 .9-.1 1.3-.4 1.1-.6 1.5-2.2.8-3.4zm-5.7-9.4l-1.6-2.6c-.7-1.2-2.3-1.6-3.4-.8-1.2.7-1.6 2.3-.8 3.4l1.6 2.6c.5.8 1.3 1.2 2.1 1.2.4 0 .9-.1 1.3-.4 1.1-.7 1.5-2.2.8-3.4zM115.7 86c-1.2-.7-2.7-.3-3.4.9l-1.5 2.6c-.7 1.2-.3 2.7.9 3.4.4.2.8.3 1.2.3.9 0 1.7-.5 2.2-1.3l1.5-2.6c.7-1.1.3-2.6-.9-3.3zm-16.4 28.6c-1.2-.7-2.7-.3-3.4.9l-.3.5c.3 1.3.4 2.6.4 3.9 1 .1 1.9.3 2.7.7l1.5-2.6c.7-1.2.3-2.7-.9-3.4zm10.9-19.1c-1.2-.7-2.7-.3-3.4.9l-1.5 2.6c-.7 1.2-.3 2.7.9 3.4.4.2.8.3 1.2.3.9 0 1.7-.5 2.2-1.3l1.5-2.6c.7-1.1.3-2.6-.9-3.3zm-5.4 9.6c-1.2-.7-2.7-.3-3.4.9l-1.5 2.6c-.7 1.2-.3 2.7.9 3.4.4.2.8.3 1.2.3.9 0 1.7-.5 2.2-1.3l1.5-2.6c.7-1.1.3-2.7-.9-3.3zm15.6-27.3c-1.2-.7-2.7-.3-3.4.9l-.7 1.3c-.7 1.2-.3 2.7.9 3.4.4.2.8.3 1.2.3.9 0 1.7-.5 2.2-1.3l.7-1.3c.7-1.1.3-2.7-.9-3.3z"></path>
+                      <path className="st4"
+                            d="M150.4 85.8c-.9-3-3.4-5.2-6.4-5.6l-2.1-7.5c.2-.2.3-.5.5-.8 1.5-2.5 1.9-5.5 1.1-8.3l-.3-1c-.4-1.7-.1-3.5.9-5 2.9-4.4 3.9-9.7 3-14.7-.1-.5-.2-.9-.3-1.4-1.4-5.3-5-9.8-9.8-12.4-1.2-.6-2.5-1.2-3.7-1.5-3.9-1.2-8.1-1.1-12.1.3-9.1 3.1-14.7 12.3-13.2 21.8 1 6.5 4.9 11.9 10.7 14.8 1.6.8 2.8 2.2 3.3 3.9l.3 1c.9 3.3 3.2 5.9 6.1 7.2l2.1 7.3c-2.7 1.9-4 5.3-3.1 8.6 1 3.4 4.1 5.7 7.5 5.7.7 0 1.4-.1 2.1-.3 1.5-.4 2.8-1.2 3.7-2.4 1.4.4 2.9.5 4.4 0 2-.6 3.7-1.9 4.7-3.7.9-1.9 1.2-4 .6-6zM126.9 68l-.3-1c-.8-3-2.9-5.6-5.8-7.1-4.4-2.2-7.3-6.3-8-11.1-1.1-7 3.2-14 9.9-16.3 1.6-.5 3.2-.8 4.9-.8 2.4 0 4.8.6 7 1.8 3.7 2 6.3 5.3 7.4 9.3 1.1 4.1.4 8.5-2 12.1-1.8 2.7-2.4 6-1.5 9l.3 1c.4 1.5.2 3.2-.6 4.6s-2.1 2.4-3.7 2.8h-.1c-3.4.8-6.6-1.1-7.5-4.3zm18.4 21.3c-.4.7-1 1.1-1.7 1.3-.9.2-1.8.1-2.5-.5-.6-.5-1.4-.6-2.2-.4-.8.2-1.4.8-1.6 1.5-.3.8-1 1.5-1.9 1.7-1.5.4-3.1-.5-3.5-2-.2-.7-.1-1.5.3-2.2s1-1.1 1.7-1.3c.6-.2 1.2-.6 1.5-1.2.3-.6.4-1.3.2-1.9l-2-7.1c.6-.1 1.3-.1 1.9-.3h.1c.7-.2 1.4-.4 2-.7l2 7.1c.3 1.2 1.5 2 2.8 1.8 1.4-.2 2.7.7 3.1 2 .3.8.2 1.5-.2 2.2zM62 70.9s0-.1 0 0c1.1-2.1 1-4.5-.2-6.4 0-.1-.1-.2-.2-.2.4-.4.7-.8 1-1.3 0 0 0-.1.1-.1 1.1-2 1-4.3-.2-6.3-1.2-1.9-3.2-3.1-5.4-3.1h-3l-5.4 5h8.4c.7 0 1 .5 1.2.7.1.2.4.7 0 1.3v.1c-.3.4-.8.6-1.3.6H20.4c-.5 0-1-.3-1.2-.8-.3-.6-.1-1.2 0-1.4.1-.2.5-.7 1.2-.7h22.8l-5.4-5H20.4c-.3 0-.5 0-.8.1-1.2.2-2.3.7-3.3 1.4-.5.4-1 1-1.4 1.6-.8 1.3-1 2.7-.8 4.1.1.7.3 1.5.7 2.2v.1c.3.5.6.9 1 1.3-.1.1-.1.2-.2.2-1.2 1.9-1.3 4.3-.2 6.3v.1c1.1 2.1 3.2 3.4 5.5 3.4h35.5c2.4.1 4.5-1.1 5.6-3.2zm-42.1-2.4s-.1 0 0 0c-.4-.7-.1-1.3 0-1.5.1-.2.5-.6 1-.6h35.6c.6 0 .9.4 1 .6.1.2.4.8 0 1.5-.2.4-.6.7-1.1.7H20.9c-.4 0-.8-.2-1-.7zm-2.3-16.3c.3.1.6.1.7.1h40.9c.8 0 3.5-.3 3.6-4.4.1-3.7-1.5-7.4-4.4-10.4-4.4-4.5-11.4-7-19.7-7-2 0-3.8.1-5.6.4-11.4 1.5-18.4 7.9-18.4 17 0 3.2 1.8 4 2.9 4.3zm21.1-16.7c6.9 0 12.6 2 16.1 5.5 1.8 1.9 2.9 4.1 3 6.2H19.7c.4-7.2 7.6-11.7 19-11.7z"></path>
+                      <path className="st1"
+                            d="M90.9 121.3v-.4c.4-5.5-2.7-10.7-4.7-13.4-2.4 2.4-6.2 7.1-6.6 12.6v.9c2.2 1.3 3.6 3.6 3.8 6.3h4.3c.1-2.4 1.3-4.6 3.2-6z"></path>
+                      <path className="st5"
+                            d="M74.6 120c.3 0 .6-.1.9-.1 1.5 0 2.9.4 4.1 1.1v-.9c.4-5.5 4.3-10.2 6.6-12.6 2 2.7 5.1 7.9 4.7 13.4v.4c.7-.5 1.5-.9 2.4-1.2.9-.2 1.8-.3 2.6-.3 0-1.3-.1-2.7-.4-3.9-1.5-7.7-7-13.5-7.3-13.8-.9-.9-2.3-1-3.4-.2-.3.3-6.8 5.4-9.3 13-.5 1.5-.9 3.1-1 4.8.1.1.2.2.1.3z"></path>
+                      <path className="st1"
+                            d="M64.4 120.4c-3.9-3.9-9.9-4.9-13.2-5.2.2 3 1.1 8.3 4.2 12.1h12.3c0-.5.1-.9.2-1.4-.8-1.9-1.9-3.9-3.5-5.5z"></path>
+                      <path className="st5"
+                            d="M55.4 127.3c-3.1-3.9-4-9.1-4.2-12.1 3.3.2 9.3 1.3 13.2 5.2 1.6 1.6 2.7 3.6 3.5 5.6.5-2 1.7-3.7 3.3-4.8-.9-1.6-1.9-3-3.3-4.4-7.2-7.2-19-6.7-19.5-6.7-1.3.1-2.3 1.1-2.4 2.4 0 .4-.3 8.1 3.3 14.8h6.1z"></path>
+                      <path className="st1"
+                            d="M106.4 121.4c-1.4 1.4-2.5 3.1-3.3 4.8.1.4.1.7.1 1.1h13c2.5-3.7 3.3-8.2 3.5-10.9-3.3.3-9.3 1.2-13.3 5z"></path>
+                      <path className="st5"
+                            d="M103 125.6c.1.2.1.4.1.6.8-1.7 1.8-3.4 3.3-4.8 4-3.8 10-4.8 13.3-5-.3 2.7-1 7.2-3.5 10.9h5.7c3.1-6.4 2.9-13.1 2.9-13.5 0-1.3-1.1-2.3-2.3-2.4-.5 0-12.2-.7-19.6 6.5-1.1 1.1-2.1 2.3-2.9 3.6 1.4.9 2.5 2.4 3 4.1z"></path>
+                      <path className="st3"
+                            d="M67.9 126c-.1.4-.2.9-.2 1.4h15.6c-.1-2.7-1.6-5-3.8-6.3-1.2-.7-2.6-1.1-4.1-1.1-.3 0-.6 0-.9.1-.5.1-1 .2-1.4.3-.7.2-1.4.6-2 1-1.5.9-2.7 2.6-3.2 4.6zm25.5-5.8c-.9.2-1.7.6-2.4 1.2-2 1.4-3.2 3.6-3.3 6h15.6c0-.4-.1-.7-.1-1.1 0-.2-.1-.4-.1-.6-.5-1.8-1.6-3.2-2.9-4.2-.4-.3-.9-.6-1.4-.8-.8-.4-1.8-.6-2.7-.7-1-.1-1.9-.1-2.7.2z"></path>
+                      <path className="st1" d="M49.6 132.3C52.7 141 71.8 147 85 147c13.1 0 32.3-5.7 35.5-14.6H49.6z"></path>
+                      <path className="st5"
+                            d="M123.4 127.3H46.6c-1.4 0-2.5 1.1-2.5 2.5 0 6.7 5.2 12.5 15.1 16.8 7.6 3.3 17.5 5.4 25.8 5.4 16.7 0 40.9-7.9 40.9-22.1 0-1.4-1.1-2.6-2.5-2.6zm-2.9 5C117.3 141.2 98.1 147 85 147c-13.2 0-32.3-6-35.4-14.6h70.9z"></path>
+                    </svg>
+
+                    <div className="title">Real Variety</div>
+                    <p className="caption">
+                      We understand that food is personal. Our ever-changing menus are designed to accomodate a variety of
+                      tastes and needs, whether you’re vegetarian, paleo, gluten-free, or simply someone with a deep
+                      appreciation for really delicious food.
+                    </p>
+                  </div>
+                  <div className="phone-col-12 tablet-col-6 desktop-col-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 170 170" className="real-impact icon">
+
+                      <path className="st0"
+                            d="M153.2 53.8l-3.4 18c-.4 2.2-1.9 4-4.1 4.8-2.1.8-4.5.3-6.2-1.2l-20.9-17.8c-.7-.6-1-1.5-.8-2.4.2-.9.8-1.6 1.6-1.9l7.1-2.5c-10.1-12.4-25.3-19.7-41.3-19.7-27.5 0-50.8 21.4-53 48.8-.3 4.1-3.8 7.3-8 7.3-1.2 0-2.3-.3-3.4-.8-3-1.5-4.9-4.9-4.5-8.5 1.6-17 9.3-32.8 21.9-44.4 12.8-11.9 29.5-18.4 47-18.4 23 0 44.2 11.2 57.1 30.1l5.1-1.8A74.501 74.501 0 0 0 84.7 9.3c-41.4 0-75 33.6-75 75 0 11.3 2.5 22 7 31.6L20 97.7c.4-2.2 1.9-4 4.1-4.8 2.1-.8 4.5-.3 6.2 1.2l20.9 17.8c.7.6 1 1.5.8 2.4-.2.9-.8 1.6-1.6 1.9l-7.1 2.5c10.1 12.4 25.3 19.7 41.3 19.7 27.5 0 50.8-21.4 53-48.8.2-2.1 1.2-4.1 2.8-5.5 1.6-1.4 3.7-2 5.8-1.9 2.1.2 4.1 1.2 5.4 2.8 1.4 1.6 2 3.7 1.9 5.8-1.4 17.3-9.2 33.3-22 45.1-12.8 11.9-29.5 18.4-47 18.4-23 0-44.2-11.2-57.1-30.1l-5.1 1.8c13.5 20.1 36.3 33.3 62.3 33.3 41.4 0 75-33.6 75-75 .1-10.8-2.3-21.2-6.4-30.5zM79.8 66.9c0 4.7-3.2 8.7-7.6 9.8v2.4l3.7 31.3c.2 1.8-.3 3.6-1.5 4.9s-2.9 2.1-4.7 2.1c-1.8 0-3.5-.8-4.7-2.1-1.2-1.3-1.8-3.1-1.5-4.9l3.7-31.3v-2.4c-4.4-1.1-7.6-5.1-7.6-9.8V53.7c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v13.2c0 1.9 1.1 3.6 2.6 4.4V53.7c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v17.6c1.6-.9 2.6-2.5 2.6-4.4V53.7c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v13.2zm28.4 48.4c-1.2 1.3-2.9 2.1-4.7 2.1s-3.5-.8-4.7-2.1c-1.2-1.3-1.8-3.1-1.5-4.9v-.1l3.3-19.2h-.1c-5.1 0-9.3-4.2-9.3-9.3V63.6c0-6.8 5.5-12.4 12.4-12.4 1.4 0 2.5 1.1 2.5 2.5v34.7l3.7 22v.1c.1 1.7-.4 3.5-1.6 4.8z"></path>
+                      <path className="st1"
+                            d="M77.3 51.2c-1.4 0-2.5 1.1-2.5 2.5v13.2c0 1.9-1.1 3.6-2.6 4.4V53.7c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v17.6c-1.6-.9-2.6-2.5-2.6-4.4V53.7c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v13.2c0 4.7 3.2 8.7 7.6 9.8v2.4l-3.7 31.3c-.2 1.8.3 3.6 1.5 4.9 1.2 1.3 2.9 2.1 4.7 2.1 1.8 0 3.5-.8 4.7-2.1s1.8-3.1 1.5-4.9l-3.7-31.3v-2.4c4.4-1.1 7.6-5.1 7.6-9.8V53.7c0-1.4-1.1-2.5-2.5-2.5zM70.7 112c-.1.2-.5.4-1 .4s-.8-.3-1-.4c-.1-.2-.4-.5-.3-1l1.3-10.7L71 111c0 .5-.2.8-.3 1z"></path>
+                      <path className="st2"
+                            d="M68.4 111c-.1.5.2.8.3 1 .1.2.5.4 1 .4s.8-.3 1-.4.4-.5.3-1l-1.3-10.7-1.3 10.7zm33.8.1c0 .5.2.8.3 1 .1.2.5.4 1 .4s.8-.3 1-.4c.1-.2.4-.5.3-1l-1.3-7.5-1.3 7.5z"></path>
+                      <path className="st1"
+                            d="M109.7 110.3l-3.7-22V53.7c0-1.4-1.1-2.5-2.5-2.5-6.8 0-12.4 5.5-12.4 12.4v18.2c0 5.1 4.2 9.3 9.3 9.3h.1l-3.3 19.2v.1c-.2 1.8.3 3.6 1.5 4.9 1.2 1.3 2.9 2.1 4.7 2.1s3.5-.8 4.7-2.1c1.2-1.3 1.8-3.1 1.5-4.9.1 0 .1-.1.1-.1zM100.4 86c-2.4 0-4.3-1.9-4.3-4.3V63.6c0-3.2 2-5.9 4.9-6.9V86h-.6zm4 26c-.1.2-.5.4-1 .4s-.8-.3-1-.4c-.1-.2-.4-.5-.3-1l1.3-7.5 1.3 7.5c.1.5-.1.9-.3 1z"></path>
+                      <path className="st2" d="M101 56.6c-2.8 1-4.9 3.7-4.9 6.9v18.2c0 2.4 1.9 4.3 4.3 4.3h.6V56.6z"></path>
+                      <path className="st3"
+                            d="M139.3 49.6c-11.9-18.5-32.1-29.5-54-29.5-16.2 0-31.7 6.1-43.6 17.1C30.1 48 22.8 62.6 21.4 78.4c-.1 1.5.6 3 1.8 3.6.4.2.7.3 1.2.3 1.5 0 2.9-1.2 3-2.8 2.5-29.9 27.9-53.4 58-53.4 18.8 0 36.5 9.1 47.4 24.5.5.6.6 1.5.3 2.2-.2.7-.8 1.3-1.6 1.6l-6.3 2.2 17.6 15c.5.4 1 .3 1.3.2.2-.1.7-.3.8-1l4.2-22.7-6.9 2.4c-1 .5-2.2.1-2.9-.9z"></path>
+                      <path className="st1"
+                            d="M85.3 15.1c-17.5 0-34.2 6.5-47 18.4C25.8 45.2 18 60.9 16.4 77.9c-.3 3.6 1.5 7 4.5 8.5 1.1.5 2.2.8 3.4.8 4.1 0 7.6-3.2 8-7.3 2.2-27.4 25.5-48.8 53-48.8 16 0 31.3 7.3 41.3 19.7l-7.1 2.5c-.8.3-1.5 1-1.6 1.9-.2.9.2 1.8.8 2.4l20.9 17.8c1.7 1.5 4 1.9 6.2 1.2 2.1-.8 3.7-2.5 4.1-4.8l3.4-18 1.7-9c.2-.9-.2-1.8-.8-2.4-.7-.6-1.6-.8-2.5-.5l-4 1.4-5.1 1.8c-13.1-18.8-34.3-30-57.3-30zm63.9 33.1L145 70.9c-.1.7-.6.9-.8 1-.2.1-.8.2-1.3-.2l-17.6-15 6.3-2.2c.7-.3 1.3-.9 1.6-1.6.2-.7.1-1.6-.3-2.2-10.9-15.3-28.6-24.5-47.4-24.5-30.1 0-55.5 23.4-58 53.4-.1 1.5-1.4 2.8-3 2.8-.4 0-.8-.1-1.2-.3-1.2-.6-1.9-2-1.8-3.6 1.4-15.8 8.7-30.4 20.3-41.2 11.9-11 27.4-17.1 43.6-17.1 21.9 0 42.1 11 54 29.5.6 1 1.8 1.4 2.9 1l6.9-2.5z"></path>
+                      <path className="st4"
+                            d="M28.4 118.8c.8 0 1.6.4 2.1 1.1 11.9 18.5 32.1 29.5 54 29.5 16.2 0 31.7-6.1 43.6-17.1 11.8-11 19.1-25.8 20.4-41.8.1-.8-.2-1.6-.7-2.2-.5-.6-1.2-1-2-1-.8-.1-1.6.2-2.2.7-.6.5-1 1.2-1.1 2-2.5 29.9-27.9 53.4-58 53.4-18.8 0-36.5-9.1-47.4-24.5-.5-.6-.6-1.5-.3-2.2.2-.7.8-1.3 1.6-1.6l6.3-2.2-17.7-15c-.5-.4-1.1-.3-1.3-.2-.2.1-.7.3-.8 1l-4.2 22.7 6.9-2.4c.3-.2.6-.2.8-.2z"></path>
+                      <path className="st1"
+                            d="M84.5 154.4c17.5 0 34.2-6.5 47-18.4 12.7-11.8 20.5-27.8 22-45.1.2-2.1-.5-4.2-1.9-5.8-1.4-1.6-3.3-2.6-5.4-2.8-2.1-.2-4.2.5-5.8 1.9-1.6 1.4-2.6 3.3-2.8 5.5-2.2 27.4-25.5 48.8-53 48.8-16 0-31.3-7.3-41.3-19.7l7.1-2.5c.8-.3 1.5-1 1.6-1.9.2-.9-.2-1.8-.8-2.4L30.3 94.1c-1.7-1.5-4-1.9-6.2-1.2-2.1.8-3.7 2.5-4.1 4.8l-3.4 18.2-1.6 8.8c-.2.9.2 1.8.8 2.4.7.6 1.6.8 2.5.5l4.1-1.4 5.1-1.8c12.9 18.8 34.1 30 57 30zm-63.8-33.1l4.2-22.7c.1-.7.6-.9.8-1 .2-.1.8-.2 1.3.2l17.6 15-6.3 2.2c-.7.3-1.3.9-1.6 1.6-.2.7-.1 1.6.3 2.2 10.9 15.3 28.6 24.5 47.4 24.5 30.1 0 55.5-23.4 58-53.4.1-.8.4-1.5 1.1-2 .6-.5 1.4-.8 2.2-.7.8.1 1.5.4 2 1s.8 1.4.7 2.2c-1.3 16-8.6 30.9-20.4 41.8-11.9 11-27.4 17.1-43.6 17.1-21.9 0-42.1-11-54-29.5-.5-.7-1.3-1.1-2.1-1.1-.3 0-.6 0-.8.1l-6.8 2.5z"></path>
+                    </svg>
+
+                    <div className="title">Real Impact</div>
+                    <p className="caption">
+                      We’re proud to offer food that’s as good for the planet as it is for the body. We’re changing the way
+                      people eat, creating a community around healthy living, and building a sustainable and socially
+                      responsible food eco-system.
+                    </p>
+                  </div>
+                  <div className="phone-col-12 tablet-col-6 desktop-col-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 170 170"
+                         className="real-transparency icon">
+
+                      <path className="st0"
+                            d="M85.4 9.5c-41.4 0-75 33.6-75 75s33.6 75 75 75 75-33.6 75-75-33.6-75-75-75zm56.3 93.9c.3 1.1-.1 2.2-1 2.8l-8.3 5.4-.5 9.9c-.1 1.1-.9 2.1-1.9 2.3l-9.7 2.2-3.8 9.1c-.4 1-1.5 1.7-2.6 1.5l-9.8-1.2-6.7 7.3c-.8.8-2 1-3 .5l-8.8-4.5-8.8 4.5c-.4.2-.8.3-1.1.3-.7 0-1.4-.3-1.8-.8l-6.7-7.3-9.8 1.2c-1.1.1-2.2-.5-2.6-1.5L51 126l-9.7-2.2c-1.1-.2-1.9-1.2-1.9-2.3l-.5-9.9-8.3-5.4c-.9-.6-1.4-1.8-1-2.8L32 94l-6-7.9c-.7-.9-.7-2.1 0-3l6-7.9-2.9-9.5c-.3-1.1.1-2.2 1-2.8l8.3-5.4.5-9.9c.1-1.1.9-2.1 1.9-2.3l9.7-2.2 3.8-9.1c.4-1 1.5-1.7 2.6-1.5l9.8 1.2 6.7-7.3c.8-.8 2-1 3-.5l8.8 4.5 8.8-4.5c1-.5 2.2-.3 3 .5l6.7 7.3 9.8-1.2c1.1-.1 2.2.5 2.6 1.5l3.8 9.1 9.7 2.2c1.1.2 1.9 1.2 1.9 2.3l.5 9.9 8.3 5.4c.9.6 1.4 1.8 1 2.8l-2.9 9.5 6 7.9c.7.9.7 2.1 0 3l-6 7.9 3.3 9.4z"></path>
+                      <path className="st1"
+                            d="M133.6 74.9l2.8-8.9-7.8-5c-.7-.4-1.1-1.2-1.1-2l-.5-9.3-9.1-2.1c-.8-.2-1.4-.7-1.8-1.5l-3.6-8.6-9.2 1.2c-.8.1-1.6-.2-2.1-.8l-6.3-6.8-8.3 4.3c-.7.4-1.6.4-2.3 0L76 31.1 69.6 38c-.5.6-1.3.9-2.1.8l-9.2-1.2-3.6 8.6c-.3.7-1 1.3-1.8 1.5l-9.1 2.1-.4 9.2c0 .8-.5 1.5-1.1 2l-7.8 5 2.8 8.9c.2.8.1 1.6-.4 2.3l-5.6 7.4 5.6 7.4c.5.6.6 1.5.4 2.3l-2.8 8.9 7.8 5c.7.4 1.1 1.2 1.1 2l.5 9.3 9.1 2.1c.8.2 1.4.7 1.8 1.5l3.6 8.6 9.2-1.2c.8-.1 1.6.2 2.1.8l6.3 6.8 6.9-3.6v-12.9c-13.7-1.3-24.5-12.8-24.5-26.9 0-6.1 4.3-15.8 12.6-28.7 6.1-9.4 12.3-17.3 12.4-17.4.5-.6 1.2-1 2-1s1.5.4 2 1c1 1.3 25 31.9 25 46.1 0 14-10.8 25.6-24.5 26.9v12.9l6.9 3.6 6.3-6.8c.5-.6 1.4-.9 2.1-.8l9.2 1.2 3.6-8.6c.3-.7 1-1.3 1.8-1.5l9.1-2.1.5-9.3c0-.8.5-1.5 1.1-2l7.8-5-2.8-8.9c-.2-.8-.1-1.6.4-2.3l5.6-7.4-5.6-7.4c-.4-.7-.6-1.6-.3-2.3z"></path>
+                      <path className="st2"
+                            d="M144.7 83l-6-7.9 2.9-9.5c.3-1.1-.1-2.2-1-2.8l-8.3-5.4-.5-9.9c-.1-1.1-.9-2.1-1.9-2.3l-9.7-2.2-3.8-9.1c-.4-1-1.5-1.7-2.6-1.5l-9.8 1.2-6.7-7.3c-.8-.8-2-1-3-.5l-8.8 4.5-8.8-4.5c-1-.5-2.2-.3-3 .5L67 33.6l-10-1.2c-1.1-.1-2.2.5-2.6 1.5L50.5 43l-9.7 2.2c-1.1.2-1.9 1.2-1.9 2.3l-.5 9.9-8.3 5.4c-.9.6-1.4 1.8-1 2.8l2.9 9.5-6 7.9c-.7.9-.7 2.1 0 3l6 7.9-2.9 9.5c-.3 1.1.1 2.2 1 2.8l8.3 5.4.5 9.9c.1 1.1.9 2.1 1.9 2.3l9.7 2.2 3.8 9.1c.4 1 1.5 1.7 2.6 1.5l9.8-1.2 6.7 7.3c.5.5 1.2.8 1.8.8.4 0 .8-.1 1.1-.3l8.8-4.5 8.8 4.5c1 .5 2.2.3 3-.5l6.7-7.3 9.8 1.2c1.1.1 2.2-.5 2.6-1.5l3.8-9.1 9.7-2.2c1.1-.2 1.9-1.2 1.9-2.3l.5-9.9 8.3-5.4c.9-.6 1.4-1.8 1-2.8l-2.9-9.5 6-7.9c1.1-.8 1.1-2.1.4-3zm-56.8 27.6l9.6-11.2c.9-1 .8-2.6-.3-3.5s-2.6-.8-3.5.3l-5.8 6.8V84.5c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5v6.9l-5.2-4.2c-1.1-.9-2.6-.7-3.5.4s-.7 2.7.4 3.5l8.3 6.7v18.5c-10.9-1.2-19.5-10.6-19.5-21.8 0-9.5 14.4-30.4 22-40.4 7.6 10 22 31 22 40.4 0 11.3-8.5 20.6-19.5 21.8v-5.7zm46-18.6c-.5.6-.6 1.5-.4 2.3l2.8 8.9-7.8 5c-.7.4-1.1 1.2-1.1 2l-.5 9.3-9.1 2.1c-.8.2-1.4.7-1.8 1.5l-3.6 8.6-9.2-1.2c-.8-.1-1.6.2-2.1.8l-6.3 6.8-6.9-3.6v-12.9c13.7-1.3 24.5-12.8 24.5-26.9 0-14.2-24-44.8-25-46.1-.5-.6-1.2-1-2-1s-1.5.4-2 1c-.1.1-6.3 8-12.4 17.4-8.4 12.9-12.6 22.6-12.6 28.7 0 14 10.8 25.6 24.5 26.9v12.9l-6.9 3.6-6.3-6.8c-.5-.6-1.3-.9-2.1-.8l-9.2 1.2-3.6-8.6c-.3-.7-1-1.3-1.8-1.5l-9.1-2.1-.5-9.3c0-.8-.5-1.5-1.1-2l-7.8-5 2.8-8.9c.2-.8.1-1.6-.4-2.3l-5.6-7.4 5.6-7.4c.5-.6.6-1.5.4-2.3L34.4 66l7.8-5c.7-.4 1.1-1.2 1.1-2l.5-9.3 9.1-2.1c.8-.2 1.4-.7 1.8-1.5l3.6-8.6 9.2 1.2c.8.1 1.6-.2 2.1-.8l6.3-6.8 8.3 4.3c.7.4 1.6.4 2.3 0l8.3-4.3 6.3 6.8c.5.6 1.4.9 2.1.8l9.2-1.2 3.6 8.6c.3.7 1 1.3 1.8 1.5l9.1 2.1.5 9.3c0 .8.5 1.5 1.1 2l7.8 5-2.8 8.9c-.2.8-.1 1.6.4 2.3l5.6 7.4-5.6 7.4z"></path>
+                      <path className="st3"
+                            d="M107.3 94.6c0-9.5-14.4-30.4-22-40.4-7.6 10-22 31-22 40.4 0 11.3 8.5 20.6 19.5 21.8V97.9l-8.3-6.7c-1.1-.9-1.2-2.4-.4-3.5s2.4-1.2 3.5-.4l5.2 4.2v-6.9c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5V103l5.8-6.8c.9-1 2.5-1.2 3.5-.3s1.2 2.5.3 3.5l-9.6 11.2v5.8c11-1.2 19.5-10.6 19.5-21.8z"></path>
+                    </svg>
+
+                    <div className="title">Real Transparency</div>
+                    <p className="caption">
+                      We believe in complete transparency, from the farm to your fork. To us, where your food comes from,
+                      how
+                      it’s made, and how it makes you feel are just as important as how delicious it tastes.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/*<!-- .f-strata pillars -->*/}
+
+            <div className="f-strata manifesto">
+              <div className="fluid-container">
+                <div className="row center-x">
+                  <div className="video-wrapper phone-col-12 tablet-col-10 desktop-col-9">
+                    <div>
+                      <div className="video masked">
+                        <iframe width="100%" height="100%"
+                                src="https://www.youtube.com/embed/e6TeqtjXprY?modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=1&amp;enablejsapi=1"
+                                frameBorder="0" allowFullScreen=""></iframe>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="phone-col-12 tablet-col-10 desktop-col-12 blurb">
+                    <h2>The Munchery Manifesto</h2>
+                    <p>
+                      We’ve entered a world which transcends traditional mealtimes. Your desk is your dinner table. Your
+                      home
+                      is your office. Your office is a coffee shop. And when it comes to dinner, you’ve already got enough
+                      on
+                      your plate without having to worry about what’s going <span><i>on</i> your plate.</span>
+                    </p>
+                    <p>
+                      But just because you’re busy doesn’t mean you’re willing to compromise when it comes to food — in
+                      fact,
+                      your standards are sky high. You want delicious, all-natural, chef-crafted food, precisely where and
+                      when you want it, whether that means scoring an easy win for dinner tonight, or stocking the fridge
+                      with
+                      meals for the week. You need mealtime on your terms, and that’s where we come in. It’s not take-out.
+                      It’s not home cooking. <span>It’s Munchery.</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/*<!-- .f-strata .manifesto -->*/}
+
+
+            <div className="f-strata villain">
+              <div className="fluid-container">
+                <div className="row center-xy">
+                  <div className="phone-col-12 tablet-col-12 desktop-col-12 container">
+                    <h1>Join us at the table</h1>
+                    <p>Sign up now to take a look at our mouthwatering menus and find out what
+                      <span>we’re cooking up next.</span>
+                    </p>
+                    <div className="signup-login-form">
+                      <form className="email-squeeze-form" action="/menus/subscribe.json" acceptCharset="UTF-8"
+                            data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"/>
+                        <input type="hidden" name="bypass_email_requirement" id="bypass_email_requirement" value="1"/>
+
+                        <input type="hidden" name="_skip_confirmation_instructions" id="_skip_confirmation_instructions"
+                               value="1"/>
+                        <input type="email" name="email" id="email" placeholder="Email" className="user-input email"
+                               maxLength="254"/>
+                        <input type="text" name="zipcode" id="zipcode" maxLength="5" placeholder="ZIP Code"
+                               className="user-input zip-code" inputMode="numeric" pattern="[\d\s\.()-]*"
+                               autoCorrect="off"
+                               autoCapitalize="none" noValidate="noValidate"/>
+                        <input type="hidden" name="gate" id="gate" value="Static Email Gate"/>
+                        <button name="button" type="submit" className="large orange button">See The Menu</button>
+
+                        <div className="errors">
+                          <div className="error-message email-error hidden">
+                            Please enter a valid email address.
+                          </div>
+
+                          <div className="error-message zipcode-error hidden">
+                            Please enter a 5-digit ZIP code.
+                          </div>
+
+                          <div className="error-message unknown-error hidden">
+                            Error: please <a href="/support/">contact support</a>
+                          </div>
+                        </div>
+                      </form>
+                      <div className="or-separator">OR</div>
+
+                      <a
+                        href="/users/preauth/facebook.json?return=https%3A%2F%2Fmunchery.com%2Fmenus%2F&amp;signup=%2Fsignup-page%2Fconfirm"
+                        id="facebook_login_button" className="popup facebook-popup facebook large button" data-width="650"
+                        data-height="700">
+                        <span>Continue with Facebook</span>
+                      </a>
+
+                      <div className="terms">By clicking “See the Menu” or “Continue with Facebook” <br/>you agree to our
+                        <a className="secondary" target="_blank" href="/about/privacy-and-terms-of-service/">
+                          Terms &amp; Conditions
+                        </a>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+
+
+          <div className="footer-container simple">
+            <footer className="fluid-container">
+              <ul className="horizontal-list nav-links primary-links">
+                <li className="logo-container">
+                  <a href="/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="26" viewBox="0 0 17 26">
+                      <path
+                        d="M17 24.06l-.107-1.86-.557-6.354a292.077 292.077 0 0 1-.154-4.005l-.06-4.142.014-.19V.232a.111.111 0 0 0-.083-.108A4.937 4.937 0 0 0 15.089 0c-1.331 0-2.592.944-2.933 2.242-.23.88-.12 1.783-.12 2.676 0 .762.023 1.522.033 2.284.002.157.011.315.01.473-.009.527-.017 1.054-.023 1.582-.011.934-.034 1.868-.038 2.803-.004.723-.111 1.486.249 2.148l.009.034c.301.68.824 1.235 1.44 1.537.005.008.625.72.517 1.74-.047.407-.1.824-.152 1.242l-.66 4.706-.025.597c0 .262.043.525.129.786A1.78 1.78 0 0 0 15.192 26c.839 0 1.575-.6 1.759-1.45.022-.116.034-.236.034-.36l.009-.039.006-.092zm-1.708-5.063l.045-.045.046.05.195 4.944v.085a.382.382 0 0 1-.762.008l.476-5.042zm-.382-5.573c0 .4-.323.726-.72.726-.371 0-.674-.288-.749-.726 0-.508 0-1.017-.002-1.526l-.002-2.681c-.002-1.502.023-3.005-.005-4.506-.02-1.1-.164-2.55 1.167-2.928a.223.223 0 0 1 .098-.024c.002.001.019.02.019.095v4.371l.194 7.2zM5.989 6.558c.007-.085.01-.171.01-.257.004-1.786-.031-3.572-.058-5.358C5.937.713 5.93.482 5.93.25c0-.14-.079-.25-.176-.25h-.958c-.098 0-.177.111-.177.25l-.117 6.507c-.11.22-.254.281-.391.28-.054.001-.105-.026-.159-.052-.145-.094-.166-.296-.152-.426l-.002-.119-.09-6.19c0-.139-.079-.25-.176-.25h-.96c-.097 0-.176.111-.176.25L2.28 6.758c-.11.22-.256.281-.391.28-.137.001-.282-.06-.392-.28L1.38.251C1.38.11 1.3 0 1.203 0H.245C.148 0 .07.111.07.25L.006 6.56 0 6.611c0 .35.099.673.25.956a3.091 3.091 0 0 0 1.958 1.736 179.334 179.334 0 0 1-.237 3.02 408.517 408.517 0 0 1-.3 3.319 493.2 493.2 0 0 1-.288 3.011c-.067.672-.138 1.343-.201 2.015-.073.765-.112 1.533-.158 2.3-.043.73-.138 1.522.335 2.138.407.531 1 .89 1.679.893.597.003 1.133-.289 1.54-.715.482-.507.532-1.176.506-1.84-.032-.84-.108-1.678-.181-2.515-.043-.489-.089-.976-.133-1.464-.038-.414-.077-.828-.118-1.243-.19-1.952-.375-3.906-.543-5.861-.047-.542-.092-1.083-.135-1.625-.01-.122-.157-1.432-.107-1.447C5.07 8.917 5.887 7.8 5.989 6.557zm-2.866 17.98c-.266.007-.492-.272-.501-.612l.37-8.386c-.001-.041.024-.076.055-.077l.06.08.475 8.202a.651.651 0 0 0 .003.141c.01.353-.198.644-.462.651z"
+                        fill="#3B3B36" fillRule="evenodd"></path>
+                    </svg>
+                  </a>
+                </li>
+                <li><a className="hiw-link" target="_blank" href="/how-it-works/">How it Works</a></li>
+                <li><a className="faq-link" target="_blank" href="/help/">FAQ</a></li>
+                <li><a target="_blank" href="/about/privacy-and-terms-of-service/">Privacy &amp; Terms</a></li>
+                <li><a href="/jobs/">Jobs</a></li>
+              </ul>
+            </footer>
+          </div>
+
         </div>
 
 
+        <div className="vendor-js-container">
+          <span id="fb-root"> </span>
+        </div>
+
+
+        {/*<!-- This is a random-length HTML comment: riuvvhaibqhfnqqhkysvfguzcmnkparwbauerqthglxkywwbctgzkprzafpigvjtiljhckplaoxonbayfohbzkbygfjzlqbhckkngmkpkhtbgmcydwaimrmhcjuwtbzrnbzppycporsbooxafddfbjixpjwlmluelkiktrpxrzuivxnztxtqviwojwpaqmsorvjnnhxatdcovovsfdcpshhaetbdfuqanorjwtdyunlrnxxetrzpmvqfasogdujsfkakscbevseyiqgifybbqlgfrzjxjectflojxqlvjloarbgbhleajykvqdqnqevfhrcrbnqwuvypatrvpsugorfwnssdwhxsgqqpmwapklmjszdsaufzuzmrmbeiziazolxyjvmoipygqcfajruhzrnzppdokcorstvtsxolkqddvnpulkimabxddokdyhhfnbryfeyxigqxlgudjdoekvitbnbudrldmqufswyxehzaennwcisgifdnyagujrlgzynnnfanjindissmbxlabsndokjayletmidwlgzzyiatxhezlnfwbrouuancpywkvyejbvkqiqhcthrklzmbadknifh -->*/}
+        <div id="alert-dialog" className="dialog alert-dialog" style={{position: 'fixed', top: '26.25px', left: '583.5px'}}>
+          <a href="#" className="close close-x"></a>
+          <div className="content"></div>
+        </div>
       </div>
-
-      <div className="footer-container simple">
-        <footer className="fluid-container">
-          <ul className="horizontal-list nav-links primary-links">
-            <li className="logo-container">
-              <a href="/">
-                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="26" viewBox="0 0 17 26">
-                  <path
-                    d="M17 24.06l-.107-1.86-.557-6.354a292.077 292.077 0 0 1-.154-4.005l-.06-4.142.014-.19V.232a.111.111 0 0 0-.083-.108A4.937 4.937 0 0 0 15.089 0c-1.331 0-2.592.944-2.933 2.242-.23.88-.12 1.783-.12 2.676 0 .762.023 1.522.033 2.284.002.157.011.315.01.473-.009.527-.017 1.054-.023 1.582-.011.934-.034 1.868-.038 2.803-.004.723-.111 1.486.249 2.148l.009.034c.301.68.824 1.235 1.44 1.537.005.008.625.72.517 1.74-.047.407-.1.824-.152 1.242l-.66 4.706-.025.597c0 .262.043.525.129.786A1.78 1.78 0 0 0 15.192 26c.839 0 1.575-.6 1.759-1.45.022-.116.034-.236.034-.36l.009-.039.006-.092zm-1.708-5.063l.045-.045.046.05.195 4.944v.085a.382.382 0 0 1-.762.008l.476-5.042zm-.382-5.573c0 .4-.323.726-.72.726-.371 0-.674-.288-.749-.726 0-.508 0-1.017-.002-1.526l-.002-2.681c-.002-1.502.023-3.005-.005-4.506-.02-1.1-.164-2.55 1.167-2.928a.223.223 0 0 1 .098-.024c.002.001.019.02.019.095v4.371l.194 7.2zM5.989 6.558c.007-.085.01-.171.01-.257.004-1.786-.031-3.572-.058-5.358C5.937.713 5.93.482 5.93.25c0-.14-.079-.25-.176-.25h-.958c-.098 0-.177.111-.177.25l-.117 6.507c-.11.22-.254.281-.391.28-.054.001-.105-.026-.159-.052-.145-.094-.166-.296-.152-.426l-.002-.119-.09-6.19c0-.139-.079-.25-.176-.25h-.96c-.097 0-.176.111-.176.25L2.28 6.758c-.11.22-.256.281-.391.28-.137.001-.282-.06-.392-.28L1.38.251C1.38.11 1.3 0 1.203 0H.245C.148 0 .07.111.07.25L.006 6.56 0 6.611c0 .35.099.673.25.956a3.091 3.091 0 0 0 1.958 1.736 179.334 179.334 0 0 1-.237 3.02 408.517 408.517 0 0 1-.3 3.319 493.2 493.2 0 0 1-.288 3.011c-.067.672-.138 1.343-.201 2.015-.073.765-.112 1.533-.158 2.3-.043.73-.138 1.522.335 2.138.407.531 1 .89 1.679.893.597.003 1.133-.289 1.54-.715.482-.507.532-1.176.506-1.84-.032-.84-.108-1.678-.181-2.515-.043-.489-.089-.976-.133-1.464-.038-.414-.077-.828-.118-1.243-.19-1.952-.375-3.906-.543-5.861-.047-.542-.092-1.083-.135-1.625-.01-.122-.157-1.432-.107-1.447C5.07 8.917 5.887 7.8 5.989 6.557zm-2.866 17.98c-.266.007-.492-.272-.501-.612l.37-8.386c-.001-.041.024-.076.055-.077l.06.08.475 8.202a.651.651 0 0 0 .003.141c.01.353-.198.644-.462.651z"
-                    fill="#3B3B36" fillRule="evenodd"></path>
-                </svg>
-              </a>
-            </li>
-            <li><a className="hiw-link" target="_blank" href="/how-it-works/">How it Works</a></li>
-            <li><a className="faq-link" target="_blank" href="/help/">FAQ</a></li>
-            <li><a target="_blank" href="/about/privacy-and-terms-of-service/">Privacy &amp; Terms</a></li>
-            <li><a href="/jobs/">Jobs</a></li>
-          </ul>
-        </footer>
-      </div>
-
-    </div>
-
-
-    <div className="vendor-js-container">
-      <span id="fb-root"> </span>
-    </div>
-
-
-    {/*<!-- This is a random-length HTML comment: riuvvhaibqhfnqqhkysvfguzcmnkparwbauerqthglxkywwbctgzkprzafpigvjtiljhckplaoxonbayfohbzkbygfjzlqbhckkngmkpkhtbgmcydwaimrmhcjuwtbzrnbzppycporsbooxafddfbjixpjwlmluelkiktrpxrzuivxnztxtqviwojwpaqmsorvjnnhxatdcovovsfdcpshhaetbdfuqanorjwtdyunlrnxxetrzpmvqfasogdujsfkakscbevseyiqgifybbqlgfrzjxjectflojxqlvjloarbgbhleajykvqdqnqevfhrcrbnqwuvypatrvpsugorfwnssdwhxsgqqpmwapklmjszdsaufzuzmrmbeiziazolxyjvmoipygqcfajruhzrnzppdokcorstvtsxolkqddvnpulkimabxddokdyhhfnbryfeyxigqxlgudjdoekvitbnbudrldmqufswyxehzaennwcisgifdnyagujrlgzynnnfanjindissmbxlabsndokjayletmidwlgzzyiatxhezlnfwbrouuancpywkvyejbvkqiqhcthrklzmbadknifh -->*/}
-    <div id="alert-dialog" className="dialog alert-dialog" style={{position: 'fixed', top: '26.25px', left: '583.5px'}}>
-      <a href="#" className="close close-x"></a>
-      <div className="content"></div>
-    </div>
-  </div>
-)
+    );
+  }
+}
 
 CoreLayout.propTypes = {
   children: React.PropTypes.element.isRequired
