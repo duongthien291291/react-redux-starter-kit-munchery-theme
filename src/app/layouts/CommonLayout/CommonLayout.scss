@@ -1,1 +1,82 @@
+.menu-page {
 
+//.st0{fill:#B9B9AF;}
+//  .st1{fill:#FFFFFF;}
+//  .st2{clip-path:url(#SVGID_2_);}
+//  .st3{clip-path:url(#SVGID_4_);
+//    fill:#B9B9AF;}
+
+
+#olark-wrapper .olark-launch-button {
+  background-color: #EA6E30 !important;
+}
+  #olark-wrapper .olark-launch-button svg path {
+    fill: #ffffff !important;
+  }
+  #olark-wrapper .olark-launch-button .olark-button-text {
+    color: #ffffff !important;
+  }
+  #olark-wrapper .olark-top-bar {
+    background-color: #EA6E30 !important;
+    color: #ffffff !important;
+    border-color: #e85d17 !important;
+  }
+  #olark-wrapper .olark-top-bar-text {
+    color: #ffffff !important;
+  }
+  #olark-wrapper .olark-top-bar-arrow {
+    fill: #ffffff !important;
+  }
+  #olark-wrapper .olark-end-chat-button {
+    color: #ffffff !important;
+    background-color: rgba(209, 84, 21, 0.5) !important;
+  }
+  #olark-wrapper .olark-end-chat-button:hover {
+    background-color: #d15415 !important;
+  }
+  #olark-wrapper #olark-container .olark-visitor-message:not(.olark-message-trans-bg) {
+    background-color: rgba(234, 110, 48, 0.25) !important;
+  }
+  #olark-wrapper #olark-container .olark-form-send-button {
+    background-color: #EA6E30 !important;
+    color: #ffffff !important;
+  }
+  #olark-wrapper #olark-container .olark-feedback-form-button {
+    background-color: #EA6E30 !important;
+    color: #ffffff !important;
+  }
+  #olark-wrapper #olark-container .olark-restart-button {
+    background-color: #EA6E30 !important;
+    color: #ffffff !important;
+  }
+  #olark-wrapper #olark-container .olark-branding-panel .olark-branding-cancel-button {
+    background-color: #EA6E30 !important;
+    border: none !important;
+    color: #ffffff !important;
+  }
+  #olark-wrapper #olark-container .olark-branding-panel .olark-branding-go-button {
+    border: none !important;
+    background: rgba(234, 110, 48, 0.35) !important;
+  }
+  #olark-wrapper #olark-container .olark-send-transcript-container .olark-send-transcript-form.olark-inline-form-valid .olark-form-input-container {
+    border-color: #EA6E30 !important;
+  }
+  #olark-wrapper #olark-container .olark-send-transcript-container .olark-send-transcript-form.olark-inline-form-valid .olark-send-icon {
+    fill: #EA6E30 !important;
+  }
+  #olark-wrapper #olark-container .olark-visitor-message:not(.olark-message-has-border) {
+    border: none !important;
+  }
+  #olark-wrapper .olark-end-chat-flag {
+    fill: #EA6E30 !important;
+  }
+  #olark-wrapper #olark-container .olark-form-confirmation-icon .olark-launch-button-icon {
+    fill: #EA6E30 !important;
+  }
+  #olark-wrapper #olark-container .olark-form-input:focus {
+    border-color: #EA6E30 !important;
+  }
+  #olark-wrapper #olark-container .olark-form-message-input:focus {
+    border-color: #EA6E30 !important;
+  }
+}
