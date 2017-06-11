@@ -1,10 +1,4 @@
 import React from 'react'
-import MuncheryHero from '../../components/Munchery/MuncheryHero'
-import MuncheryHiw from '../../components/Munchery/MuncheryHiw'
-import MuncheryMissionHero from '../../components/Munchery/MuncheryMissionHero'
-import MuncheryPillars from '../../components/Munchery/MuncheryPillars'
-import MuncheryManifesto from '../../components/Munchery/MuncheryManifesto'
-import MuncheryVillain from '../../components/Munchery/MuncheryVillain'
 import MuncheryFooter from '../../components/Munchery/MuncheryFooter'
 import MuncheryHeader from '../../components/Munchery/MuncheryHeader'
 import './MainLayout.scss'
@@ -14,7 +8,6 @@ class MainLayout extends React.Component {
   constructor(props) {
     super(props)
   }
-
 
   render() {
     return (
@@ -122,10 +115,6 @@ class MainLayout extends React.Component {
         </div>
         <div className="dialog-mask modal clickable"></div>
 
-
-
-
-
         <table className="fatal-error">
           <tbody>
           <tr>
@@ -145,23 +134,8 @@ class MainLayout extends React.Component {
 
           <div className="post-header">
 
-            <MuncheryHero></MuncheryHero>
-            {/*<!-- .f-strata .hero -->*/}
+            {this.props.children}
 
-            <MuncheryHiw></MuncheryHiw>
-            {/*<!-- .f-strata .hiw -->*/}
-
-            <MuncheryMissionHero></MuncheryMissionHero>
-            {/*<!-- .f-strata .mission-hero -->*/}
-
-            <MuncheryPillars></MuncheryPillars>
-            {/*<!-- .f-strata pillars -->*/}
-
-            <MuncheryManifesto></MuncheryManifesto>
-            {/*<!-- .f-strata .manifesto -->*/}
-
-            <MuncheryVillain></MuncheryVillain>
-            {/*<!-- .f-strata .villain -->*/}
           </div>
 
           <MuncheryFooter></MuncheryFooter>

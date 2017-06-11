@@ -2,7 +2,7 @@
 import CoreLayout from '../layouts/CoreLayout'
 import CommonLayout from '../layouts/CommonLayout'
 import MainLayout from '../layouts/MainLayout'
-import Home from './Home/index'
+import HomeRoute from './Home/index'
 import CounterRoute from './Counter/index'
 import MenuRoute from './MenuPage/index'
 
@@ -14,9 +14,9 @@ export const createRoutes = (store) => {
     {
       path        : '/',
       component   : MainLayout,
-      indexRoute  : Home,
+      indexRoute  : HomeRoute(store),
       childRoutes : [
-        CounterRoute(store)
+        MenuRoute(store)
       ]
     },
     {

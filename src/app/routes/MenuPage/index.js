@@ -26,7 +26,7 @@ export default (store) => {
         cb(null, MenuPage)
 
         /* Webpack named bundle   */
-      }, 'menupage')
+      }, 'MenuPage')
     }
   };
 }
