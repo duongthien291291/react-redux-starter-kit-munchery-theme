@@ -2,9 +2,11 @@
 import CoreLayout from '../layouts/CoreLayout'
 import CommonLayout from '../layouts/CommonLayout'
 import MainLayout from '../layouts/MainLayout'
+import PageLayout from '../layouts/PageLayout'
 import HomeRoute from './Home/index'
 import CounterRoute from './Counter/index'
 import MenuRoute from './MenuPage/index'
+import SignInRoute from './SignIn/index'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -20,9 +22,9 @@ export const createRoutes = (store) => {
       ]
     },
     {
-      path: '/menu',
-      component: CommonLayout,
-      indexRoute: MenuRoute(store)
+      path: '/signin',
+      component: PageLayout,
+      indexRoute: SignInRoute(store)
     },
   ];
 }

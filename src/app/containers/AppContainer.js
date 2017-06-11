@@ -2,6 +2,33 @@ import React, { Component, PropTypes } from 'react'
 import { browserHistory, Router } from 'react-router'
 import { Provider } from 'react-redux'
 
+import Loading from '../components/Loading/Loading'
+import { showLoading, hideLoading } from '../components/Loading/LoadingReducer'
+
+class HelpperWrapper extends React.PureComponent {
+  constructor(props) {
+    super(props); // required
+  }
+
+  componentWillMount() {
+    let store = this.props.store;
+    store.dispatch(showLoading());
+    setTimeout(function(){ store.dispatch(hideLoading()); }, 2000);
+
+  }
+
+  render() {
+    let { browserHistory, routes } = this.props;
+    return (
+      <div>
+        <Router history={browserHistory} children={routes} />
+
+        <Loading />
+      </div>
+    );
+  }
+}
+
 class AppContainer extends Component {
   static propTypes = {
     routes : PropTypes.array.isRequired,
@@ -17,9 +44,7 @@ class AppContainer extends Component {
 
     return (
       <Provider store={store}>
-        <div style={{ height: '100%' }}>
-          <Router history={browserHistory} children={routes} />
-        </div>
+        <HelpperWrapper browserHistory={browserHistory} routes={routes} store={store}></HelpperWrapper>
       </Provider>
     )
   }
