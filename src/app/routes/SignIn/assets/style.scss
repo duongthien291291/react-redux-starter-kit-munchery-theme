@@ -5,4 +5,19 @@
   -o-background-size: cover;
   background-size: cover;
   padding: 155px 0;
+
+  .freezable-body {
+    background-color: transparent;
+  }
+}
+
+.signin-view {
+  background-color: #fff;
+  background-color: hsla(0,0%,100%,.95);
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+
+.signin-view .signin-content {
+  padding: 0 50px;
 }

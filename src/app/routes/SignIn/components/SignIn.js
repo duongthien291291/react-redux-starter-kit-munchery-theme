@@ -17,37 +17,45 @@ class SignIn extends React.Component {
   render() {
     return (
       <div className="signin-form fluid-container">
+        <div className="fluid-container">
+          <div className="row center-x">
+            <div className="signup-stage phone-col-12 tablet-col-12 desktop-col-8">
+              <div className="signin-view">
+                <div className="signin-content">
+                  <h3>Log In To Your Account</h3>
 
-        <h3>Log In To Your Account</h3>
+                  <div className="social-signin">
+                    <div className="auth_provider field">
+                      <Link to='/signin' className='popup facebook-popup facebook button'>
+                        <span>Facebook Log In</span>
+                      </Link>
+                    </div>
 
-        <div className="row center-x">
-          <div className="phone-col-12 tablet-col-8 desktop-col-7 social-signin">
-            <div className="auth_provider field">
-              <Link to='/signin' className='popup facebook-popup facebook button'>
-                <span>Facebook Log In</span>
-              </Link>
+                    <div className="auth_provider field">
+                      <Link to='/signin' className='popup twitter-popup twitter button'>
+                        <span>Twitter Log In</span>
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="email-signin">
+
+                    <div className="divider">
+                      <div className="label">OR</div>
+                    </div>
+
+                    <SignInForm onSubmit={this.handleSubmit} signIn={this.props.signin}/>
+
+                  </div>
+
+                  <div className="signup">Don't have an account? <Link to='/signup'>Sign Up</Link>
+
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div className="auth_provider field">
-              <Link to='/signin' className='popup twitter-popup twitter button'>
-                <span>Twitter Log In</span>
-              </Link>
-            </div>
-          </div>
-
-          <div className="phone-col-12 tablet-col-8 desktop-col-7 email-signin">
-
-            <div className="divider">
-              <div className="label">OR</div>
-            </div>
-
-            <SignInForm onSubmit={this.handleSubmit} signIn={this.props.signin} />
-
           </div>
         </div>
-
-        <div className="signup">Don't have an account? <Link to='/signin' >Sign Up</Link></div>
-
       </div>
     );
   }
