@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import createStore from './store/createStore'
-import AppContainer from './containers/AppContainer'
+import createStore from './app/store/createStore'
+import AppContainer from './app/containers/AppContainer'
+import createAxiosInterceptor from './app/store/AxiosInterceptor'
 
 // ========================================================
 // Store Instantiation
@@ -9,13 +10,18 @@ import AppContainer from './containers/AppContainer'
 const initialState = window.__INITIAL_STATE__
 const store = createStore(initialState)
 
+//get data(userdata, pageinfo) from localstorage when refresh page
+store.dispatch({ type: 'INIT' });
+
+createAxiosInterceptor(store);
+
 // ========================================================
 // Render Setup
 // ========================================================
 const MOUNT_NODE = document.getElementById('root')
 
 let render = () => {
-  const routes = require('./routes/index').default(store)
+  const routes = require('./app/routes/index').default(store)
 
   ReactDOM.render(
     <AppContainer store={store} routes={routes} />,
@@ -45,7 +51,7 @@ if (__DEV__) {
     }
 
     // Setup hot module replacement
-    module.hot.accept('./routes/index', () =>
+    module.hot.accept('./app/routes/index', () =>
       setImmediate(() => {
         ReactDOM.unmountComponentAtNode(MOUNT_NODE)
         render()

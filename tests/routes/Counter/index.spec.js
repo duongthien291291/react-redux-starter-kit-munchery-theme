@@ -1,4 +1,4 @@
-import CounterRoute from 'routes/Counter'
+import CounterRoute from '../../../src/app/routes/Counter'
 
 describe('(Route) Counter', () => {
   let _route
