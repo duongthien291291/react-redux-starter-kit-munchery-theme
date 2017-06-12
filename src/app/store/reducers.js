@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import locationReducer from './location'
 import { reducer as formReducer } from 'redux-form'
 import loadingReducer from '../components/Loading/LoadingReducer'
+import customDatePickerReducer from '../components/CustomDatePicker/CustomDatePickerReducer'
 import appReducer from '../containers/AppReducer'
 
 export const makeRootReducer = (asyncReducers) => {
@@ -9,6 +10,7 @@ export const makeRootReducer = (asyncReducers) => {
     location: locationReducer,
     form: formReducer,
     loading: loadingReducer,
+    customDatePicker: customDatePickerReducer,
     app: appReducer,
     ...asyncReducers
   })

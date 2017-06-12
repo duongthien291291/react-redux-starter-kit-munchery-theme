@@ -2074,7 +2074,7 @@ table.membership-billing td {
   letter-spacing: 0.5px
 }
 
-.menu-filters-dropdown.dropdown .dropdown-menu li[menu-filter] > a, .menu-filters-dropdown.dropdown .dropdown-menu label {
+.menu-filters-dropdown.dropdown .dropdown-menu li.has-filter > a, .menu-filters-dropdown.dropdown .dropdown-menu label {
   font-size: 14px;
   padding-left: 83px;
   height: 100%;

@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import CustomDatePicker from '../../../components/CustomDatePicker/CustomDatePicker'
+import MenuFilter from '../../../components/MenuFilter/MenuFilter'
+import MenuFilterMobile from '../../../components/MenuFilterMobile/MenuFilterMobile'
 
 class MenuPage extends React.Component {
   constructor(props) {
@@ -8,8 +11,8 @@ class MenuPage extends React.Component {
 
   render() {
     return (
-      <div className="menu-view" >
-        <div className="non-details ng-scope" >
+      <div className="menu-view">
+        <div className="non-details ng-scope">
           <div className="sticky-nav-bar" data-auto-show-guider="1"
                data-guider-clock-position="6" data-guider-offset-top="-45">
             <div className="menu-nav ng-scope">
@@ -21,292 +24,11 @@ class MenuPage extends React.Component {
                   </div>
 
                   <div className="menu-nav-center">
-                    <div className="date-picker">
-                      <ul className="date-picker-dates" style={{width: '200%', transform: 'translateX(0%)'}}>
-                        {/*<!-- ngRepeat: date in (menu_pages[current_page].toc_with_closed_dates || menu_pages[0].toc_with_closed_dates) -->*/}
-                        <li
-
-                          className="date-container ng-scope past">
-                          <a href="#//dinner" className="cutoff-date-option" data-index="">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                Su
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Sun
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                4
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li className="date-container ng-scope past">
-                          <a href="#//dinner" className="cutoff-date-option" data-index="">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                Mo
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Mon
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                5
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li className="date-container ng-scope past">
-                          <a href="#//dinner" className="cutoff-date-option" data-index="">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                Tu
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Tue
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                6
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li className="date-container ng-scope past">
-                          <a href="#//dinner" className="cutoff-date-option" data-index="">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                We
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Wed
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                7
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li className="date-container ng-scope past">
-                          <a href="#//dinner" className="cutoff-date-option" data-index="">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                Th
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Thu
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                8
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li className="date-container ng-scope selected">
-                          <a href="#/0/dinner" className="cutoff-date-option" data-index="0">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                Fr
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Fri
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                9
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li className="date-container ng-scope closed">
-                          <a href="#//dinner" className="cutoff-date-option" data-index="">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                Sa
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Closed
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                10
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li className="date-container ng-scope closed">
-                          <a href="#//dinner" className="cutoff-date-option" data-index="">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                Su
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Closed
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                11
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li className="date-container ng-scope">
-                          <a href="#/1/dinner" className="cutoff-date-option" data-index="1">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                Mo
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Mon
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                12
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li className="date-container ng-scope">
-                          <a href="#/2/dinner" className="cutoff-date-option" data-index="2">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                Tu
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Tue
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                13
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li className="date-container ng-scope">
-                          <a href="#/3/dinner" className="cutoff-date-option" data-index="3">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                We
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Wed
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                14
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li className="date-container ng-scope">
-                          <a href="#/4/dinner" className="cutoff-date-option" data-index="4">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                Th
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Thu
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                15
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li className="date-container ng-scope special">
-                          <a href="#/5/dinner" className="cutoff-date-option" data-index="5">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                Fr
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Fri
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                16
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        <li className="date-container ng-scope future">
-                          <a href="#//dinner" className="cutoff-date-option" data-index="">
-                            <div className="date">
-                              <div className="day-of-week mobile ng-binding">
-                                Sa
-                              </div>
-                              <div className="day-of-week desktop ng-binding">
-                                Sat
-                              </div>
-                              <div className="day-of-month ng-binding">
-                                17
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                      </ul>
-                      <div className="week-changer previous-week disabled">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 18" fill="#F27242"
-                             className="dropdown-caret">
-                          <path
-                            d="M16.5 18c-.4 0-.8-.1-1.1-.4l-15-15C-.1 2-.1 1 .4.4 1-.1 2-.1 2.6.4l13.9 13.9L30.4.4c.6-.6 1.5-.6 2.1 0 .6.6.6 1.5 0 2.1l-15 15c-.2.4-.6.5-1 .5z"></path>
-                        </svg>
-
-                      </div>
-                      <div className="week-changer next-week">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 18" fill="#F27242"
-                             className="dropdown-caret">
-                          <path
-                            d="M16.5 18c-.4 0-.8-.1-1.1-.4l-15-15C-.1 2-.1 1 .4.4 1-.1 2-.1 2.6.4l13.9 13.9L30.4.4c.6-.6 1.5-.6 2.1 0 .6.6.6 1.5 0 2.1l-15 15c-.2.4-.6.5-1 .5z"></path>
-                        </svg>
-
-                      </div>
-                    </div>
+                    <CustomDatePicker />
                   </div>
 
-                  <div className="menu-nav-right">
-
-                    <div className="nav-item menu-filters-button"
-                         data-dropdown="#menu-filters-dropdown" data-vertical-offset="1" data-filter-count="0"></div>
-
-                    <div id="menu-filters-dropdown"
-                         className="menu-filters-dropdown dropdown dropdown-relative has-icons dropdown-anchor-right notched-dropdown ng-scope">
-                      <ul className="dropdown-menu dropdown-menu-multiselect">
-                        <div className="dropdown-notch"></div>
-
-                        <li className="tag vegetarian" >
-                          <a href="javascript:void(0);"
-                          >
-                            <div>Vegetarian</div>
-                          </a>
-                        </li>
-                        <li className="tag gluten-free" >
-                          <a href="javascript:void(0);">
-                            <div>Gluten-Free</div>
-                          </a>
-                        </li>
-                        <li className="tag dairy-free" >
-                          <a href="javascript:void(0);">
-                            <div>Dairy-Free</div>
-                          </a>
-                        </li>
-                        <li className="tag nut-free" >
-                          <a href="javascript:void(0);">
-                            <div>Nut-Free</div>
-                          </a>
-                        </li>
-                        <li className="tag vegan" >
-                          <a href="javascript:void(0);">
-                            <div>Vegan</div>
-                          </a>
-                        </li>
-                        <li className="tag egg-free" >
-                          <a href="javascript:void(0);">
-                            <div>Egg-Free</div>
-                          </a>
-                        </li>
-
-                        <li className="footer disabled">
-                          <a className="clear-filters"
-                             href="javascript:void(0);">Clear Filters</a>
-                        </li>
-
-                      </ul>
-                    </div>
-                    {/*<!-- .menu-filters-dropdown -->*/}
-                  </div>
+                  <MenuFilter />
+                  {/*<!-- .menu-filters-dropdown -->*/}
                   {/*<!-- .menu-nav-right -->*/}
                 </div>
               </div>
@@ -315,79 +37,11 @@ class MenuPage extends React.Component {
 
           </div>
 
-          <div className="modal-overlay sameday-menu-status" >
-            <div className="fluid-container">
-              <div className="row center-x">
-                <div className="menu-status-background phone-col-10 tablet-col-8 desktop-col-6 panel">
-                  {/*<!-- ngIf: M.MenuApp.MenuAppController.get_dinner_menu_availability().sameday_status == 'pending_cutoff' -->*/}
-                  <h3 className="ng-binding">Sorry, we missed you today.</h3>
-                  <p className="subtext ng-binding">How about ordering for another day?</p>
-                  <button className="dismiss large orange centered ng-binding">See Tomorrow's Menu</button>
-                  {/*<!-- ngIf: current_meal_service === 'dinner' && M.MenuApp.MenuAppController.get_dinner_menu_availability().sameday_status == 'pending_cutoff' -->*/}
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div className="modal-overlay service-change-warning" >
-            <div className="fluid-container">
-              <div className="row center-x">
-                <div className="phone-col-12 panel has-x">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                       className="close-icon dismiss">
-                    <path d="M1 1l14 14m0-14L1 15" stroke="#79776B" strokeWidth="2" fill="none"
-                          strokeLinecap="round"></path>
-                  </svg>
-
-                  {/*<!-- ngSwitchWhen: sameday -->*/}
-                  {/*<!-- ngSwitchWhen: rte_shipping -->*/}
-                  {/*<!-- ngSwitchWhen: shipping -->*/}
-                  {/*<!-- ngSwitchWhen: waitlist -->*/}
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          {/*<!-- only show for membo-eligible people that do not have a Lunch/Dinner picker -->*/}
-          <div className="modal-overlay rewards-learn-more-modal" >
-            <div className="fluid-container">
-              <div className="row center-x">
-                <div className="phone-col-12 tablet-col-12 desktop-col-8 panel">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                       className="close-icon dismiss">
-                    <path d="M1 1l14 14m0-14L1 15" stroke="#79776B" strokeWidth="2" fill="none"
-                          strokeLinecap="round"></path>
-                  </svg>
-
-                  <h1>About Membership Perks</h1>
-                  <div className="row center-x actions">
-                    <p>
-                      Our Membership Perks program lets you score discounts and freebies
-                      each time you order. The clock resets every month, and you always
-                      start out with a free delivery.
-                    </p>
-
-                    <p className="disclaimer">
-                      *Monthly free delivery begins after conclusion of 30-day FREE trial.
-                      $25 minimum order size. Membership costs only $8.95/month.
-                      Cancel anytime.
-                    </p>
-
-                    <div className="medium orange button dismiss">See the Menu</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div className="paginated-area" >
+          <div className="paginated-area">
             {/*<!-- ngIf: !M.MenuApp.MenuAppController.should_show_cutoff() -->*/}
-            <div  className="ng-scope">
+            <div className="ng-scope">
               <div className="menu-announcement">
-                <div className="current-banner ng-scope"  >
+                <div className="current-banner ng-scope">
 
                   <div className="banners banner-animate-next">
                     <a className="banner banner-204 no-clickthru" href="javascript:void(0);" target="_self"
@@ -400,46 +54,7 @@ class MenuPage extends React.Component {
 
             </div>
 
-
-            <div className="fluid-container ng-scope">
-              <div className="row center-x">
-                <div className="phone-col-12 tablet-col-12">
-
-                  <a className="expand-mobile-filters"
-                     data-filter-count="0" href="javascript:void(0);">
-                  </a>
-                </div>
-                <div className="phone-col-12 tablet-col-12">
-                  <div className="mobile-menu-filters">
-                    <ul>
-                      <li className="tag vegetarian" >
-                        <a href="javascript:void(0);">Vegetarian</a>
-                      </li>
-                      <li className="tag gluten-free" >
-                        <a href="javascript:void(0);">Gluten-Free</a>
-                      </li>
-                      <li className="tag dairy-free" >
-                        <a href="javascript:void(0);">Dairy-Free</a>
-                      </li>
-                      <li className="tag nut-free" >
-                        <a href="javascript:void(0);">Nut-Free</a>
-                      </li>
-                      <li className="tag vegan" >
-                        <a href="javascript:void(0);">Vegan</a>
-                      </li>
-                      <li className="tag egg-free" >
-                        <a href="javascript:void(0);">Egg-Free</a>
-                      </li>
-
-                      <li className="footer disabled">
-                        <a className="clear-filters"
-                           href="javascript:void(0);">Clear Filters</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <MenuFilterMobile/>
             {/*<!-- .mobile-menu-filters-container -->*/}
 
             {/*<!-- ngIf: M.MenuApp.MenuAppController.should_show_cutoff() -->*/}
@@ -453,7 +68,7 @@ class MenuPage extends React.Component {
                 <li className="menu-page ng-scope current"
                     data-filters="" data-page-number="0">
 
-                  <ul className="meal-services"  data-current-meal-service="dinner">
+                  <ul className="meal-services" data-current-meal-service="dinner">
                     {/*<!-- ngRepeat: (meal_service_name, meal_service) in page_data.menu.meal_services -->*/}
                     <li className="meal-service dinner">
 
@@ -469,9 +84,9 @@ class MenuPage extends React.Component {
                         <ul className="menu-items row" data-name="Main Dishes">
 
                           {/*<!-- ngRepeat: item in section.items -->*/}
-                          <li  className="menu-item ng-scope dairyfree eggfree passes-filters"
-                               data-schedule-id="761553"
-                               data-url="thai-grilled-chicken-crunch-salad">
+                          <li className="menu-item ng-scope dairyfree eggfree passes-filters"
+                              data-schedule-id="761553"
+                              data-url="thai-grilled-chicken-crunch-salad">
                             <a className="item-photo-container ng-scope"
                                href="#/0/dinner/thai-grilled-chicken-crunch-salad/info">
 
@@ -491,13 +106,14 @@ class MenuPage extends React.Component {
 
                               <a className="item-name" href="#/0/dinner/thai-grilled-chicken-crunch-salad/info">
                                 <span className="recently-added">NEW</span>
-                                <span className="text ng-binding" >Thai-Grilled Chicken Crunch Salad</span>
+                                <span className="text ng-binding">Thai-Grilled Chicken Crunch Salad</span>
                                 <span className="spicy"></span>
                                 <span className="serves-1"></span>
                               </a>
 
                               <a className="item-description ng-binding"
-                                 href="#/0/dinner/thai-grilled-chicken-crunch-salad/info">This salad is an ideal choice if you're
+                                 href="#/0/dinner/thai-grilled-chicken-crunch-salad/info">This salad is an ideal choice
+                                if you're
                                 looking for a healthy lunch or dinner that is full of flavor. And like the name of
                                 the salad indicates, there's no shortage of crunch. The grilled chicken breast is
                                 served over a bed of shredded carrots, sliced cucumbers, julienned sweet peppers,
@@ -515,12 +131,12 @@ class MenuPage extends React.Component {
 
                               <div className="actions">
                                 {/*<!-- ngIf: item.price -->*/}
-                                <div className="price ng-scope ng-binding" >
+                                <div className="price ng-scope ng-binding">
                                   $12.<sup className="ng-binding">75</sup>
                                 </div>
 
                                 {/*<!-- ngIf: !item.custom_button_text -->*/}
-                                <div className="buttons ng-scope" >
+                                <div className="buttons ng-scope">
                                   <button className="small remove-from-cart"
                                           title="Remove from Cart"
                                           style={{display: 'none'}}><span className="remove-icon"></span></button>
@@ -538,9 +154,9 @@ class MenuPage extends React.Component {
                             </div>
 
                           </li>
-                          <li  className="menu-item ng-scope vegetarian passes-filters featured"
-                               data-schedule-id="761478"
-                               data-url="summer-penne-pesto-1">
+                          <li className="menu-item ng-scope vegetarian passes-filters featured"
+                              data-schedule-id="761478"
+                              data-url="summer-penne-pesto-1">
                             <a className="item-photo-container ng-scope"
                                href="#/0/dinner/summer-penne-pesto-1/info">
 
@@ -560,7 +176,7 @@ class MenuPage extends React.Component {
 
                               <a className="item-name" href="#/0/dinner/summer-penne-pesto-1/info">
                                 <span className="recently-added">NEW</span>
-                                <span className="text ng-binding" >Summer Penne Pesto</span>
+                                <span className="text ng-binding">Summer Penne Pesto</span>
                                 <span className="spicy"></span>
                                 <span className="serves-1"></span>
                               </a>
@@ -612,7 +228,8 @@ class MenuPage extends React.Component {
 
                           </li>
                           <li
-                            className="menu-item ng-scope dairyfree eggfree passes-filters recently-added" data-schedule-id="761613"
+                            className="menu-item ng-scope dairyfree eggfree passes-filters recently-added"
+                            data-schedule-id="761613"
                             data-url="harissa-grilled-chicken-1">
                             <a className="item-photo-container ng-scope"
                                href="#/0/dinner/harissa-grilled-chicken-1/info">
@@ -640,7 +257,8 @@ class MenuPage extends React.Component {
                               </a>
 
                               <a className="item-description ng-binding"
-                                 href="#/0/dinner/harissa-grilled-chicken-1/info">Marinated in a red chili paste and served
+                                 href="#/0/dinner/harissa-grilled-chicken-1/info">Marinated in a red chili paste and
+                                served
                                 over saffron rice, this chicken has the right amount of heat without being
                                 overwhelming. &nbsp;The chicken is coated in a traditional Middle Eastern spice
                                 blend before being grilled over an open flame. Toasted garlic chips give this dish
@@ -665,7 +283,7 @@ class MenuPage extends React.Component {
                                 </div>
 
                                 {/*<!-- ngIf: !item.custom_button_text -->*/}
-                                <div className="buttons ng-scope" >
+                                <div className="buttons ng-scope">
                                   <button className="small remove-from-cart"
                                           title="Remove from Cart"
                                           style={{display: 'none'}}><span className="remove-icon"></span></button>
@@ -684,7 +302,8 @@ class MenuPage extends React.Component {
 
                           </li>
                           <li
-                            className="menu-item ng-scope dairyfree eggfree passes-filters recently-added" data-schedule-id="761583"
+                            className="menu-item ng-scope dairyfree eggfree passes-filters recently-added"
+                            data-schedule-id="761583"
                             data-url="korean-pork-and-barley-bowl">
                             <a className="item-photo-container ng-scope"
                                href="#/0/dinner/korean-pork-and-barley-bowl/info">
@@ -713,7 +332,8 @@ class MenuPage extends React.Component {
                               </a>
 
                               <a className="item-description ng-binding"
-                                 href="#/0/dinner/korean-pork-and-barley-bowl/info">This hearty grain bowl begins with a base
+                                 href="#/0/dinner/korean-pork-and-barley-bowl/info">This hearty grain bowl begins with a
+                                base
                                 of pleasantly chewy barley and an Asian-influenced super-green salad of baby kale,
                                 bok choy, Brussels sprouts, red cabbage, and broccoli. To that we add an ample
                                 portion of tender Korean-style ground pork and a sprinkle of sesame seeds,
@@ -773,7 +393,8 @@ class MenuPage extends React.Component {
 
                           {/*<!-- ngRepeat: item in section.items -->*/}
                           <li
-                            className="menu-item ng-scope glutenfree dairyfree nutfree eggfree passes-filters qty-limited recently-added" data-schedule-id="769369"
+                            className="menu-item ng-scope glutenfree dairyfree nutfree eggfree passes-filters qty-limited recently-added"
+                            data-schedule-id="769369"
                             data-url="tuna-and-avocado-rice-bowl-2">
                             <a className="item-photo-container ng-scope"
                                href="#/0/dinner/tuna-and-avocado-rice-bowl-2/info">
@@ -794,14 +415,15 @@ class MenuPage extends React.Component {
 
                               <a className="item-name" href="#/0/dinner/tuna-and-avocado-rice-bowl-2/info">
                                 <span className="recently-added">NEW</span>
-                                <span className="text ng-binding" >Tuna &amp;
+                                <span className="text ng-binding">Tuna &amp;
                                   Avocado Rice Bowl</span>
                                 <span className="spicy"></span>
                                 <span className="serves-2"></span>
                               </a>
 
                               <a className="item-description ng-binding"
-                                 href="#/0/dinner/tuna-and-avocado-rice-bowl-2/info">Tuna steaks get pan-seared so they’re
+                                 href="#/0/dinner/tuna-and-avocado-rice-bowl-2/info">Tuna steaks get pan-seared so
+                                they’re
                                 still rare and yummy. A lovely topping of ginger-honey-garlic caramelized
                                 scallions gets spooned over the top. It’s served with steamed rice and creamy
                                 avocado wedges. <br/><br/>All you need is basic kitchen equipment (pots/pans,
@@ -823,7 +445,7 @@ class MenuPage extends React.Component {
                                 </div>
 
                                 {/*<!-- ngIf: !item.custom_button_text -->*/}
-                                <div className="buttons ng-scope" >
+                                <div className="buttons ng-scope">
                                   <button className="small remove-from-cart"
                                           title="Remove from Cart"
                                           style={{display: 'none'}}><span className="remove-icon"></span></button>
@@ -864,13 +486,14 @@ class MenuPage extends React.Component {
 
                               <a className="item-name" href="#/0/dinner/lemongrass-pork-banh-mi-5/info">
                                 <span className="recently-added">NEW</span>
-                                <span className="text ng-binding" >Lemongrass Pork Banh Mi</span>
+                                <span className="text ng-binding">Lemongrass Pork Banh Mi</span>
                                 <span className="spicy"></span>
                                 <span className="serves-2"></span>
                               </a>
 
                               <a className="item-description ng-binding"
-                                 href="#/0/dinner/lemongrass-pork-banh-mi-5/info">The banh mi, the most beloved of the Asian
+                                 href="#/0/dinner/lemongrass-pork-banh-mi-5/info">The banh mi, the most beloved of the
+                                Asian
                                 sandwiches, gets stuffed with lemongrass-ground pork for a super yummy outcome. We
                                 give you all the other necessary components—soft yet crusty baguette, cilantro
                                 sprigs, jalapeño, pickled vegetables, and spicy Sriracha mayo—for you to build the
@@ -887,7 +510,7 @@ class MenuPage extends React.Component {
                                 </div>
 
                                 {/*<!-- ngIf: !item.custom_button_text -->*/}
-                                <div className="buttons ng-scope" >
+                                <div className="buttons ng-scope">
                                   <button className="small remove-from-cart"
                                           title="Remove from Cart"
                                           style={{display: 'none'}}><span className="remove-icon"></span></button>
@@ -934,7 +557,8 @@ class MenuPage extends React.Component {
                               </a>
 
                               <a className="item-description ng-binding"
-                                 href="#/0/dinner/sweet-peppers-on-creamy-grits-3/info">Creamy, cheesy grits are the starting
+                                 href="#/0/dinner/sweet-peppers-on-creamy-grits-3/info">Creamy, cheesy grits are the
+                                starting
                                 point to this hearty vegetarian dinner. Sauté a mix of baby peppers with onions to
                                 serve over the soft corn mixture and top with a perfectly cooked, soft-boiled egg.
                                 A few ribbons of fresh basil sprinkled over the top and you’ve got dinner.
@@ -1091,7 +715,7 @@ class MenuPage extends React.Component {
 
                               <a className="item-name" href="#/0/dinner/loaded-baked-potato/info">
                                 <span className="recently-added">NEW</span>
-                                <span className="text ng-binding" >Loaded Baked Potato</span>
+                                <span className="text ng-binding">Loaded Baked Potato</span>
                                 <span className="spicy"></span>
                                 <span className="serves-1"></span>
                               </a>
@@ -1177,12 +801,12 @@ class MenuPage extends React.Component {
 
                               <div className="actions">
                                 {/*<!-- ngIf: item.price -->*/}
-                                <div className="price ng-scope ng-binding" >
+                                <div className="price ng-scope ng-binding">
                                   $3.<sup className="ng-binding">95</sup>
                                 </div>
 
                                 {/*<!-- ngIf: !item.custom_button_text -->*/}
-                                <div className="buttons ng-scope" >
+                                <div className="buttons ng-scope">
                                   <button className="small remove-from-cart"
                                           title="Remove from Cart"
                                           style={{display: 'none'}}><span className="remove-icon"></span></button>

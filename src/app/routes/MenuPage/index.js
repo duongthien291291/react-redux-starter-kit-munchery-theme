@@ -1,9 +1,10 @@
 import { injectReducer } from '../../store/reducers'
+import { getCalendarData } from '../../components/CustomDatePicker/CustomDatePickerReducer'
 
 export default (store) => {
   //check authencation before access page
   const getData = (nextState, transition) => {
-
+    store.dispatch(getCalendarData());
   };
 
   return{
