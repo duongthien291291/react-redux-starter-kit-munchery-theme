@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { IndexLink, Link } from 'react-router'
-import { Field, reduxForm } from 'redux-form'
-import { browserHistory } from 'react-router'
+import React, {Component} from 'react';
+import {IndexLink, Link} from 'react-router'
+import {Field, reduxForm} from 'redux-form'
+import {browserHistory} from 'react-router'
 import './SignInForm.scss'
 
 const validate = values => {
@@ -45,37 +45,42 @@ class SignInForm extends Component {
   //  </fieldset>
   //);
 
-  renderField = ({ input, label, type, placeholder, meta: { touched, error, warning, pristine } }) => (
-    <fieldset className="form-group">
-      <label>{label} : <span className="noempaty">*</span></label>
-      <input {...input} type={type} className="form-control"
-                        placeholder={placeholder}/>
-      {touched && ((error && <label className="error">{error}</label>) || (warning &&
-      <span className='text-warning'>{warning}</span>))}
+  renderField = ({input, type, placeholder, meta: {touched, error, warning, pristine}}) => (
+    <fieldset className="field">
+      <input {...input} type={type} placeholder={placeholder}/>
+      {touched && ((error && <div className="error">{error}</div>) || (warning &&
+      <div className="warning">{warning}</div>))}
     </fieldset>
   );
 
   //redux form
   render() {
-    const { handleSubmit, signIn, pristine, reset, submitting } = this.props;
+    const {handleSubmit, signIn, pristine, reset, submitting} = this.props;
     let signInFailedMessage = !pristine && signIn.signInErrorMessage ? (
       <label className='error' style={{textAlign: 'center'}}>{signIn.signInErrorMessage}</label>) : '';
     return (
-      <form onSubmit={handleSubmit}>
+      <form className="new_user ng-pristine ng-valid" onSubmit={handleSubmit}>
 
-        <Field name="userName" type="email" component={this.renderField} label="Username/Email"
-               placeholder="Enter username or email address"/>
+        <Field name="userName" type="email" component={this.renderField} placeholder="Your Email"/>
 
-        <Field name="password" type="password" component={this.renderField} label="Password"
-               placeholder="Enter your password"/>
+        <Field name="password" type="password" component={this.renderField} placeholder="Password"/>
 
-        <div>{signInFailedMessage}</div>
-        <div className="form-group">
-          <button type="submit" className="btn btn-primary" disabled={signIn.isRunning}>Login now</button>
-          <Link to='/signup' className='pull-right text-primary'>Register</Link>
+
+        <div className="forgot-password-mobile">
+          <Link to='/forgotpassword' className='secondary'>Forgot your password?</Link>
         </div>
 
-        <Link to='/forgotpassword' className='pull-right text-primary'>Forgot your password?</Link>
+        <div>{signInFailedMessage}</div>
+
+        <div className="field">
+          <input type="submit" name="commit" value="Log In" className="orange button" disabled={signIn.isRunning}/>
+        </div>
+
+        <div className="forgot-password">
+          <Link to='/forgotpassword' className='secondary'>Forgot your password?</Link>
+        </div>
+
+        <input value="true" type="hidden" name="user[remember_me]" id="user_remember_me"/>
       </form>
     );
   }

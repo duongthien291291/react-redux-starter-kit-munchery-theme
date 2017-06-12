@@ -4,8 +4,12 @@ import '../../styles/core.scss'
 import './PageLayout.scss'
 
 export const PageLayout = ({ children }) => (
-  <div className="">
-    {children}
+  <div className="freezable-body">
+    <div className="post-header">
+
+      {children}
+
+    </div>
   </div>
 )
 

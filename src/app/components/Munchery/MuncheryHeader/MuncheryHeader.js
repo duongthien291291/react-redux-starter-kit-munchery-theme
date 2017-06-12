@@ -1,4 +1,5 @@
 import React from 'react'
+import {IndexLink, Link} from 'react-router'
 import './MuncheryHeader.scss'
 
 class MuncheryHeader extends React.Component {
@@ -14,7 +15,9 @@ class MuncheryHeader extends React.Component {
           <section>
 
             <ul className="secondary">
-              <li><a href="/users/login/">Log In</a></li>
+              <li>
+                <Link to='/signin'>Log In</Link>
+              </li>
             </ul>
 
 
@@ -43,7 +46,9 @@ class MuncheryHeader extends React.Component {
                 <ul className="rag-right nav-links">
 
 
-                  <li><a href="" id="login_button" className="show-signin-form" data-return-url="">Log In</a></li>
+                  <li>
+                    <Link to='/signin' className="show-signin-form">Log In</Link>
+                  </li>
                 </ul>
               </div>
             </div>

@@ -10,6 +10,10 @@ export default (store) => {
   };
 
   const onLeave = (nextState, transition) => {
+    let body = document.body;
+    if (body.className.indexOf('logreg-wrapp') !== -1) {
+      body.className = body.className.replace(' logreg-wrapp', '');
+    }
     //reset state
     store.dispatch(signInResetState());
   };

@@ -43,10 +43,10 @@ export function signIn(user) {
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function getUserInfo(data) {
+export function getUserInfo(userInfo) {
   return {
     type: GET_USER_INFO,
-    data
+    userInfo
   }
 }
 export function signInSuccess(user) {
@@ -107,7 +107,7 @@ const ACTION_HANDLERS = {
   [GET_USER_INFO]: function (state, action) {
     return {
       ...state,
-      userInfo:userInfo
+      userInfo: action.userInfo
     }
   }
 }

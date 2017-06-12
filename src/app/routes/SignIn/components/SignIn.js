@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {IndexLink, Link} from 'react-router'
 import SignInForm from './SignInForm'
 import '../assets/style.scss'
 
@@ -15,52 +16,38 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-              <div className="login-wrapp">
-                <div className="logreg-contain">
-                  <div className="custom-tabs" data-effect-in="flipInX">
-                    <ul className="nav nav-tabs" role="tablist">
-                      <li className="active">
-                        <a href="#tab1" data-toggle="tab">Login</a>
-                      </li>
-                      <li>
-                        <a href="#tab2" data-toggle="tab">Use social media</a>
-                      </li>
-                    </ul>
+      <div className="signin-form fluid-container">
 
-                    {/*<!-- Tab panes -->*/}
-                    <div className="tab-content">
-                      <div className="tab-pane fade in active" id="tab1">
+        <h3>Log In To Your Account</h3>
 
-                        <SignInForm onSubmit={this.handleSubmit} signIn={this.props.signin} />
+        <div className="row center-x">
+          <div className="phone-col-12 tablet-col-8 desktop-col-7 social-signin">
+            <div className="auth_provider field">
+              <Link to='/signin' className='popup facebook-popup facebook button'>
+                <span>Facebook Log In</span>
+              </Link>
+            </div>
 
-                      </div>
-                      <div className="tab-pane fade" id="tab2">
-                        <div className="row">
-                          <div className="col-md-12 text-center">
-                            <h5>Login with social media account</h5>
-
-                            <p><a href="#" className="btn btn-facebook btn-icon btn-block">Signup with facebook <i
-                              className="fa fa-facebook"></i></a></p>
-
-                            <p><a href="#" className="btn btn-twitter btn-icon btn-block">Signup with twitter <i
-                              className="fa fa-twitter"></i></a></p>
-
-                            <p><a href="#" className="btn btn-instagram btn-icon btn-block">Signup with instagram <i
-                              className="fa fa-instagram"></i></a></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="auth_provider field">
+              <Link to='/signin' className='popup twitter-popup twitter button'>
+                <span>Twitter Log In</span>
+              </Link>
             </div>
           </div>
+
+          <div className="phone-col-12 tablet-col-8 desktop-col-7 email-signin">
+
+            <div className="divider">
+              <div className="label">OR</div>
+            </div>
+
+            <SignInForm onSubmit={this.handleSubmit} signIn={this.props.signin} />
+
+          </div>
         </div>
+
+        <div className="signup">Don't have an account? <Link to='/signin' >Sign Up</Link></div>
+
       </div>
     );
   }
