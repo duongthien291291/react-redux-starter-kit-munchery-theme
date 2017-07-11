@@ -5,10 +5,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const project = require('./project.config')
 const debug = require('debug')('app:config:webpack')
+const path = require("path")
 
 const __DEV__ = project.globals.__DEV__
 const __PROD__ = project.globals.__PROD__
 const __TEST__ = project.globals.__TEST__
+
+const lib_dir = path.join(__dirname, '..', 'library'),
+  node_dir = path.join(__dirname, '..', 'node_modules'),
+  bower_dir = path.join(__dirname, '..', 'bower_components'),
+  plugins_dir = path.join(__dirname, '..', 'public/plugins');
 
 debug('Creating configuration.')
 const webpackConfig = {
@@ -17,7 +23,16 @@ const webpackConfig = {
   devtool : project.compiler_devtool,
   resolve : {
     root       : project.paths.client(),
-    extensions : ['', '.js', '.jsx', '.json']
+    extensions : ['', '.js', '.jsx', '.json'],
+    alias: {
+      jquery: lib_dir + '/jquery/dist/jquery.min.js',
+
+      'three': lib_dir + '/three.js',
+      'tween': lib_dir + '/tween.js',
+      'TrackballControls': lib_dir + '/TrackballControls.js',
+      'CSS3DRenderer': lib_dir + '/CSS3DRenderer.js',
+      'bxslideshow': lib_dir + '/bxslider/jquery.bxslider.js',
+    },
   },
   module : {}
 }
@@ -55,6 +70,14 @@ webpackConfig.externals['react/addons'] = true
 // ------------------------------------
 webpackConfig.plugins = [
   new webpack.DefinePlugin(project.globals),
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    'window.jQuery': 'jquery',
+    'window.$': 'jquery',
+    THREE: 'three',
+    TWEEN: 'tween'
+  }),
   new HtmlWebpackPlugin({
     template : project.paths.client('index.html'),
     hash     : false,
@@ -145,6 +168,7 @@ webpackConfig.module.loaders.push({
     'sass?sourceMap'
   ]
 })
+
 webpackConfig.module.loaders.push({
   test    : /\.css$/,
   exclude : null,

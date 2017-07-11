@@ -24,7 +24,7 @@ const config = {
   // ----------------------------------
   // Server Configuration
   // ----------------------------------
-  server_host : ip.address(), // use string 'localhost' to prevent exposure on local network
+  server_host : process.env.NODE_ENV !== 'development' ? ip.address() : 'localhost', // use string 'localhost' to prevent exposure on local network
   server_port : process.env.PORT || 3000,
 
   // ----------------------------------
@@ -50,6 +50,14 @@ const config = {
     'react-redux',
     'react-router',
     'redux'
+  ],
+
+  compiler_theme_vendors : [
+    'jquery',
+    'three',
+    'tween',
+    'TrackballControls',
+    'CSS3DRenderer',
   ],
 
   // ----------------------------------

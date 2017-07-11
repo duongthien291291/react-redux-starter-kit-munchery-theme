@@ -1,55 +1,50 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
-export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC'
+export const UPDATE_USER_INFO = 'UPDATE_USER_INFO'
+export const UPDATE_QUESTION_INFO = 'UPDATE_QUESTION_INFO'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function increment (value = 1) {
+export function updateUserInfo (user) {
   return {
-    type    : COUNTER_INCREMENT,
-    payload : value
+    type    : UPDATE_USER_INFO,
+    user
   }
 }
 
-/*  This is a thunk, meaning it is a function that immediately
- returns a function for lazy evaluation. It is incredibly useful for
- creating async actions, especially when combined with redux-thunk! */
-
-export const doubleAsync = () => {
-  return (dispatch, getState) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        dispatch({
-          type    : COUNTER_DOUBLE_ASYNC,
-          payload : getState().counter
-        })
-        resolve()
-      }, 200)
-    })
+// ------------------------------------
+// Actions
+// ------------------------------------
+export function updateQuestionInfo (question) {
+  return {
+    type    : UPDATE_QUESTION_INFO,
+    question
   }
 }
 
 export const actions = {
-  increment,
-  doubleAsync
+  updateUserInfo,
+  updateQuestionInfo
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  //[COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-  [COUNTER_INCREMENT]    : function(state, action) { console.log(state, action); return state + action.payload;} ,
-  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2
+  [UPDATE_USER_INFO]: (state, action) => ({...state, user: action.user}) ,
+  [UPDATE_QUESTION_INFO]: (state, action) => ({...state, question: action.question})
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
+const initialState = {
+  user: {},
+  question: {}
+}
+
 export default function counterReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
