@@ -3,6 +3,7 @@ import locationReducer from './location'
 import { reducer as formReducer } from 'redux-form'
 import userInfoReducer from '../components/UserInfo/userInfoReducer'
 import homeReducer from '../routes/Home/modules/HomeReducer'
+import appReducer from '../containers/AppReducer'
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
@@ -10,6 +11,7 @@ export const makeRootReducer = (asyncReducers) => {
     form: formReducer,
     userInfo: userInfoReducer,
     home: homeReducer,
+    app: appReducer,
     ...asyncReducers
   })
 }

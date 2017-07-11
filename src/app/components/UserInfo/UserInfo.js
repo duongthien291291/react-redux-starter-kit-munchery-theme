@@ -15,7 +15,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-    user : state.home.user
+    user : state.app.user
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserInfo)

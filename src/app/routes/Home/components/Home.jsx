@@ -117,19 +117,19 @@ class Home extends React.Component {
       controls.addEventListener('change', render);
       var button = document.getElementById('table');
       button.addEventListener('click', function (event) {
-        transform(targets.table, 2000);
+        transform(targets.table, 1500);
       }, false);
       var button = document.getElementById('sphere');
       button.addEventListener('click', function (event) {
-        transform(targets.sphere, 2000);
+        transform(targets.sphere, 1500);
       }, false);
       var button = document.getElementById('helix');
       button.addEventListener('click', function (event) {
-        transform(targets.helix, 2000);
+        transform(targets.helix, 1500);
       }, false);
       var button = document.getElementById('grid');
       button.addEventListener('click', function (event) {
-        transform(targets.grid, 2000);
+        transform(targets.grid, 1500);
       }, false);
       var button = document.getElementById('back');
       button.addEventListener('click', function (event) {
@@ -141,7 +141,7 @@ class Home extends React.Component {
         });
         transform(targets.table, 1000);
       }, false);
-      transform(targets.table, 2000);
+      transform(targets.table, 1500);
       //
       window.addEventListener('resize', onWindowResize, false);
     }
@@ -206,9 +206,9 @@ class Home extends React.Component {
         elementTemp.scale.set(5, 5, 5);
         targets.table.forEach(function (obj, i) {
           if (i != index) {
-            obj.position.x = randomNumber(-2, 2, [0]) * 10000;
-            obj.position.y = randomNumber(-2, 2, [0]) * 10000;
-            obj.position.y = randomNumber(-2, 2, [0]) * 10000;
+            obj.position.x = self.randomNumber(-2, 2, [0]) * 10000;
+            obj.position.y = self.randomNumber(-2, 2, [0]) * 10000;
+            obj.position.y = self.randomNumber(-2, 2, [0]) * 10000;
           }
         });
 

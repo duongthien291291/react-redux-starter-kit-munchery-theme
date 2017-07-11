@@ -1,14 +1,18 @@
 import { injectReducer } from '../../store/reducers'
+import { updateQuestionInfo } from '../QuestInfo/modules/QuestInfoReducer'
 
 export default (store) => {
   const onEnter = (nextState, transition) => {
+    store.dispatch(updateQuestionInfo(nextState.params.id));
+    const state = store.getState();
+    if (!state.app.user.id) { transition('/') };
   };
   const onLeave = (nextState, transition) => {
   };
 
 
   return {
-    path : 'quest-info',
+    path : 'quest-info/:id',
     onEnter: onEnter,
     onLeave: onLeave,
     /*  Async getComponent is only invoked when route matches   */

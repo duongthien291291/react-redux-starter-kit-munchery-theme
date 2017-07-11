@@ -15,9 +15,9 @@ export default class CheckboxGroup extends Component {
   field = ({input, meta, options}) => {
 
     const {name, onChange} = input;
-    const {touched, error} = meta;
+    const {touched, error, warning} = meta;
     const inputValue = input.value;
-    const checkboxes = options.map(({label, value}, index) => {
+    const checkboxes = options.map(({label, value, answers}, index) => {
 
       const handleChange = (event) => {
 
@@ -30,13 +30,26 @@ export default class CheckboxGroup extends Component {
         }
         return onChange(arr);
       };
+
       const checked = inputValue ? inputValue.includes(value) : false;
+      let style = {};
+
+      if(touched && warning){
+        if(answers.includes(value))
+          style = { 'color': 'green' };
+        if((!answers.includes(value) && checked))
+          style = { 'color': 'red' };
+      }
+
       return (
-        <div>
-          <label key={`checkbox-${index}`}>
+        <div className="col-sm-4">
+          <label key={`checkbox-${index}`} style={style}>
             <input type="checkbox" name={`${name}[${index}]`} value={value} checked={checked} onChange={handleChange}/>
             <span>{label}</span>
-            <Barcode value={'id' + value} />
+            <Barcode value={'id' + value}
+                     width={1}
+                     height={50}
+                     displayValue={false} />
           </label>
         </div>
       );

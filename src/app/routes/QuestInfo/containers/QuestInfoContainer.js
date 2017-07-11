@@ -18,7 +18,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-  question : state.home.question
+  question : state.questInfo.question
 })
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:

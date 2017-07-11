@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
-import { updateUserInfo } from '../modules/HomeReducer'
+import { updateUserDataForAppState } from '../../../containers/AppReducer'
 
 import Home from '../components/Home'
 
 const mapDispatchToProps = {
-  updateUserInfo : (user) => updateUserInfo(user),
+  updateUserInfo : (user) => updateUserDataForAppState(user),
 }
 
 const mapStateToProps = (state) => ({

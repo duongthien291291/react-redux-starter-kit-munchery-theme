@@ -31,6 +31,7 @@ export default class RadioGroup extends Component {
         }
         return onChange(arr);
       };
+
       const checked = inputValue ? inputValue.includes(value) : false;
       let style = {};
       if(touched && warning){
@@ -41,12 +42,17 @@ export default class RadioGroup extends Component {
       }
 
       return (
-        <div>
+        <div className="col-sm-6">
           <label key={`checkbox-${index}`} style={style}>
             <input type="checkbox" name={`${name}[${index}]`} value={value} checked={checked} onChange={handleChange}/>
             <span>{label}</span>
           </label>
-          <Barcode value={'id' + value} />
+          <div>
+            <Barcode value={'id' + value}
+                     width={1}
+                     height={50}
+                     displayValue={false} />
+          </div>
         </div>
       );
     });

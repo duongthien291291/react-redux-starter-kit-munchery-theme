@@ -1,7 +1,6 @@
 import React from 'react'
 import {browserHistory} from 'react-router'
 import QuestForm from './QuestForm'
-import TestForm from './TestForm'
 import '../assets/style.scss'
 
 
@@ -21,9 +20,8 @@ class QuestInfo extends React.Component {
     return (
       <div>
         <h1>This is quest info page</h1>
-        <h2>{this.props.question.description}</h2>
+        <h3 className="text-left">{this.props.question.description}</h3>
         <QuestForm onSubmit={this.handleSubmitAnswer} { ...this.props }></QuestForm>
-        {/*<TestForm onSubmit={this.handleSubmitAnswer} { ...this.props }></TestForm>*/}
       </div>
     )
   }

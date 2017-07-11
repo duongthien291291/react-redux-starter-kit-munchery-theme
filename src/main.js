@@ -9,6 +9,9 @@ import AppContainer from './app/containers/AppContainer'
 const initialState = window.__INITIAL_STATE__
 const store = createStore(initialState)
 
+//get data(userdata, pageinfo) from localstorage when refresh page
+store.dispatch({ type: 'INIT' });
+
 // ========================================================
 // Render Setup
 // ========================================================

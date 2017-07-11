@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Field, reduxForm, change as changeFieldValue, formValueSelector, reset} from 'redux-form'
+import {Field, reduxForm, change as changeFieldValue, formValueSelector} from 'redux-form'
 import CheckboxGroup from './CheckboxGroup'
 import RadioGroup from './RadioGroup'
 var Barcode = require('react-barcode');
@@ -33,6 +33,10 @@ const warn = values => {
 };
 
 class QuestForm extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {width: 1, height: 50, displayValue: false};
+  }
 
   componentDidMount() {
     let self = this;
@@ -88,12 +92,11 @@ class QuestForm extends Component {
         }
       }
       else {
-
         if (strs == 'submit') {
           const submitter = props.handleSubmit(props.onSubmit)
           submitter() // submits
         } else if (strs == 'clear') {
-          props.dispatch(reset('QuestForm'));
+          props.reset();
         } else if (strs == 'back') {
           browserHistory.push('/game');
         }
@@ -103,7 +106,8 @@ class QuestForm extends Component {
   }
 
   back() {
-    this.props.dispatch(changeFieldValue('QuestForm', 'answer', [2]));
+    browserHistory.push('/game');
+    // this.props.dispatch(changeFieldValue('QuestForm', 'answer', [1, 2]));
   }
 
   renderField = ({input, label, type, placeholder, required, allowEdit, meta: {touched, error, warning, pristine}}) => (
@@ -123,34 +127,65 @@ class QuestForm extends Component {
             acceptCharset="UTF-8" onSubmit={handleSubmit}>
 
         <div className="form-body">
+          <div className="row">
+            {
+              this.props.question.answers.length == 1 ?
+                (
+                  <RadioGroup name="answer"
+                              options={this.props.question.chooses.map(obj => ({
+                                label: obj.description,
+                                value: obj.id,
+                                answers: this.props.question.answers
+                              }))}/>
+                )
+                :
+                (
+                  <CheckboxGroup name="answer"
+                                 options={this.props.question.chooses.map(obj => ({
+                                   label: obj.description,
+                                   value: obj.id,
+                                   answers: this.props.question.answers
+                                 }))}/>
+                )
+            }
+          </div>
 
-          {
-            this.props.question.answers.length == 1 ?
-              (
-                <RadioGroup name="answer"
-                            options={this.props.question.chooses.map(obj => ({
-                              label: obj.description,
-                              value: obj.id,
-                              answers: this.props.question.answers
-                            }))}/>
-              )
-              :
-              (
-                <CheckboxGroup name="answer"
-                               options={this.props.question.chooses.map(obj => ({
-                                 label: obj.description,
-                                 value: obj.id
-                               }))}/>
-              )
-          }
+          <div className="form-buttons row">
+            <div className="col-sm-4 text-center">
+              <div>
+                <button type="submit" disabled={submitting}>Submit</button>
+              </div>
+              <div>
+                <Barcode value={'submit'}
+                         width={this.state.width}
+                         height={this.state.height}
+                         displayValue={this.state.displayValue}/>
+              </div>
+            </div>
 
-          <div className="form-buttons">
-            <button type="submit" disabled={submitting}>Submit</button>
-            <Barcode value={'submit'}/>
-            <button type="button" disabled={submitting} onClick={reset}>Clear Values</button>
-            <Barcode value={'clear'}/>
-            <button type="button" onClick={() => this.back()}>Back</button>
-            <Barcode value={'back'}/>
+            <div className="col-sm-4 text-center">
+              <div>
+                <button type="button" disabled={submitting} onClick={reset}>Clear Values</button>
+              </div>
+              <div>
+                <Barcode value={'clear'}
+                         width={this.state.width}
+                         height={this.state.height}
+                         displayValue={this.state.displayValue}/>
+              </div>
+            </div>
+
+            <div className="col-sm-4 text-center">
+              <div>
+                <button type="button" onClick={() => this.back()}>Back</button>
+              </div>
+              <div>
+                <Barcode value={'back'}
+                         width={this.state.width}
+                         height={this.state.height}
+                         displayValue={this.state.displayValue}/>
+              </div>
+            </div>
           </div>
         </div>
       </form>
@@ -176,7 +211,8 @@ QuestForm = connect(
   (state, props) => {
     return {
       initialValues: {
-        chooseAnswers: state.form.QuestForm ? state.form.QuestForm.values.answer : []
+        chooseAnswers: state.form.QuestForm ? state.form.QuestForm.values.answer : [],
+        // chooseAnswers: selector(state, 'answer')
         // answer: props.chooseAnswers
       } // pull initial values from account reducer
     };

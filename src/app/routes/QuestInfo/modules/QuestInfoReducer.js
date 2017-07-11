@@ -1,8 +1,11 @@
+import data from '../../../../../data.json'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
 export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
 export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC'
+export const UPDATE_QUESTION_INFO = 'UPDATE_QUESTION_INFO'
 
 // ------------------------------------
 // Actions
@@ -32,9 +35,21 @@ export const doubleAsync = () => {
   }
 }
 
+// ------------------------------------
+// Actions
+// ------------------------------------
+export function updateQuestionInfo (questionId) {
+  let question = data.questions.find((obj) => (obj.id == questionId));
+  return {
+    type    : UPDATE_QUESTION_INFO,
+    question
+  }
+}
+
 export const actions = {
   increment,
-  doubleAsync
+  doubleAsync,
+  updateQuestionInfo
 }
 
 // ------------------------------------
@@ -42,7 +57,8 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2
+  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2,
+  [UPDATE_QUESTION_INFO]: (state, action) => ({...state, question: action.question})
 }
 
 // ------------------------------------
