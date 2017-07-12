@@ -51,7 +51,8 @@ export default class RadioGroup extends Component {
             <Barcode value={'id' + value}
                      width={1}
                      height={50}
-                     displayValue={false} />
+                     displayValue={false}
+                     background='#ecf0f5'/>
           </div>
         </div>
       );

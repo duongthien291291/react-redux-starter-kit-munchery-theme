@@ -6,6 +6,7 @@ import 'three'
 import 'tween'
 import 'TrackballControls'
 import 'CSS3DRenderer'
+var Barcode = require('react-barcode');
 import data from '../../../../../data.json'
 
 let strs = '';
@@ -28,7 +29,7 @@ class Quest extends React.Component {
     animate();
     function init() {
       camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 5000);
-      camera.position.z = 1500;
+      camera.position.z = 800;
       scene = new THREE.Scene();
       // table
       for (var i = 0; i < table.length; i += 1) {
@@ -60,8 +61,8 @@ class Quest extends React.Component {
         objects.push(object);
         //
         var object = new THREE.Object3D();
-        object.position.x = ( table[i].col * 140 ) - 1330;
-        object.position.y = -( table[i].row * 180 ) + 990;
+        object.position.x = ( table[i].col * 140 ) - 660;
+        object.position.y = -( table[i].row * 180 ) + 660;
         targets.table.push(object);
         tableTemp.push($.extend(true, {}, object.position));
       }
@@ -130,16 +131,16 @@ class Quest extends React.Component {
       button.addEventListener('click', function (event) {
         transform(targets.grid, 1500);
       }, false);
-      var button = document.getElementById('back');
-      button.addEventListener('click', function (event) {
-        targets.table.forEach(function (obj, i) {
-          obj.position.x = tableTemp[i].x;
-          obj.position.y = tableTemp[i].y;
-          obj.position.z = tableTemp[i].z;
-          obj.scale.set(1, 1, 1);
-        });
-        transform(targets.table, 1000);
-      }, false);
+      // var button = document.getElementById('back');
+      // button.addEventListener('click', function (event) {
+      //   targets.table.forEach(function (obj, i) {
+      //     obj.position.x = tableTemp[i].x;
+      //     obj.position.y = tableTemp[i].y;
+      //     obj.position.z = tableTemp[i].z;
+      //     obj.scale.set(1, 1, 1);
+      //   });
+      //   transform(targets.table, 1000);
+      // }, false);
       transform(targets.table, 1500);
       //
       window.addEventListener('resize', onWindowResize, false);
@@ -242,36 +243,42 @@ class Quest extends React.Component {
       strs += e.key;
     }
     else if (strs && keyCode == 13 && timeSpand < 30) {
-      console.log(strs);
+      if (strs.match(/\d+/)) {
+        var num = strs.match(/\d+/)[0];
 
-      var num = strs.match(/\d+/)[0];
-
-      var user = table.find(function (obj) {
-        return obj.id == num;
-      });
-      var index = table.indexOf(user);
-      // self.props.updateQuestion(data.questions[index]);
-      targets.table.forEach(function (obj, i) {
-        obj.position.x = tableTemp[i].x;
-        obj.position.y = tableTemp[i].y;
-        obj.position.z = tableTemp[i].z;
-      });
-      var elementTemp = targets.table[index];
-      elementTemp.position.x = 0;
-      elementTemp.position.y = 0;
-      elementTemp.position.z = 0;
-      elementTemp.scale.set(5, 5, 5);
-      targets.table.forEach(function (obj, i) {
-        if (i != index) {
-          obj.position.x = self.randomNumber(-2, 2, [0]) * 10000;
-          obj.position.y = self.randomNumber(-2, 2, [0]) * 10000;
-          obj.position.y = self.randomNumber(-2, 2, [0]) * 10000;
+        var user = table.find(function (obj) {
+          return obj.id == num;
+        });
+        var index = table.indexOf(user);
+        // self.props.updateQuestion(data.questions[index]);
+        targets.table.forEach(function (obj, i) {
+          obj.position.x = tableTemp[i].x;
+          obj.position.y = tableTemp[i].y;
+          obj.position.z = tableTemp[i].z;
+        });
+        var elementTemp = targets.table[index];
+        elementTemp.position.x = 0;
+        elementTemp.position.y = 0;
+        elementTemp.position.z = 0;
+        elementTemp.scale.set(5, 5, 5);
+        targets.table.forEach(function (obj, i) {
+          if (i != index) {
+            obj.position.x = self.randomNumber(-2, 2, [0]) * 10000;
+            obj.position.y = self.randomNumber(-2, 2, [0]) * 10000;
+            obj.position.y = self.randomNumber(-2, 2, [0]) * 10000;
+          }
+        });
+        transform(targets.table, 1000);
+        setTimeout(function () {
+          browserHistory.push('/game/quest-info/' + data.questions[index].id);
+        }, 1000);
+      }
+      else{
+        if (strs == 'back') {
+          browserHistory.push('/');
         }
-      });
-      transform(targets.table, 1000);
-      setTimeout(function () {
-        browserHistory.push('/game/quest-info/' + data.questions[index].id);
-      }, 1000);
+      }
+
     }
   }
 
@@ -287,6 +294,10 @@ class Quest extends React.Component {
     return randomNumber;
   }
 
+  back() {
+    browserHistory.push('/');
+  }
+
   render() {
 
     return (
@@ -299,7 +310,18 @@ class Quest extends React.Component {
           <button id="sphere">SPHERE</button>
           <button id="helix">HELIX</button>
           <button id="grid">GRID</button>
-          <button id="back">BACK</button>
+          {/*<button id="back">BACK</button>*/}
+        </div>
+
+        <div className="back">
+          <button onClick={() => this.back()}>Back</button>
+          <div className="btn-barcode">
+            <Barcode value={'back'}
+                     width={1}
+                     height={50}
+                     displayValue={false}
+                     background= '#ecf0f5'/>
+          </div>
         </div>
       </div>
     )

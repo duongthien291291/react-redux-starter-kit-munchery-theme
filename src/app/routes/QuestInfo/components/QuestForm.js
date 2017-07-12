@@ -35,7 +35,7 @@ const warn = values => {
 class QuestForm extends Component {
   constructor(props) {
     super(props)
-    this.state = {width: 1, height: 50, displayValue: false};
+    this.state = {width: 1, height: 50, displayValue: false, background: '#ecf0f5'};
   }
 
   componentDidMount() {
@@ -155,11 +155,12 @@ class QuestForm extends Component {
               <div>
                 <button type="submit" disabled={submitting}>Submit</button>
               </div>
-              <div>
+              <div className="btn-barcode">
                 <Barcode value={'submit'}
                          width={this.state.width}
                          height={this.state.height}
-                         displayValue={this.state.displayValue}/>
+                         displayValue={this.state.displayValue}
+                         background={this.state.background}/>
               </div>
             </div>
 
@@ -167,11 +168,12 @@ class QuestForm extends Component {
               <div>
                 <button type="button" disabled={submitting} onClick={reset}>Clear Values</button>
               </div>
-              <div>
+              <div className="btn-barcode">
                 <Barcode value={'clear'}
                          width={this.state.width}
                          height={this.state.height}
-                         displayValue={this.state.displayValue}/>
+                         displayValue={this.state.displayValue}
+                         background={this.state.background}/>
               </div>
             </div>
 
@@ -179,11 +181,12 @@ class QuestForm extends Component {
               <div>
                 <button type="button" onClick={() => this.back()}>Back</button>
               </div>
-              <div>
+              <div className="btn-barcode">
                 <Barcode value={'back'}
                          width={this.state.width}
                          height={this.state.height}
-                         displayValue={this.state.displayValue}/>
+                         displayValue={this.state.displayValue}
+                         background={this.state.background}/>
               </div>
             </div>
           </div>
@@ -210,9 +213,9 @@ const selector = formValueSelector('QuestForm');
 QuestForm = connect(
   (state, props) => {
     return {
+      chooseAnswers: selector(state, 'answer'),
       initialValues: {
-        chooseAnswers: state.form.QuestForm ? state.form.QuestForm.values.answer : [],
-        // chooseAnswers: selector(state, 'answer')
+        // chooseAnswers: state.form.QuestForm ? state.form.QuestForm.values.answer : [],
         // answer: props.chooseAnswers
       } // pull initial values from account reducer
     };

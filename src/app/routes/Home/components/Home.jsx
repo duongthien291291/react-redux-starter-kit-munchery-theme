@@ -61,8 +61,8 @@ class Home extends React.Component {
         objects.push(object);
         //
         var object = new THREE.Object3D();
-        object.position.x = ( table[i].col * 140 ) - 500;
-        object.position.y = -( table[i].row * 180 ) + 600;
+        object.position.x = ( table[i].col * 140 ) - 330;
+        object.position.y = -( table[i].row * 180 ) + 660;
         targets.table.push(object);
         tableTemp.push($.extend(true, {}, object.position));
       }

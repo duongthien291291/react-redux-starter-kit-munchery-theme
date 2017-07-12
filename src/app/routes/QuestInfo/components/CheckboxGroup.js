@@ -34,11 +34,11 @@ export default class CheckboxGroup extends Component {
       const checked = inputValue ? inputValue.includes(value) : false;
       let style = {};
 
-      if(touched && warning){
-        if(answers.includes(value))
-          style = { 'color': 'green' };
-        if((!answers.includes(value) && checked))
-          style = { 'color': 'red' };
+      if (touched && warning) {
+        if (answers.includes(value))
+          style = {'color': 'green'};
+        if ((!answers.includes(value) && checked))
+          style = {'color': 'red'};
       }
 
       return (
@@ -46,10 +46,13 @@ export default class CheckboxGroup extends Component {
           <label key={`checkbox-${index}`} style={style}>
             <input type="checkbox" name={`${name}[${index}]`} value={value} checked={checked} onChange={handleChange}/>
             <span>{label}</span>
-            <Barcode value={'id' + value}
-                     width={1}
-                     height={50}
-                     displayValue={false} />
+            <div>
+              <Barcode value={'id' + value}
+                       width={1}
+                       height={50}
+                       displayValue={false}
+                       background='#ecf0f5'/>
+            </div>
           </label>
         </div>
       );
