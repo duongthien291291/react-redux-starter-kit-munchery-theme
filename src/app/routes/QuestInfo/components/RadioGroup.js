@@ -17,7 +17,6 @@ export default class RadioGroup extends Component {
     const {name, onChange} = input;
     const {touched, error, submitting, warning } = meta;
     const inputValue = input.value;
-
     const checkboxes = options.map(({label, value, answers}, index) => {
 
       const handleChange = (event) => {

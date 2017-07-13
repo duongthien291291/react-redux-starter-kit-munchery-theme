@@ -14,6 +14,8 @@ class QuestInfo extends React.Component {
 
   handleSubmitAnswer = (answer) => {
     // Do something with the form values
+    if(!answer.answer)
+      return;
     if(this.arraysEqual(answer.answer, this.props.question.answers))
       toastr.success('Congratulations', 'Your answer is right');
     else
