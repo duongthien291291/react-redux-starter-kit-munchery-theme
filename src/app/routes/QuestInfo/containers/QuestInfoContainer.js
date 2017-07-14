@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { increment, doubleAsync } from '../modules/QuestInfoReducer'
+import { finishedPhase1Question } from '../../../containers/AppReducer'
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
@@ -14,7 +15,8 @@ import QuestInfo from '../components/QuestInfo'
 
 const mapDispatchToProps = {
   increment : () => increment(1),
-  doubleAsync
+  doubleAsync,
+  finishedPhase1Question: (questionId) => finishedPhase1Question(questionId)
 }
 
 const mapStateToProps = (state) => ({

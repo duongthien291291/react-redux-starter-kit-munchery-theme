@@ -7,7 +7,7 @@ import 'tween'
 import 'TrackballControls'
 import 'CSS3DRenderer'
 var Barcode = require('react-barcode');
-import data from '../../../../../data.json'
+// import data from '../../../../../data.json'
 
 let strs = '';
 let time = new Date();
@@ -19,7 +19,7 @@ class Quest extends React.Component {
 
   componentDidMount() {
     let self = this;
-    var table = data.questions;
+    var table = this.props.phase1Questions;
     var camera, scene, renderer;
     var controls;
     var objects = [];
@@ -35,7 +35,10 @@ class Quest extends React.Component {
       for (var i = 0; i < table.length; i += 1) {
         var element = document.createElement('div');
         element.className = 'element';
-        element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+        if(!table[i].done)
+          element.style.backgroundColor = 'rgba(0,127,127,' + ( 0.9 ) + ')';
+        else
+          element.style.backgroundColor = 'rgba(0,127,127,' + ( 0.25 ) + ')';
         var number = document.createElement('div');
         number.className = 'number';
         number.textContent = table[i].id + 1;
@@ -213,12 +216,12 @@ class Quest extends React.Component {
         });
         transform(targets.table, 1000);
         setTimeout(function () {
-          browserHistory.push('/game/quest-info/' + data.questions[index].id);
+          browserHistory.push('/game/quest-info/' + self.props.phase1Questions[index].id);
         }, 1000);
       });
     }
 
-    self.listenerTemp = (e) => self.keyDownTextField(e, table, tableTemp, targets, data, self, transform);
+    self.listenerTemp = (e) => self.keyDownTextField(e, table, tableTemp, targets, self, transform);
     document.addEventListener("keydown", self.listenerTemp, false);
 
   }
@@ -227,7 +230,7 @@ class Quest extends React.Component {
     document.removeEventListener("keydown", this.listenerTemp, false);
   }
 
-  keyDownTextField(e, table, tableTemp, targets, data, self, transform) {
+  keyDownTextField(e, table, tableTemp, targets, self, transform) {
 
     var keyCode = e.keyCode;
     var currentTime = new Date();
@@ -270,7 +273,7 @@ class Quest extends React.Component {
         });
         transform(targets.table, 1000);
         setTimeout(function () {
-          browserHistory.push('/game/quest-info/' + data.questions[index].id);
+          browserHistory.push('/game/quest-info/' + self.props.phase1Questions[index].id);
         }, 1000);
       }
       else{

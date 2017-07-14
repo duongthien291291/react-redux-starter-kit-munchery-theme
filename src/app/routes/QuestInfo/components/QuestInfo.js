@@ -20,6 +20,8 @@ class QuestInfo extends React.Component {
       toastr.success('Congratulations', 'Your answer is right');
     else
       toastr.error('Opp', 'Your answer is not right');
+
+    this.props.finishedPhase1Question(this.props.question.id);
   };
 
   arraysEqual(arr1, arr2) {

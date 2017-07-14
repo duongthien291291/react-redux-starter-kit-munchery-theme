@@ -1,9 +1,9 @@
 import { injectReducer } from '../../store/reducers'
-import { updateQuestionInfo } from '../QuestInfo/modules/QuestInfoReducer'
+import { updateQuestionInfoById } from '../QuestInfo/modules/QuestInfoReducer'
 
 export default (store) => {
   const onEnter = (nextState, transition) => {
-    store.dispatch(updateQuestionInfo(nextState.params.id));
+    store.dispatch(updateQuestionInfoById(nextState.params.id));
     const state = store.getState();
     if (!state.app.user.id) { transition('/') };
   };

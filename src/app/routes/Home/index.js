@@ -1,7 +1,22 @@
 import { injectReducer } from '../../store/reducers'
+// import data from '../../../../data.json'
+// import { updateUsers, updatePhase1Questions, updatePhase2Questions } from '../../containers/AppReducer'
 
 export default (store) => {
   const onEnter = (nextState, transition) => {
+    // let state = store.getState();
+    //
+    // if(!state.app.users || state.app.users.length == 0){
+    //   store.dispatch(updateUsers(data.users));
+    // }
+    //
+    // if(!state.app.phase1Questions || state.app.phase1Questions.length == 0){
+    //   store.dispatch(updatePhase1Questions(data.phase1Questions));
+    // }
+    //
+    // if(!state.app.phase2Questions || state.app.phase2Questions.length == 0){
+    //   store.dispatch(updatePhase2Questions(data.phase2Questions));
+    // }
   }
 
   return {

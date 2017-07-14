@@ -5,7 +5,6 @@ import 'three'
 import 'tween'
 import 'TrackballControls'
 import 'CSS3DRenderer'
-import data from '../../../../../data.json'
 
 
 let strs = '';
@@ -18,7 +17,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     let self = this;
-    var table = data.users;
+    var table = this.props.users;
 
     var camera, scene, renderer;
     var controls;
@@ -35,7 +34,7 @@ class Home extends React.Component {
       for (var i = 0; i < table.length; i += 1) {
         var element = document.createElement('div');
         element.className = 'element';
-        element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+        element.style.backgroundColor = 'rgba(0,127,127,' + ( 0.9 ) + ')';
         var number = document.createElement('div');
         number.className = 'number';
         number.textContent = table[i].id + 1;
@@ -192,7 +191,7 @@ class Home extends React.Component {
 
       element.addEventListener('click', function () {
 
-        self.props.updateUserInfo(data.users[index]);
+        self.props.updateUserInfo(self.props.users[index]);
 
         targets.table.forEach(function (obj, i) {
           obj.position.x = tableTemp[i].x;
@@ -219,7 +218,7 @@ class Home extends React.Component {
       });
     }
 
-    self.listenerTemp = (e) => self.keyDownTextField(e, table, tableTemp, targets, data, self, transform);
+    self.listenerTemp = (e) => self.keyDownTextField(e, table, tableTemp, targets, self, transform);
     document.addEventListener("keydown", this.listenerTemp, false);
   }
 
@@ -227,7 +226,7 @@ class Home extends React.Component {
     document.removeEventListener("keydown", this.listenerTemp, false);
   }
 
-  keyDownTextField(e, table, tableTemp, targets, data, self, transform) {
+  keyDownTextField(e, table, tableTemp, targets, self, transform) {
     var keyCode = e.keyCode;
     var currentTime = new Date();
     var timeSpand = currentTime - time;
@@ -249,7 +248,7 @@ class Home extends React.Component {
         return obj.id == num;
       });
       var index = table.indexOf(user);
-      self.props.updateUserInfo(data.users[index]);
+      self.props.updateUserInfo(self.props.users[index]);
       targets.table.forEach(function (obj, i) {
         obj.position.x = tableTemp[i].x;
         obj.position.y = tableTemp[i].y;

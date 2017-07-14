@@ -1,4 +1,3 @@
-import data from '../../../../../data.json'
 
 // ------------------------------------
 // Constants
@@ -38,8 +37,18 @@ export const doubleAsync = () => {
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function updateQuestionInfo (questionId) {
-  let question = data.questions.find((obj) => (obj.id == questionId));
+export function updateQuestionInfoById (questionId) {
+  return (dispatch, getState) => {
+    const { app } = getState();
+    let question = app.phase1Questions.find((obj) => (obj.id == questionId));
+    dispatch(updateQuestionInfo(question));
+  }
+}
+
+// ------------------------------------
+// Actions
+// ------------------------------------
+export function updateQuestionInfo (question) {
   return {
     type    : UPDATE_QUESTION_INFO,
     question
@@ -49,7 +58,7 @@ export function updateQuestionInfo (questionId) {
 export const actions = {
   increment,
   doubleAsync,
-  updateQuestionInfo
+  updateQuestionInfoById
 }
 
 // ------------------------------------
