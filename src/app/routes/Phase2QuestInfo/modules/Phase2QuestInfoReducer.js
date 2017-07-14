@@ -1,8 +1,10 @@
+
 // ------------------------------------
 // Constants
 // ------------------------------------
 export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
 export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC'
+export const UPDATE_QUESTION_INFO = 'UPDATE_QUESTION_INFO'
 
 // ------------------------------------
 // Actions
@@ -32,9 +34,31 @@ export const doubleAsync = () => {
   }
 }
 
+// ------------------------------------
+// Actions
+// ------------------------------------
+export function updateQuestionInfoById (questionId) {
+  return (dispatch, getState) => {
+    const { app } = getState();
+    let question = app.phase2Questions.find((obj) => (obj.id == questionId));
+    dispatch(updateQuestionInfo(question));
+  }
+}
+
+// ------------------------------------
+// Actions
+// ------------------------------------
+export function updateQuestionInfo (question) {
+  return {
+    type    : UPDATE_QUESTION_INFO,
+    question
+  }
+}
+
 export const actions = {
   increment,
-  doubleAsync
+  doubleAsync,
+  updateQuestionInfoById
 }
 
 // ------------------------------------
@@ -42,14 +66,17 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2
+  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2,
+  [UPDATE_QUESTION_INFO]: (state, action) => ({...state, question: action.question})
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
-export default function gameReducer (state = initialState, action) {
+const initialState = {
+  question: {}
+}
+export default function questInfoReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

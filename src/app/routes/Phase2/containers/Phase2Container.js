@@ -1,13 +1,12 @@
 import { connect } from 'react-redux'
-import { increment, doubleAsync } from '../modules/QuestInfoReducer'
-import { finishedPhase1Question, addUserToPhase2Users } from '../../../containers/AppReducer'
+import { increment, doubleAsync } from '../modules/Phase2Reducer'
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
     wiring in the actions and state necessary to render a presentational
     component - in this case, the counter:   */
 
-import QuestInfo from '../components/QuestInfo'
+import Phase2 from '../components/Phase2'
 
 /*  Object of action creators (can also be function that returns object).
     Keys will be passed as props to presentational components. Here we are
@@ -15,14 +14,11 @@ import QuestInfo from '../components/QuestInfo'
 
 const mapDispatchToProps = {
   increment : () => increment(1),
-  doubleAsync,
-  finishedPhase1Question: (questionId) => finishedPhase1Question(questionId),
-  addUserToPhase2Users: (userId) => addUserToPhase2Users(userId)
+  doubleAsync
 }
 
 const mapStateToProps = (state) => ({
-  question : state.questInfo.question,
-  user: state.app.user
+  user : state.home.user
 })
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
@@ -39,4 +35,4 @@ const mapStateToProps = (state) => ({
     Selectors are composable. They can be used as input to other selectors.
     https://github.com/reactjs/reselect    */
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestInfo)
+export default connect(mapStateToProps, mapDispatchToProps)(Phase2)

@@ -1,0 +1,14 @@
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.edit_user {
+  text-align: left;
+
+  .item {
+    width: 50%;
+  }
+}

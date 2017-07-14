@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
-import { increment, doubleAsync } from '../modules/UserReducer'
+import { increment, doubleAsync } from '../modules/Phase1Reducer'
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
     wiring in the actions and state necessary to render a presentational
     component - in this case, the counter:   */
 
-import User from '../components/User'
+import Phase1 from '../components/Phase1'
 
 /*  Object of action creators (can also be function that returns object).
     Keys will be passed as props to presentational components. Here we are
@@ -18,7 +18,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-  counter : state.counter
+  user : state.home.user
 })
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
@@ -35,4 +35,4 @@ const mapStateToProps = (state) => ({
     Selectors are composable. They can be used as input to other selectors.
     https://github.com/reactjs/reselect    */
 
-export default connect(mapStateToProps, mapDispatchToProps)(User)
+export default connect(mapStateToProps, mapDispatchToProps)(Phase1)

@@ -1,19 +1,18 @@
 import { injectReducer } from '../../store/reducers'
-import QuestRoute from '../Quest'
-import QuestInfoRoute from '../QuestInfo'
-
+import { updateQuestionInfoById } from '../QuestInfo/modules/QuestInfoReducer'
 
 export default (store) => {
   const onEnter = (nextState, transition) => {
-    const state = store.getState();
-    if (!state.app.user.id) { transition('/') };
+    store.dispatch(updateQuestionInfoById(nextState.params.id));
+    // const state = store.getState();
+    // if (!state.app.user.id) { transition('/') };
   };
   const onLeave = (nextState, transition) => {
   };
 
 
   return {
-    path : 'game',
+    path : 'quest-info/:id',
     onEnter: onEnter,
     onLeave: onLeave,
     /*  Async getComponent is only invoked when route matches   */
@@ -23,22 +22,17 @@ export default (store) => {
       require.ensure([], (require) => {
         /*  Webpack - use require callback to define
          dependencies for bundling   */
-        const Game = require('./containers/GameContainer').default
-        const reducer = require('./modules/GameReducer').default
+        const Phase2QuestInfo = require('./containers/Phase2QuestInfoContainer').default
+        const reducer = require('./modules/Phase2QuestInfoReducer').default
 
         /*  Add the reducer to the store on key 'counter'  */
-        injectReducer(store, { key: 'game', reducer });
+        injectReducer(store, { key: 'phase2QuestInfo', reducer })
 
         /*  Return getComponent   */
-        cb(null, Game);
+        cb(null, Phase2QuestInfo)
 
         /* Webpack named bundle   */
-      }, 'Game')
-    },
-    indexRoute: QuestRoute(store),
-    childRoutes: [
-      QuestInfoRoute(store)
-    ]
+      }, 'Phase2QuestInfo')
+    }
   };
 }
-

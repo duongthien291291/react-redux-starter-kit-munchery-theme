@@ -9,6 +9,7 @@ export const UPDATE_USERS = 'UPDATE_USERS'
 export const UPDATE_PHASE1_QUESTIONS = 'UPDATE_PHASE1_QUESTIONS'
 export const UPDATE_PHASE2_QUESTIONS = 'UPDATE_PHASE2_QUESTIONS'
 export const FINISHED_PHASE1_QUESTION = 'FINISHED_PHASE1_QUESTION'
+export const ADD_USER_TO_PHASE2_USERS = 'ADD_USER_TO_PHASE2_USERS'
 
 export function updateAppState (userData) {
   return {
@@ -67,13 +68,24 @@ export function finishedPhase1Question (questionId) {
   }
 }
 
+// ------------------------------------
+// Actions
+// ------------------------------------
+export function addUserToPhase2Users (userId) {
+  return {
+    type: ADD_USER_TO_PHASE2_USERS,
+    userId
+  }
+}
+
 export const actions = {
   updateAppState,
   updateUserDataForAppState,
   updateUsers,
   updatePhase1Questions,
   updatePhase2Questions,
-  finishedPhase1Question
+  finishedPhase1Question,
+  addUserToPhase2Users
 }
 
 // ------------------------------------
@@ -84,6 +96,7 @@ const ACTION_HANDLERS = {
     ...state,
     user: action.payload.user,
     users: action.payload.users,
+    phase2Users: action.payload.phase2Users,
     phase1Questions: action.payload.phase1Questions,
     phase2Questions: action.payload.phase2Questions
   }),
@@ -113,7 +126,11 @@ const ACTION_HANDLERS = {
   [UPDATE_USERS]: (state, action) =>   ({...state, users: action.users}),
   [FINISHED_PHASE1_QUESTION]: (state, action) => ({
     ...state,
-    phase1Questions: state.phase1Questions.map(x => (x.id == action.questionId ? {...x, done: true} : x))})
+    phase1Questions: state.phase1Questions.map(x => (x.id == action.questionId ? {...x, done: true} : x))}),
+  [ADD_USER_TO_PHASE2_USERS]: (state, action) => ({
+    ...state,
+    phase2Users: [...state.phase2Users, state.users.find((x) => x.id == action.userId)]
+  })
 }
 
 // ------------------------------------
@@ -122,6 +139,7 @@ const ACTION_HANDLERS = {
 export const initialState = {
   user: {},
   users: [],
+  phase2Users: [],
   phase1Questions: [],
   phase2Questions: []
 }

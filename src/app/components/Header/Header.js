@@ -9,8 +9,12 @@ export const Header = () => (
       Attendance
     </IndexLink>
     {' · '}
-    <Link to='/game' activeClassName='route--active'>
-      Game
+    <Link to='/phase1' activeClassName='route--active'>
+      Game 1
+    </Link>
+    {' · '}
+    <Link to='/phase2' activeClassName='route--active'>
+      Game 2
     </Link>
   </div>
 )

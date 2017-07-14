@@ -1,9 +1,8 @@
 // We only need to import the modules necessary for initial render
 import CoreLayout from '../layouts/CoreLayout'
-import PageLayout from '../layouts/CoreLayout'
 import HomeRoute from './Home'
-import UserRoute from './User'
-import GameRoute from './Game'
+import Phase1Route from './Phase1'
+import Phase2Route from './Phase2'
 
 /*  Note: Instead of using JSX, we recommend using react-router
  PlainRoute objects to build route definitions.   */
@@ -20,14 +19,10 @@ export const createRoutes = (store) => {
       component: CoreLayout,
       indexRoute: HomeRoute(store),
       childRoutes: [
-        GameRoute(store)
+        Phase1Route(store),
+        Phase2Route(store),
       ]
-    },
-    {
-      path: '/user',
-      component: PageLayout,
-      indexRoute: UserRoute(store)
-    },
+    }
   ]
 }
 

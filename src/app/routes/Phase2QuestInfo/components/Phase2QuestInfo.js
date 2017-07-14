@@ -1,13 +1,12 @@
 import React from 'react'
 import {browserHistory} from 'react-router'
-import QuestForm from './QuestForm'
-import UserInfoForm from './UserInfoForm'
+import Phase2QuestForm from './Phase2QuestForm'
 import {toastr} from 'react-redux-toastr'
 import '../assets/style.scss'
 
 
 
-class QuestInfo extends React.Component {
+class Phase2QuestInfo extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -42,12 +41,11 @@ class QuestInfo extends React.Component {
       <div>
         <h1>This is quest info page</h1>
         <h3 className="text-left">{this.props.question.description}</h3>
-        <QuestForm onSubmit={this.handleSubmitAnswer} { ...this.props }></QuestForm>
-        {/*<UserInfoForm onSubmit={this.handleSubmitAnswer} { ...this.props }></UserInfoForm>*/}
+        <Phase2QuestForm onSubmit={this.handleSubmitAnswer} { ...this.props }></Phase2QuestForm>
       </div>
     )
   }
 }
 
-export default QuestInfo
+export default Phase2QuestInfo
 

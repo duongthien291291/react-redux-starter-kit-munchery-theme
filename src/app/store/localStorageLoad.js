@@ -13,17 +13,14 @@ export default store => next => action => {
       }
 
       if(!storedState.users || storedState.users.length == 0){
-        // store.dispatch(updateUsers(data.users));
         storedState = {...storedState, users: data.users};
       }
 
       if(!storedState.phase1Questions || storedState.phase1Questions.length == 0){
-        // store.dispatch(updatePhase1Questions(data.phase1Questions));
         storedState = {...storedState, phase1Questions: data.phase1Questions};
       }
 
       if(!storedState.phase2Questions || storedState.phase2Questions.length == 0){
-        // store.dispatch(updatePhase2Questions(data.phase2Questions));
         storedState = {...storedState, phase2Questions: data.phase2Questions};
       }
 

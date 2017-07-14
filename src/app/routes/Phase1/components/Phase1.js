@@ -4,7 +4,7 @@ import UserInfo from '../../../components/UserInfo'
 import '../assets/style.scss'
 
 
-class Game extends React.Component {
+class Phase1 extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -24,4 +24,4 @@ class Game extends React.Component {
   }
 }
 
-export default Game
+export default Phase1

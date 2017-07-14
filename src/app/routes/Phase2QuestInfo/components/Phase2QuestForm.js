@@ -1,24 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm, change as changeFieldValue, formValueSelector} from 'redux-form'
-import CheckboxGroup from './CheckboxGroup'
-import RadioGroup from './RadioGroup'
+import CheckboxGroup from '../../../components/RadioGroup'
+import RadioGroup from '../../../components/RadioGroup'
 var Barcode = require('react-barcode');
 import {browserHistory} from 'react-router'
-import './QuestForm.scss'
+import './Phase2QuestForm.scss'
 
 let strs = '';
 let time = new Date();
 
 const validate = (values, state) => {
   const errors = {};
-  // errors.answer = true;
-  // if(values.answer){
-  //   values.answer.forEach((obj) => {
-  //     if(values.answer.length != state.question.answers.length || state.question.answers.indexOf(obj) < 0)
-  //       errors.answer = true;
-  //   });
-  // }
 
   return errors
 };
@@ -32,7 +25,7 @@ const warn = values => {
   return warnings
 };
 
-class QuestForm extends Component {
+class Phase2QuestForm extends Component {
   constructor(props) {
     super(props)
     this.state = {width: 1, height: 50, displayValue: false, background: '#ecf0f5'};
@@ -78,7 +71,7 @@ class QuestForm extends Component {
           else {
             array.splice(array.indexOf(num), 1);
           }
-          props.dispatch(changeFieldValue('QuestForm', 'answer', array));
+          props.dispatch(changeFieldValue('Phase2QuestForm', 'answer', array));
         }
         else {
           if (array.indexOf(num) < 0) {
@@ -88,7 +81,7 @@ class QuestForm extends Component {
             array.splice(array.indexOf(num), 1);
           }
 
-          props.dispatch(changeFieldValue('QuestForm', 'answer', array));
+          props.dispatch(changeFieldValue('Phase2QuestForm', 'answer', array));
         }
       }
       else {
@@ -107,7 +100,6 @@ class QuestForm extends Component {
 
   back() {
     browserHistory.push('/phase1');
-    // this.props.dispatch(changeFieldValue('QuestForm', 'answer', [1, 2]));
   }
 
   renderField = ({input, label, type, placeholder, required, allowEdit, meta: {touched, error, warning, pristine}}) => (
@@ -197,20 +189,20 @@ class QuestForm extends Component {
 }
 
 const mapFormToProps = {
-  form: 'QuestForm',     // a unique name for this form
+  form: 'Phase2QuestForm',     // a unique name for this form
   validate,                 // <--- validation function given to redux-form
   warn,                     // <--- warning function given to redux-form,
   // enableReinitialize: true //when async init data from remote, we have to enableReinitialize --> to redux form set value for field
 };
 
 // Decorate the form component
-QuestForm = reduxForm(
+Phase2QuestForm = reduxForm(
   mapFormToProps
-)(QuestForm);
+)(Phase2QuestForm);
 
-const selector = formValueSelector('QuestForm');
+const selector = formValueSelector('Phase2QuestForm');
 
-QuestForm = connect(
+Phase2QuestForm = connect(
   (state, props) => {
     return {
       chooseAnswers: selector(state, 'answer'),
@@ -220,6 +212,6 @@ QuestForm = connect(
       } // pull initial values from account reducer
     };
   }
-)(QuestForm);
+)(Phase2QuestForm);
 
-export default QuestForm;
+export default Phase2QuestForm;

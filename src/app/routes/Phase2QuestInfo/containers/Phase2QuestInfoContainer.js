@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { increment, doubleAsync } from '../modules/QuestInfoReducer'
 import { finishedPhase1Question, addUserToPhase2Users } from '../../../containers/AppReducer'
 
 /*  This is a container component. Notice it does not contain any JSX,
@@ -7,21 +6,19 @@ import { finishedPhase1Question, addUserToPhase2Users } from '../../../container
     wiring in the actions and state necessary to render a presentational
     component - in this case, the counter:   */
 
-import QuestInfo from '../components/QuestInfo'
+import Phase2QuestInfo from '../components/Phase2QuestInfo'
 
 /*  Object of action creators (can also be function that returns object).
     Keys will be passed as props to presentational components. Here we are
     implementing our wrapper around increment; the component doesn't care   */
 
 const mapDispatchToProps = {
-  increment : () => increment(1),
-  doubleAsync,
   finishedPhase1Question: (questionId) => finishedPhase1Question(questionId),
   addUserToPhase2Users: (userId) => addUserToPhase2Users(userId)
 }
 
 const mapStateToProps = (state) => ({
-  question : state.questInfo.question,
+  question : state.phase2QuestInfo.question,
   user: state.app.user
 })
 
@@ -39,4 +36,4 @@ const mapStateToProps = (state) => ({
     Selectors are composable. They can be used as input to other selectors.
     https://github.com/reactjs/reselect    */
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestInfo)
+export default connect(mapStateToProps, mapDispatchToProps)(Phase2QuestInfo)

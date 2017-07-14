@@ -75,7 +75,7 @@
     {
       "id": "1",
       "name": "Question 1",
-      "done": true,
+      "done": false,
       "col": 1,
       "row": 1,
       "description": "This is the first question",
@@ -238,7 +238,7 @@
     {
       "id": "1",
       "name": "Question 1",
-      "attendance": false,
+      "done": false,
       "col": 1,
       "row": 1,
       "description": "This is the first question",
@@ -250,12 +250,13 @@
       "answers": [
         1,
         2
-      ]
+      ],
+      "timeLimit": 30
     },
     {
       "id": "2",
       "name": "Question 2",
-      "attendance": false,
+      "done": false,
       "col": 2,
       "row": 1,
       "description": "This is the first question",
@@ -266,15 +267,16 @@
       ],
       "answers": [
         1
-      ]
+      ],
+      "timeLimit": 25
     },
     {
       "id": "3",
       "name": "Question 3",
-      "attendance": false,
+      "done": false,
       "col": 3,
       "row": 1,
-      "description": "This is the first question",
+      "description": "This is the second question",
       "chooses": [
         {"id": 1, "description": "This is the first answer"},
         {"id": 2, "description": "This is the second answer"},
@@ -282,15 +284,16 @@
       ],
       "answers": [
         1
-      ]
+      ],
+      "timeLimit": 20
     },
     {
       "id": "4",
       "name": "Thien Duong",
-      "attendance": false,
+      "done": false,
       "col": 1,
       "row": 2,
-      "description": "This is the first question",
+      "description": "This is the forth question",
       "chooses": [
         {"id": 1, "description": "This is the first answer"},
         {"id": 2, "description": "This is the second answer"},
@@ -298,7 +301,8 @@
       ],
       "answers": [
         1
-      ]
+      ],
+      "timeLimit": 15
     }
   ]
 }
