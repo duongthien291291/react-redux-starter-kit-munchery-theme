@@ -5,6 +5,8 @@ import QuestInfoRoute from '../QuestInfo'
 
 export default (store) => {
   const onEnter = (nextState, transition) => {
+    const state = store.getState();
+    if (!state.app.user.id) { transition('/') };
   };
   const onLeave = (nextState, transition) => {
   };

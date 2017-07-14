@@ -4,8 +4,8 @@ import { updateQuestionInfoById } from '../QuestInfo/modules/QuestInfoReducer'
 export default (store) => {
   const onEnter = (nextState, transition) => {
     store.dispatch(updateQuestionInfoById(nextState.params.id));
-    const state = store.getState();
-    if (!state.app.user.id) { transition('/') };
+    // const state = store.getState();
+    // if (!state.app.user.id) { transition('/') };
   };
   const onLeave = (nextState, transition) => {
   };

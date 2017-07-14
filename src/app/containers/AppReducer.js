@@ -119,7 +119,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = {
+export const initialState = {
   user: {},
   users: [],
   phase1Questions: [],
