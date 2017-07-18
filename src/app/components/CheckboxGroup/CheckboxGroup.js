@@ -42,8 +42,8 @@ export default class CheckboxGroup extends Component {
       }
 
       return (
-        <div className="col-sm-4">
-          <label key={`checkbox-${index}`} style={style}>
+        <div className="col-sm-4" key={`checkbox-${index}`}>
+          <label style={style}>
             <input type="checkbox" name={`${name}[${index}]`} value={value} checked={checked} onChange={handleChange}/>
             <span>{label}</span>
             <div>

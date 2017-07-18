@@ -3,6 +3,7 @@ import CoreLayout from '../layouts/CoreLayout'
 import HomeRoute from './Home'
 import Phase1Route from './Phase1'
 import Phase2Route from './Phase2'
+import Phase2ResultRoute from './Phase2Result'
 
 /*  Note: Instead of using JSX, we recommend using react-router
  PlainRoute objects to build route definitions.   */
@@ -21,6 +22,7 @@ export const createRoutes = (store) => {
       childRoutes: [
         Phase1Route(store),
         Phase2Route(store),
+        Phase2ResultRoute(store),
       ]
     }
   ]

@@ -17,7 +17,7 @@ class Phase2Quests extends React.Component {
   }
 
   back = () => {
-    browserHistory.push('/');
+    browserHistory.push('/phase2');
   }
 
   render() {

@@ -1,4 +1,4 @@
-
+import {browserHistory} from 'react-router'
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -10,6 +10,7 @@ export const UPDATE_PHASE1_QUESTIONS = 'UPDATE_PHASE1_QUESTIONS'
 export const UPDATE_PHASE2_QUESTIONS = 'UPDATE_PHASE2_QUESTIONS'
 export const FINISHED_PHASE1_QUESTION = 'FINISHED_PHASE1_QUESTION'
 export const ADD_USER_TO_PHASE2_USERS = 'ADD_USER_TO_PHASE2_USERS'
+export const ADD_ANSWER_TO_PHASE2_ANSWERS = 'ADD_ANSWER_TO_PHASE2_ANSWERS'
 
 export function updateAppState (userData) {
   return {
@@ -78,6 +79,31 @@ export function addUserToPhase2Users (userId) {
   }
 }
 
+// ------------------------------------
+// Actions
+// ------------------------------------
+export function addAnswerToPhase2Answers (answer) {
+  return (dispatch, getState) => {
+    let { app } = getState();
+    dispatch(addAnswer(answer));
+    let listUserIds = app.phase2Answers.map((obj) => obj.id);
+    listUserIds.push(answer.userId);
+    if(app.phase2Users.length == listUserIds.length
+      && app.phase2Users.every((x) => listUserIds.some((y) => x.id == y))){
+      setTimeout(() => {
+        browserHistory.push('/phase2result');
+      }, 1000);
+    }
+  }
+}
+
+function addAnswer(answer) {
+  return {
+    type: ADD_ANSWER_TO_PHASE2_ANSWERS,
+    answer
+  }
+}
+
 export const actions = {
   updateAppState,
   updateUserDataForAppState,
@@ -97,6 +123,7 @@ const ACTION_HANDLERS = {
     user: action.payload.user,
     users: action.payload.users,
     phase2Users: action.payload.phase2Users,
+    phase2Answers: action.payload.phase2Answers,
     phase1Questions: action.payload.phase1Questions,
     phase2Questions: action.payload.phase2Questions
   }),
@@ -130,7 +157,13 @@ const ACTION_HANDLERS = {
   [ADD_USER_TO_PHASE2_USERS]: (state, action) => ({
     ...state,
     phase2Users: [...state.phase2Users, state.users.find((x) => x.id == action.userId)]
-  })
+  }),
+  [ADD_ANSWER_TO_PHASE2_ANSWERS]: (state, action) => {
+    return {
+      ...state,
+      phase2Answers: [...state.phase2Answers, action.answer]
+    }
+  }
 }
 
 // ------------------------------------
@@ -140,6 +173,7 @@ export const initialState = {
   user: {},
   users: [],
   phase2Users: [],
+  phase2Answers: [],
   phase1Questions: [],
   phase2Questions: []
 }

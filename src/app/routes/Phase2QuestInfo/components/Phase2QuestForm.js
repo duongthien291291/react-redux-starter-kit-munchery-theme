@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm, change as changeFieldValue, formValueSelector} from 'redux-form'
-import CheckboxGroup from '../../../components/RadioGroup'
+import CheckboxGroup from '../../../components/CheckboxGroup'
 import RadioGroup from '../../../components/RadioGroup'
 var Barcode = require('react-barcode');
 import {browserHistory} from 'react-router'
@@ -21,7 +21,7 @@ const warn = values => {
   // if (values.age < 19) {
   //   warnings.age = 'Hmm, you seem a bit young...'
   // }
-  warnings.answer = true;
+  // warnings.answer = true;
   return warnings
 };
 
@@ -91,7 +91,7 @@ class Phase2QuestForm extends Component {
         } else if (strs == 'clear') {
           props.reset();
         } else if (strs == 'back') {
-          browserHistory.push('/phase1');
+          browserHistory.push('/phase2/quests');
         }
       }
 
@@ -99,7 +99,7 @@ class Phase2QuestForm extends Component {
   }
 
   back() {
-    browserHistory.push('/phase1');
+    browserHistory.push('/phase2/quests');
   }
 
   renderField = ({input, label, type, placeholder, required, allowEdit, meta: {touched, error, warning, pristine}}) => (

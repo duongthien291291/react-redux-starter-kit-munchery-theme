@@ -1,5 +1,5 @@
 import React from 'react'
-// import {browserHistory} from 'react-router'
+import {browserHistory} from 'react-router'
 import './ThreeComponent.scss'
 import 'three'
 import 'tween'
@@ -32,7 +32,11 @@ class ThreeComponent extends React.Component {
       for (var i = 0; i < table.length; i += 1) {
         var element = document.createElement('div');
         element.className = 'element';
-        element.style.backgroundColor = 'rgba(0,127,127,' + ( 0.9 ) + ')';
+        // element.style.backgroundColor = 'rgba(0,127,127,' + ( 0.9 ) + ')';
+        if(!table[i].done)
+          element.style.backgroundColor = 'rgba(0,127,127,' + ( 0.9 ) + ')';
+        else
+          element.style.backgroundColor = 'rgba(0,127,127,' + ( 0.25 ) + ')';
         var number = document.createElement('div');
         number.className = 'number';
         number.textContent = table[i].id + 1;
@@ -241,35 +245,42 @@ class ThreeComponent extends React.Component {
     }
     else if (strs && keyCode == 13 && timeSpand < 30) {
       console.log(strs);
-      var num = strs.match(/\d+/)[0];
+      if (strs.match(/\d+/)) {
+        var num = strs.match(/\d+/)[0];
 
-      var user = table.find(function (obj) {
-        return obj.id == num;
-      });
-      var index = table.indexOf(user);
-      self.props.updateInfo(self.props.listObject[index]);
-      targets.table.forEach(function (obj, i) {
-        obj.position.x = tableTemp[i].x;
-        obj.position.y = tableTemp[i].y;
-        obj.position.z = tableTemp[i].z;
-      });
-      var elementTemp = targets.table[index];
-      elementTemp.position.x = 0;
-      elementTemp.position.y = 0;
-      elementTemp.position.z = 0;
-      elementTemp.scale.set(5, 5, 5);
-      targets.table.forEach(function (obj, i) {
-        if (i != index) {
-          obj.position.x = self.randomNumber(-2, 2, [0]) * 10000;
-          obj.position.y = self.randomNumber(-2, 2, [0]) * 10000;
-          obj.position.y = self.randomNumber(-2, 2, [0]) * 10000;
+        var user = table.find(function (obj) {
+          return obj.id == num;
+        });
+        var index = table.indexOf(user);
+        self.props.updateInfo(self.props.listObject[index]);
+        targets.table.forEach(function (obj, i) {
+          obj.position.x = tableTemp[i].x;
+          obj.position.y = tableTemp[i].y;
+          obj.position.z = tableTemp[i].z;
+        });
+        var elementTemp = targets.table[index];
+        elementTemp.position.x = 0;
+        elementTemp.position.y = 0;
+        elementTemp.position.z = 0;
+        elementTemp.scale.set(5, 5, 5);
+        targets.table.forEach(function (obj, i) {
+          if (i != index) {
+            obj.position.x = self.randomNumber(-2, 2, [0]) * 10000;
+            obj.position.y = self.randomNumber(-2, 2, [0]) * 10000;
+            obj.position.y = self.randomNumber(-2, 2, [0]) * 10000;
+          }
+        });
+        transform(targets.table, 1000);
+        setTimeout(function () {
+          // browserHistory.push('/phase1');
+          self.props.goTo(index);
+        }, 1000);
+      }
+      else {
+        if (strs == 'back') {
+          browserHistory.push('/');
         }
-      });
-      transform(targets.table, 1000);
-      setTimeout(function () {
-        // browserHistory.push('/phase1');
-        self.props.goTo(index);
-      }, 1000);
+      }
     }
   }
 
@@ -298,7 +309,6 @@ class ThreeComponent extends React.Component {
           <button id="grid">GRID</button>
           <button id="back">BACK</button>
         </div>
-
       </div>
     )
   }

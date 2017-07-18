@@ -41,8 +41,8 @@ export default class RadioGroup extends Component {
       }
 
       return (
-        <div className="col-sm-6">
-          <label key={`checkbox-${index}`} style={style}>
+        <div className="col-sm-6" key={`checkbox-${index}`} style={style}>
+          <label>
             <input type="checkbox" name={`${name}[${index}]`} value={value} checked={checked} onChange={handleChange}/>
             <span>{label}</span>
           </label>

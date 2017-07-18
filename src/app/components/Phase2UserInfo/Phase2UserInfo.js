@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {IndexLink, Link} from 'react-router'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import './Phase2UserInfo.scss'
 
 class Phase2UserInfo extends Component {
@@ -8,22 +8,36 @@ class Phase2UserInfo extends Component {
     super(props)
   }
 
-  render(){
+  render() {
+    let userInfo = this.props.users.map((obj, index) => {
+      return (
+        <div key={`userinfo-${index}`}>
+          <h1>New Ocean Information System</h1>
+          <div>This is user info</div>
+          <div>{obj.name}</div>
+        </div>
+      )
+    });
+
     return (
       <div className="user-info">
-        <h1>New Ocean Information System</h1>
-        <div>This is user info</div>
-        <div>{props.user.name}</div>
+        {userInfo}
       </div>
     );
   }
 }
 
-const mapDispatchToProps = {
-}
+const mapDispatchToProps = {}
 
-const mapStateToProps = (state) => ({
-    users : state.app.phase2Users
-})
+const mapStateToProps = (state) => {
+  return {
+    users: state.app.phase2Users,
+    // question: state.phase2QuestInfo.question
+  }
+}
+//   ({
+//   users: state.app.phase2Users,
+//   question: state.phase2QuestInfo.question
+// })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Phase2UserInfo)

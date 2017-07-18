@@ -5,7 +5,6 @@ import {toastr} from 'react-redux-toastr'
 import '../assets/style.scss'
 
 
-
 class Phase2QuestInfo extends React.Component {
   constructor(props) {
     super(props)
@@ -13,28 +12,34 @@ class Phase2QuestInfo extends React.Component {
 
   handleSubmitAnswer = (answer) => {
     // Do something with the form values
-    if(!answer.answer)
-      return;
-    if(this.arraysEqual(answer.answer, this.props.question.answers)) {
-      this.props.addUserToPhase2Users(this.props.user.id);
-      toastr.success('Congratulations', 'Your answer is right');
-    }
-    else
-      toastr.error('Opp', 'Your answer is not right');
-
-    this.props.finishedPhase1Question(this.props.question.id);
+    // if(!answer.answer)
+    //   return;
+    // if(this.arraysEqual(answer.answer, this.props.question.answers)) {
+    //   this.props.addUserToPhase2Users(this.props.user.id);
+    //   toastr.success('Congratulations', 'Your answer is right');
+    // }
+    // else
+    //   toastr.error('Opp', 'Your answer is not right');
+    //
+    // this.props.finishedPhase1Question(this.props.question.id);
+    let answerObj = {
+      userAnswers: answer.answer,
+      question: this.props.question,
+      userId: this.props.user.id
+    };
+    this.props.addAnswerToPhase2Answers(answerObj);
   };
 
   arraysEqual(arr1, arr2) {
-  if(arr1.length !== arr2.length)
-    return false;
-  for(var i = arr1.length; i--;) {
-    if(arr1[i] !== arr2[i])
+    if (arr1.length !== arr2.length)
       return false;
-  }
+    for (var i = arr1.length; i--;) {
+      if (arr1[i] !== arr2[i])
+        return false;
+    }
 
-  return true;
-}
+    return true;
+  }
 
   render() {
     return (

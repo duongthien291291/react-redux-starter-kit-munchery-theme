@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm, change as changeFieldValue, formValueSelector} from 'redux-form'
-import CheckboxGroup from './CheckboxGroup'
-import RadioGroup from './RadioGroup'
+import CheckboxGroup from '../../../components/CheckboxGroup'
+import RadioGroup from '../../../components/RadioGroup'
 var Barcode = require('react-barcode');
 import {browserHistory} from 'react-router'
 import './QuestForm.scss'

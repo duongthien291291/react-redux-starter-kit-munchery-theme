@@ -24,6 +24,10 @@ export default store => next => action => {
         storedState = {...storedState, phase2Questions: data.phase2Questions};
       }
 
+      if(!storedState.phase2Answers || storedState.phase2Answers.length == 0){
+        storedState = {...storedState, phase2Answers: initialState.phase2Answers};
+      }
+
       store.dispatch({
         type: 'RESET_APP_STATE',
         payload: storedState
