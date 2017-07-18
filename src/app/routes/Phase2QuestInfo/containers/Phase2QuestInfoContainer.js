@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { finishedPhase1Question, addUserToPhase2Users, addAnswerToPhase2Answers } from '../../../containers/AppReducer'
+import { finishedPhase2Question, addUserToPhase2Users, addQuestionToPhase2User } from '../../../containers/AppReducer'
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
@@ -13,9 +13,9 @@ import Phase2QuestInfo from '../components/Phase2QuestInfo'
     implementing our wrapper around increment; the component doesn't care   */
 
 const mapDispatchToProps = {
-  finishedPhase1Question: (questionId) => finishedPhase1Question(questionId),
+  finishedPhase2Question: (questionId) => finishedPhase2Question(questionId),
   addUserToPhase2Users: (userId) => addUserToPhase2Users(userId),
-  addAnswerToPhase2Answers: (answer) => addAnswerToPhase2Answers(answer),
+  addQuestionToPhase2User: (question) => addQuestionToPhase2User(question),
 }
 
 const mapStateToProps = (state) => ({

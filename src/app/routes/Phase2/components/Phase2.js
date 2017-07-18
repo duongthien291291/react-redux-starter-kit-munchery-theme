@@ -1,6 +1,7 @@
 import React from 'react'
 import {browserHistory} from 'react-router'
-import Phase2UserInfo from '../../../components/Phase2UserInfo'
+// import Phase2UserInfo from '../../../components/Phase2UserInfo'
+import UserInfo from '../../../components/UserInfo'
 import '../assets/style.scss'
 
 
@@ -18,7 +19,7 @@ class Phase2 extends React.Component {
         <div className="content-page">
           {this.props.children}
         </div>
-        <Phase2UserInfo></Phase2UserInfo>
+        <UserInfo></UserInfo>
       </div>
     )
   }

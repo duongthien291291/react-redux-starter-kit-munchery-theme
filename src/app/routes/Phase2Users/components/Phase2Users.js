@@ -9,7 +9,7 @@ class Phase2Users extends React.Component {
   }
 
   updateInfo = (user) => {
-
+    this.props.updateUserInfo(user);
   }
 
   goTo = (index) => {

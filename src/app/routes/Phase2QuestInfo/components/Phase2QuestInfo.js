@@ -22,12 +22,12 @@ class Phase2QuestInfo extends React.Component {
     //   toastr.error('Opp', 'Your answer is not right');
     //
     // this.props.finishedPhase1Question(this.props.question.id);
-    let answerObj = {
+    let questionObj = {
+      ...this.props.question,
       userAnswers: answer.answer,
-      question: this.props.question,
-      userId: this.props.user.id
     };
-    this.props.addAnswerToPhase2Answers(answerObj);
+    this.props.addQuestionToPhase2User(questionObj);
+    this.props.finishedPhase2Question(this.props.question.id);
   };
 
   arraysEqual(arr1, arr2) {

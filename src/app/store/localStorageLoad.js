@@ -24,8 +24,12 @@ export default store => next => action => {
         storedState = {...storedState, phase2Questions: data.phase2Questions};
       }
 
-      if(!storedState.phase2Answers || storedState.phase2Answers.length == 0){
-        storedState = {...storedState, phase2Answers: initialState.phase2Answers};
+      if(!storedState.phase2Users || storedState.phase2Users.length == 0){
+        storedState = {...storedState, phase2Users: initialState.phase2Users};
+      }
+
+      if(!storedState.phase2UserResults || storedState.phase2UserResults.length == 0){
+        storedState = {...storedState, phase2UserResults: initialState.phase2UserResults};
       }
 
       store.dispatch({
