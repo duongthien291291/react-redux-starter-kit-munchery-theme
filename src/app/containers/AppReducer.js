@@ -238,7 +238,7 @@ const ACTION_HANDLERS = {
   [COPY_PHASE2USER_TO_PHASE2USERRESULT]: (state, action) => ({
     ...state,
     phase2UserResults: [...action.users.filter(x => !x.done)],
-    phase2Users: state.phase2Users.map(x => ({...x, question: {}}))
+    phase2Users: state.phase2Users.map(x => ({...x, question: null}))
   }),
   [CHECK_ANSWERS_OF_PHASE2USERS]: (state, action) => {
     var usersHaveRightAnswer = state.phase2Users.map(x =>
