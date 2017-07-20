@@ -40,10 +40,8 @@ class QuestInfo extends React.Component {
   render() {
     return (
       <div>
-        <h1>This is quest info page</h1>
         <h3 className="text-left">{this.props.question.description}</h3>
         <QuestForm onSubmit={this.handleSubmitAnswer} { ...this.props }></QuestForm>
-        {/*<UserInfoForm onSubmit={this.handleSubmitAnswer} { ...this.props }></UserInfoForm>*/}
       </div>
     )
   }

@@ -28,8 +28,8 @@ class Phase2Result extends React.Component {
                             && question.answers.every(x => question.userAnswers.some(y => y == x)));
       let imgUrl = isRightAnswer ? checkUrl : errorUrl;
       return (
-        <div className="row" key={`usersresult-${index}`} style={{'borderBottom': '2px solid'}}>
-          <div className="col-sm-3">{obj.name}</div>
+        <div className="row" key={`usersresult-${index}`} style={{'borderBottom': '2px solid', 'display': 'flex'}}>
+          <div className="col-sm-3" style={{'display': 'flex', 'justifyContent': 'center', 'alignItems': 'center'}}><h2>{obj.name}</h2></div>
           <div className="col-sm-8 text-left">
             {
               <CheckboxGroupResult name="answer"
@@ -41,7 +41,7 @@ class Phase2Result extends React.Component {
                              }))}/>
             }
           </div>
-          <div className="col-sm-1">
+          <div className="col-sm-1" style={{'display': 'flex', 'justifyContent': 'center', 'alignItems': 'center'}}>
             <img src={imgUrl} style={{'width': '75%'}}/>
           </div>
         </div>

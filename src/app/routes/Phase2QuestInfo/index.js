@@ -1,5 +1,5 @@
 import { injectReducer } from '../../store/reducers'
-import { updateQuestionInfoById } from '../QuestInfo/modules/QuestInfoReducer'
+import { updateQuestionInfoById } from '../Phase2QuestInfo/modules/Phase2QuestInfoReducer'
 
 export default (store) => {
   const onEnter = (nextState, transition) => {

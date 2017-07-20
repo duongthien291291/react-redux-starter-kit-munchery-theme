@@ -47,7 +47,8 @@ class ThreeComponent extends React.Component {
         element.appendChild(symbol);
         var details = document.createElement('div');
         details.className = 'details';
-        details.innerHTML = table[i].name + '<br>' + table[i].attendance;
+        // details.innerHTML = table[i].name + '<br>' + table[i].attendance;
+        details.innerHTML = table[i].name;
         element.appendChild(details);
 
         //add click event to element

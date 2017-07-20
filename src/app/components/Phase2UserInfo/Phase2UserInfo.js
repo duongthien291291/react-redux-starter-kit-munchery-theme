@@ -12,8 +12,8 @@ class Phase2UserInfo extends Component {
     let userInfo = this.props.users.map((obj, index) => {
       return (
         <div key={`userinfo-${index}`}>
-          <h1>New Ocean Information System</h1>
-          <div>This is user info</div>
+          <h1>User Informations</h1>
+          {/*<div>This is user info</div>*/}
           <div>{obj.name}</div>
         </div>
       )
