@@ -179,7 +179,7 @@ export function randomAWinner() {
 
     setTimeout(() => {
       toastr.success('Congratulations', 'The winner is ' + listActiveUsers[randomIndex - 1].name);
-    }, 1000);
+    }, 2000);
   }
 }
 

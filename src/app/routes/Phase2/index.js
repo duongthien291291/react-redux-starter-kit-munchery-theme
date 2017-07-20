@@ -2,12 +2,19 @@ import { injectReducer } from '../../store/reducers'
 import Phase2UsersRoute from '../Phase2Users'
 import Phase2QuestsRoute from '../Phase2Quests'
 import Phase2QuestInfoRoute from '../Phase2QuestInfo'
+import {toastr} from 'react-redux-toastr'
 
 
 export default (store) => {
   const onEnter = (nextState, transition) => {
     const state = store.getState();
     if (!state.app.phase2Users || state.app.phase2Users.length == 0) { transition('/') };
+
+    let activeUsers = state.app.phase2Users.filter(x => !x.done && x.question == null);
+    let avaiablePhase2Questions = state.app.phase2Questions.filter(x => !x.done);
+    if(avaiablePhase2Questions.length < activeUsers.length){
+      toastr.error('Opp', "We don't have enough quetions. Please random a Winnner");
+    }
   };
   const onLeave = (nextState, transition) => {
   };

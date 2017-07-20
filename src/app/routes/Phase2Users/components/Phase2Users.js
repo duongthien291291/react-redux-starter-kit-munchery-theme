@@ -34,19 +34,19 @@ class Phase2Users extends React.Component {
                         updateInfo={this.updateInfo}
                         goTo={this.goTo}
                         listObject={this.props.users}
-                        >
+                        randomAWinner={this.props.randomAWinner}>
 
         </ThreeComponent>
 
         <div className="random" style={{'position': 'absolute', 'bottom': '0'}}>
           <button onClick={() => this.randomAWinner()}>Random a Winner</button>
-          {/*<div className="btn-barcode">*/}
-            {/*<Barcode value={'random'}*/}
-                     {/*width={1}*/}
-                     {/*height={50}*/}
-                     {/*displayValue={false}*/}
-                     {/*background='#ecf0f5'/>*/}
-          {/*</div>*/}
+          <div className="btn-barcode">
+            <Barcode value={'random'}
+                     width={1}
+                     height={50}
+                     displayValue={false}
+                     background='#ecf0f5'/>
+          </div>
         </div>
 
         <div className="back">

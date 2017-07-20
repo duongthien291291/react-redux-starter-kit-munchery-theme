@@ -33,7 +33,7 @@ class ThreeComponent extends React.Component {
         var element = document.createElement('div');
         element.className = 'element';
         // element.style.backgroundColor = 'rgba(0,127,127,' + ( 0.9 ) + ')';
-        if(!table[i].done)
+        if (!table[i].done)
           element.style.backgroundColor = 'rgba(0,127,127,' + ( 0.9 ) + ')';
         else
           element.style.backgroundColor = 'rgba(0,127,127,' + ( 0.25 ) + ')';
@@ -246,7 +246,7 @@ class ThreeComponent extends React.Component {
     else if (strs && keyCode == 13 && timeSpand < 30) {
       console.log(strs);
       if (strs.match(/\d+/)) {
-        var num = strs.match(/\d+/)[0];
+        var num = parseInt(strs.match(/\d+/)[0]);
 
         var user = table.find(function (obj) {
           return obj.id == num;
@@ -279,6 +279,8 @@ class ThreeComponent extends React.Component {
       else {
         if (strs == 'back') {
           browserHistory.push('/');
+        } else if (strs == 'random') {
+          self.props.randomAWinner();
         }
       }
     }
