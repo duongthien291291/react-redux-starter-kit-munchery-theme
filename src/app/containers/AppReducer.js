@@ -1,4 +1,6 @@
 import {browserHistory} from 'react-router'
+import {toastr} from 'react-redux-toastr'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -16,6 +18,7 @@ export const UPDATE_STATUS_FOR_USER_PHASE2 = 'UPDATE_STATUS_FOR_USER_PHASE2'
 export const COPY_PHASE2USER_TO_PHASE2USERRESULT = 'COPY_PHASE2USER_TO_PHASE2USERRESULT'
 export const CLEAR_QUESTION_OF_PHASE2USERS = 'CLEAR_QUESTION_OF_PHASE2USERS'
 export const CHECK_ANSWERS_OF_PHASE2USERS = 'CHECK_ANSWERS_OF_PHASE2USERS'
+export const RANDOM_A_WINNER = 'RANDOM_A_WINNER'
 
 export function updateAppState(userData) {
   return {
@@ -112,7 +115,6 @@ export function addQuestionToPhase2User(question) {
 
     if (listActiveUsers.every((x) => x.question)) {
       let listPhase2Users = app.phase2Users.map(x => x);
-      debugger
       dispatch(checkAnswersOfPhase2Users());
       dispatch(copyPhase2UserToPhase2UserResult(listPhase2Users));
       setTimeout(() => {
@@ -166,6 +168,21 @@ export function checkAnswersOfPhase2Users() {
   }
 }
 
+// ------------------------------------
+// Actions
+// ------------------------------------
+export function randomAWinner() {
+  return (dispatch, getState) => {
+    let {app} = getState();
+    let listActiveUsers = app.phase2Users.filter((x) => (!x.done));
+    const randomIndex = Math.floor(Math.random() * (listActiveUsers.length - 1 + 1) + 1);
+
+    setTimeout(() => {
+      toastr.success('Congratulations', 'The winner is ' + listActiveUsers[randomIndex - 1].name);
+    }, 1000);
+  }
+}
+
 export const actions = {
   updateAppState,
   updateUserDataForAppState,
@@ -175,7 +192,8 @@ export const actions = {
   finishedPhase1Question,
   finishedPhase2Question,
   addUserToPhase2Users,
-  addQuestionToPhase2User
+  addQuestionToPhase2User,
+  randomAWinner
 }
 
 // ------------------------------------
@@ -243,7 +261,7 @@ const ACTION_HANDLERS = {
   [CHECK_ANSWERS_OF_PHASE2USERS]: (state, action) => {
     var usersHaveRightAnswer = state.phase2Users.map(x =>
       (!x.done && !x.question.answers.every(y => x.question.userAnswers.some(z => z == y)) ? {...x, done: true} : x));
-    if(usersHaveRightAnswer.every(x => x.done)){
+    if (usersHaveRightAnswer.every(x => x.done)) {
       usersHaveRightAnswer = state.phase2Users;
     }
     return {

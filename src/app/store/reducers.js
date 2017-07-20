@@ -4,6 +4,8 @@ import { reducer as formReducer } from 'redux-form'
 import userInfoReducer from '../components/UserInfo/userInfoReducer'
 import homeReducer from '../routes/Home/modules/HomeReducer'
 import appReducer from '../containers/AppReducer'
+import questInfoReducer from '../routes/QuestInfo/modules/QuestInfoReducer'
+import phase2QuestInfoReducer from '../routes/Phase2QuestInfo/modules/Phase2QuestInfoReducer'
 import {reducer as toastrReducer} from 'react-redux-toastr'
 
 export const makeRootReducer = (asyncReducers) => {
@@ -14,6 +16,8 @@ export const makeRootReducer = (asyncReducers) => {
     userInfo: userInfoReducer,
     home: homeReducer,
     app: appReducer,
+    questInfo: questInfoReducer,
+    phase2QuestInfo: phase2QuestInfoReducer,
     ...asyncReducers
   })
 }

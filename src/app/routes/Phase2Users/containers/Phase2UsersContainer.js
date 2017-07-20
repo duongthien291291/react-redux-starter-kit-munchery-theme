@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { updateUserDataForAppState } from '../../../containers/AppReducer'
+import { updateUserDataForAppState, randomAWinner } from '../../../containers/AppReducer'
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
@@ -14,6 +14,7 @@ import User from '../components/Phase2Users'
 
 const mapDispatchToProps = {
   updateUserInfo : (user) => updateUserDataForAppState(user),
+  randomAWinner: () => randomAWinner()
 }
 
 const mapStateToProps = (state) => ({

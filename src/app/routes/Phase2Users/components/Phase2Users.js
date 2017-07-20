@@ -20,6 +20,10 @@ class Phase2Users extends React.Component {
     browserHistory.push('/');
   }
 
+  randomAWinner = () => {
+    this.props.randomAWinner();
+  };
+
   render() {
     return (
       <div>
@@ -29,9 +33,21 @@ class Phase2Users extends React.Component {
                         yCoordinate={660}
                         updateInfo={this.updateInfo}
                         goTo={this.goTo}
-                        listObject={this.props.users}>
+                        listObject={this.props.users}
+                        >
 
         </ThreeComponent>
+
+        <div className="random" style={{'position': 'absolute', 'bottom': '0'}}>
+          <button onClick={() => this.randomAWinner()}>Random a Winner</button>
+          {/*<div className="btn-barcode">*/}
+            {/*<Barcode value={'random'}*/}
+                     {/*width={1}*/}
+                     {/*height={50}*/}
+                     {/*displayValue={false}*/}
+                     {/*background='#ecf0f5'/>*/}
+          {/*</div>*/}
+        </div>
 
         <div className="back">
           <button onClick={() => this.back()}>Back</button>

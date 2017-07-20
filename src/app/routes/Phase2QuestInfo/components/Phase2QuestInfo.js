@@ -22,12 +22,14 @@ class Phase2QuestInfo extends React.Component {
     //   toastr.error('Opp', 'Your answer is not right');
     //
     // this.props.finishedPhase1Question(this.props.question.id);
+    toastr.success('Submitted', 'Your answer has been submitted');
     let questionObj = {
       ...this.props.question,
       userAnswers: answer.answer,
     };
     this.props.addQuestionToPhase2User(questionObj);
     this.props.finishedPhase2Question(this.props.question.id);
+    browserHistory.push('/phase2');
   };
 
   arraysEqual(arr1, arr2) {

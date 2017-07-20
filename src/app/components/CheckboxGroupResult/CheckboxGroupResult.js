@@ -7,7 +7,6 @@ export default class CheckboxGroupResult extends Component {
 
   render() {
     const {options} = this.props;
-    debugger
     const checkboxes = options.map(({label, value, answers, checked}, index) => {
 
       let style = {};
