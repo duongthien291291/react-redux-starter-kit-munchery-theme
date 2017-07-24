@@ -5,7 +5,7 @@ import './UserInfo.scss'
 
 export const UserInfo = (props) => (
   <div className="user-info">
-    <h1>User Informations</h1>
+    <h1>Company Informations</h1>
     {/*<div>This is user info</div>*/}
     <div>{props.user.name}</div>
   </div>

@@ -145,7 +145,7 @@ class Phase2QuestForm extends Component {
           <div className="form-buttons row">
             <div className="col-sm-4 text-center">
               <div>
-                <button type="submit" disabled={submitting}>Submit</button>
+                <button type="submit" disabled={submitting}>Confirm</button>
               </div>
               <div className="btn-barcode">
                 <Barcode value={'submit'}

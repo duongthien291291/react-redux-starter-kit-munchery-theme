@@ -247,28 +247,28 @@
     },
     {
       "id": "36",
-      "name": "Bosch",
+      "name": "Liksin",
       "attendance": false,
       "col": 6,
       "row": 4
     },
     {
       "id": "37",
-      "name": "Liksin",
+      "name": "Kyoshin",
       "attendance": false,
       "col": 7,
       "row": 4
     },
     {
       "id": "38",
-      "name": "Kyoshin",
+      "name": "NCP",
       "attendance": false,
       "col": 8,
       "row": 4
     },
     {
       "id": "39",
-      "name": "Reserve",
+      "name": "Nestle",
       "attendance": false,
       "col": 9,
       "row": 4
@@ -279,49 +279,50 @@
       "attendance": false,
       "col": 10,
       "row": 4
-    },
-    {
-      "id": "41",
-      "name": "Reserve",
-      "attendance": false,
-      "col": 1,
-      "row": 5
-    },
-    {
-      "id": "42",
-      "name": "Reserve",
-      "attendance": false,
-      "col": 2,
-      "row": 5
-    },
-    {
-      "id": "43",
-      "name": "Reserve",
-      "attendance": false,
-      "col": 3,
-      "row": 5
-    },
-    {
-      "id": "44",
-      "name": "Reserve",
-      "attendance": false,
-      "col": 4,
-      "row": 5
-    },
-    {
-      "id": "45",
-      "name": "Reserve",
-      "attendance": false,
-      "col": 5,
-      "row": 5
     }
   ],
   "phase1Questions": [
     {
       "id": "1",
-      "name": "Question 1",
+      "name": "Question 1 Example",
       "done": false,
       "col": 1,
+      "row": 1,
+      "description": "Câu 1: Tên gọi thiết bị dành riêng cho việc đọc và kiểm tra mã vạch của Cognex:",
+      "chooses": [
+        {"id": 1, "description": "a. InSight 2000"},
+        {"id": 2, "description": "b. Dataman"},
+        {"id": 3, "description": "c. Checker"},
+        {"id": 4, "description": "d. Không có câu nào đúng"}
+      ],
+      "answers": [
+        2
+      ],
+      "timeLimit": 30
+    },
+    {
+      "id": "2",
+      "name": "Question 2 Example",
+      "done": false,
+      "col": 2,
+      "row": 1,
+      "description": "Câu 2: Tên gọi cảm biến hình ảnh mới của Cognex được giới thiệu trong chương trình:",
+      "chooses": [
+        {"id": 1, "description": "a. Dataman"},
+        {"id": 2, "description": "b. Insight 2000"},
+        {"id": 3, "description": "c. Checker"},
+        {"id": 4, "description": "d. Tất cả các câu trên đều đúng"}
+      ],
+      "answers": [
+        2
+      ],
+      "timeLimit": 25
+    },
+    {
+      "id": "3",
+      "name": "Question 3",
+      "done": false,
+      "col": 3,
       "row": 1,
       "description": "Câu 1: New Ocean gồm các bộ phận kỹ thuật nào:",
       "chooses": [
@@ -335,11 +336,11 @@
       ]
     },
     {
-      "id": "2",
-      "name": "Question 2",
+      "id": "4",
+      "name": "Question 4",
       "done": false,
-      "col": 2,
-      "row": 1,
+      "col": 1,
+      "row": 2,
       "description": "Câu 2: Mã vạch được chia làm mấy loại:",
       "chooses": [
         {"id": 1, "description": "a. 1 loại là mã vạch 1D"},
@@ -352,11 +353,11 @@
       ]
     },
     {
-      "id": "3",
-      "name": "Question 3",
+      "id": "5",
+      "name": "Question 5",
       "done": false,
-      "col": 3,
-      "row": 1,
+      "col": 2,
+      "row": 2,
       "description": "Câu 3: Công nghệ Vision khác như thế nào với công nghệ laser trong lĩnh vực đọc mã:",
       "chooses": [
         {"id": 1, "description": "a. Đọc được mã vạch 2D"},
@@ -369,10 +370,10 @@
       ]
     },
     {
-      "id": "4",
-      "name": "Question 4",
+      "id": "6",
+      "name": "Question 6",
       "done": false,
-      "col": 1,
+      "col": 3,
       "row": 2,
       "description": "Câu 4: Đầu đọc Dataman của Cognex có thể đọc và kiểm tra các loại mã nào dưới đây:",
       "chooses": [
@@ -386,11 +387,11 @@
       ]
     },
     {
-      "id": "5",
-      "name": "Question 5",
+      "id": "7",
+      "name": "Question 7",
       "done": false,
-      "col": 2,
-      "row": 2,
+      "col": 1,
+      "row": 3,
       "description": "Câu 5: Hệ thống Vision có thể thực hiện:",
       "chooses": [
         {"id": 1, "description": "a. Đo lường và dẫn đường cho Robot"},
@@ -403,11 +404,11 @@
       ]
     },
     {
-      "id": "6",
-      "name": "Question 6",
+      "id": "8",
+      "name": "Question 8",
       "done": false,
-      "col": 3,
-      "row": 2,
+      "col": 2,
+      "row": 3,
       "description": "Câu 6: Hệ thống Vision thường có các thành phần nào?",
       "chooses": [
         {"id": 1, "description": "a. Thiết bị thu ảnh (camera công nghiệp) và bộ xử lý"},
@@ -420,10 +421,10 @@
       ]
     },
     {
-      "id": "7",
-      "name": "Question 7",
+      "id": "9",
+      "name": "Question 9",
       "done": false,
-      "col": 1,
+      "col": 3,
       "row": 3,
       "description": "Câu 7: Điểm vượt trội của Dataman và InSight 2000 là:",
       "chooses": [

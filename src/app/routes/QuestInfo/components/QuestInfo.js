@@ -17,11 +17,17 @@ class QuestInfo extends React.Component {
     if(!answer.answer)
       return;
     if(this.arraysEqual(answer.answer, this.props.question.answers)) {
-      this.props.addUserToPhase2Users(this.props.user.id);
+      if(this.props.question.id != 1 && this.props.question.id != 2)
+        this.props.addUserToPhase2Users(this.props.user.id);
+
       toastr.success('Congratulations', 'Your answer is right');
     }
     else
       toastr.error('Opp', 'Your answer is not right');
+
+    //question 1 and question 2 are example questions
+    if(this.props.question.id == '1' || this.props.question.id == '2')
+      return;
 
     this.props.finishedPhase1Question(this.props.question.id);
   };
