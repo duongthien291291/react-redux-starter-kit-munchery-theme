@@ -63,6 +63,7 @@ class QuestForm extends Component {
       strs += e.key;
     }
     else if (strs && keyCode == 13 && timeSpand < 30) {
+      console.log(strs);
       if (strs.match(/\d+/)) {
         var num = parseInt(strs.match(/\d+/)[0]);
         let array = [];
@@ -78,7 +79,6 @@ class QuestForm extends Component {
           else {
             array.splice(array.indexOf(num), 1);
           }
-          props.dispatch(changeFieldValue('QuestForm', 'answer', array));
         }
         else {
           if (array.indexOf(num) < 0) {
@@ -87,9 +87,9 @@ class QuestForm extends Component {
           else {
             array.splice(array.indexOf(num), 1);
           }
-
-          props.dispatch(changeFieldValue('QuestForm', 'answer', array));
         }
+
+        props.dispatch(changeFieldValue('QuestForm', 'answer', array));
       }
       else {
         if (strs == 'submit') {
