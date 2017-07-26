@@ -275,10 +275,24 @@
     },
     {
       "id": "40",
-      "name": "Reserve",
+      "name": "O LAM",
       "attendance": false,
       "col": 10,
       "row": 4
+    },
+    {
+      "id": "41",
+      "name": "KAO",
+      "attendance": false,
+      "col": 1,
+      "row": 5
+    },
+    {
+      "id": "42",
+      "name": "TIALOC",
+      "attendance": false,
+      "col": 2,
+      "row": 5
     }
   ],
   "phase1Questions": [
@@ -358,7 +372,7 @@
       "done": false,
       "col": 2,
       "row": 2,
-      "description": "Câu 3: Công nghệ Vision khác như thế nào với công nghệ laser trong lĩnh vực đọc mã:",
+      "description": "Câu 3: Công nghệ Camera khác như thế nào với công nghệ laser trong lĩnh vực đọc Barcode (mã vach):",
       "chooses": [
         {"id": 1, "description": "a. Đọc được mã vạch 2D"},
         {"id": 2, "description": "b. Đọc được nhiều mã cùng lúc"},

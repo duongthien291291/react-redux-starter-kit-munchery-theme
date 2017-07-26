@@ -4,6 +4,7 @@ import {Field, reduxForm, change as changeFieldValue, formValueSelector} from 'r
 import CheckboxGroup from '../../../components/CheckboxGroup'
 import RadioGroup from '../../../components/RadioGroup'
 var Barcode = require('react-barcode');
+var QRCode = require('qrcode.react');
 import {browserHistory} from 'react-router'
 import './Phase2QuestForm.scss'
 
@@ -28,7 +29,8 @@ const warn = values => {
 class Phase2QuestForm extends Component {
   constructor(props) {
     super(props)
-    this.state = {width: 1, height: 50, displayValue: false, background: '#ecf0f5'};
+    // this.state = {width: 1, height: 50, displayValue: false, background: '#ecf0f5'};
+    this.state = {size: 64, background: '#ecf0f5'};
   }
 
   componentDidMount() {
@@ -148,11 +150,14 @@ class Phase2QuestForm extends Component {
                 <button type="submit" disabled={submitting}>Confirm</button>
               </div>
               <div className="btn-barcode">
-                <Barcode value={'submit'}
-                         width={this.state.width}
-                         height={this.state.height}
-                         displayValue={this.state.displayValue}
-                         background={this.state.background}/>
+                {/*<Barcode value={'submit'}*/}
+                         {/*width={this.state.width}*/}
+                         {/*height={this.state.height}*/}
+                         {/*displayValue={this.state.displayValue}*/}
+                         {/*background={this.state.background}/>*/}
+                <QRCode value='submit'
+                        bgColor={this.state.background}
+                        size={this.state.size}/>
               </div>
             </div>
 
@@ -161,11 +166,14 @@ class Phase2QuestForm extends Component {
                 <button type="button" disabled={submitting} onClick={reset}>Clear Values</button>
               </div>
               <div className="btn-barcode">
-                <Barcode value={'clear'}
-                         width={this.state.width}
-                         height={this.state.height}
-                         displayValue={this.state.displayValue}
-                         background={this.state.background}/>
+                {/*<Barcode value={'clear'}*/}
+                         {/*width={this.state.width}*/}
+                         {/*height={this.state.height}*/}
+                         {/*displayValue={this.state.displayValue}*/}
+                         {/*background={this.state.background}/>*/}
+                <QRCode value='clear'
+                        bgColor={this.state.background}
+                        size={this.state.size}/>
               </div>
             </div>
 
@@ -174,11 +182,14 @@ class Phase2QuestForm extends Component {
                 <button type="button" onClick={() => this.back()}>Back</button>
               </div>
               <div className="btn-barcode">
-                <Barcode value={'back'}
-                         width={this.state.width}
-                         height={this.state.height}
-                         displayValue={this.state.displayValue}
-                         background={this.state.background}/>
+                {/*<Barcode value={'back'}*/}
+                         {/*width={this.state.width}*/}
+                         {/*height={this.state.height}*/}
+                         {/*displayValue={this.state.displayValue}*/}
+                         {/*background={this.state.background}/>*/}
+                <QRCode value='back'
+                        bgColor={this.state.background}
+                        size={this.state.size}/>
               </div>
             </div>
           </div>

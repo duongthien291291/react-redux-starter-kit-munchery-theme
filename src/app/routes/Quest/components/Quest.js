@@ -338,6 +338,7 @@ import {browserHistory} from 'react-router'
 import ThreeComponent from '../../../components/ThreeComponent'
 import '../assets/style.scss'
 var Barcode = require('react-barcode');
+var QRCode = require('qrcode.react');
 
 class Quest extends React.Component {
   constructor(props) {
@@ -372,11 +373,14 @@ class Quest extends React.Component {
         <div className="back">
           <button onClick={() => this.back()}>Back</button>
           <div className="btn-barcode">
-            <Barcode value={'back'}
-                     width={1}
-                     height={50}
-                     displayValue={false}
-                     background='#ecf0f5'/>
+            {/*<Barcode value={'back'}*/}
+                     {/*width={1}*/}
+                     {/*height={50}*/}
+                     {/*displayValue={false}*/}
+                     {/*background='#ecf0f5'/>*/}
+            <QRCode value='back'
+                    bgColor={'#ecf0f5'}
+                    size={64}/>
           </div>
         </div>
       </div>

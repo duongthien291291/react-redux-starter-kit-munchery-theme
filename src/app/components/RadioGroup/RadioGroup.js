@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Field} from "redux-form";
 import PropTypes from 'prop-types';
 var Barcode = require('react-barcode');
+var QRCode = require('qrcode.react');
 
 export default class RadioGroup extends Component {
 
@@ -47,11 +48,14 @@ export default class RadioGroup extends Component {
             <span>{label}</span>
           </label>
           <div>
-            <Barcode value={'id' + value}
-                     width={1}
-                     height={50}
-                     displayValue={false}
-                     background='#ecf0f5'/>
+            {/*<Barcode value={'id' + value}*/}
+                     {/*width={1}*/}
+                     {/*height={50}*/}
+                     {/*displayValue={false}*/}
+                     {/*background='#ecf0f5'/>*/}
+            <QRCode value={'id' + value}
+                    bgColor={'#ecf0f5'}
+                    size={64}/>
           </div>
         </div>
       );

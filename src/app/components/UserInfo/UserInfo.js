@@ -7,7 +7,7 @@ export const UserInfo = (props) => (
   <div className="user-info">
     <h1>Company Informations</h1>
     {/*<div>This is user info</div>*/}
-    <div>{props.user.name}</div>
+    <h2>{props.user.name}</h2>
   </div>
 )
 
